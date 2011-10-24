@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="./Admin_Temp.xhtml">
+            <ui:define name="content">
+                <h:form style="border-color: black; width: 720px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
+                    <!--                <div style="border-color: black; width: 700px; float: right; border-width: 1; text-align: left">-->
+                    <span style="font-size: x-large;"> <b>Create a new Account</b></span>
+                    <hr/>
+                   <br style="clear: both"/>
+                    <div style="padding: 5px">
+                        <div style="float: left;width: 25%; text-align: right"><h:outputText value="First Name "/></div>
+                        <div style="float:right;width:73%;text-align: left"><h:inputText style="border:2px; border-color: black; border-style: double; background: activeborder" value="#{staffMB.staff.firstName}"/></div>
+
+                    </div>
+                     <br style="clear: both"/>
+                    <div style="padding:5px">
+                        <div style="float: left;width: 25%; text-align: right"><h:outputText value="Last Name"/></div>
+                        <div style="float:right;width:73%;text-align: left"><h:inputText style="border:2px; border-color: black; border-style: double; background: activeborder" value="#{staffMB.staff.lastName}"/></div>
+                        
+                    </div>
+
+                     <br style="clear: both"/>
+                    <div style="padding: 5px">
+                        <div style="float: left;width: 25%; text-align: right"><h:outputLabel value="Department " for ="departmentId"/></div>
+                        <div style="float:right;width:73%;text-align: left"><h:selectOneMenu style="border:2px; border-color: black; border-style: double; background: activeborder" id="departmentId"  value="#{staffMB.depart.departmentId}">
+                                <f:selectItems value="#{staffMB.departList}"
+                                               var="item"  itemLabel="#{item.departmentName}" itemValue="#{item.departmentId}"/>
+                            </h:selectOneMenu></div>
+                    </div>
+                      <br style="clear: both"/>
+
+
+
+                    <div style="padding: 5px">
+                        <div style="float: left;width: 25%; text-align: right"><h:outputLabel value="Gender" for="gender"/></div>
+                        <div style="float:right;width:73%;text-align: left">
+                            <h:selectOneRadio style="border:2px; border-color: black; border-style: double; background: activeborder" id="gender" value="#{staffMB.staff.gender}">
+                                <f:selectItem itemValue="Male" itemLabel="Male" />
+                                <f:selectItem itemValue="Female" itemLabel="Female" />
+                            </h:selectOneRadio></div>
+                    </div>
+                      <br style="clear: both"/>
+
+                    <div style="padding: 5px">
+                        <div style="float: left;width: 25%; text-align: right"><h:outputText value="Birthday "/></div>
+                        <div style="float:right;width:73%;text-align: left"> <h:inputText style="border:2px; border-color: black; border-style: double; background: activeborder" value="#{staffMB.staff.dateOfBirth}">
+                                <f:convertDateTime dateStyle="short" pattern="MM/dd/yyyy"/>
+                            </h:inputText></div>
+                    </div>
+
+                    <br style="clear: both"/>
+
+                    <div style="padding: 5px">
+                        <div style="float: left;width: 25%; text-align: right"><h:outputText value="Identity Card "/></div>
+                        <div style="float:right;width:73%;text-align: left"><h:inputText style="border:2px; border-color: black; border-style: double; background: activeborder" id="identityCard" value="#{staffMB.staff.identityCard}"/></div>
+                    </div>
+
+                      <br style="clear: both"/>
+
+                    <div style="padding: 5px">
+                        <div style="float: left;width: 25%; text-align: right"><h:outputText value="Phone No "/></div>
+                        <div style="float:right;width:73%;text-align: left"><h:inputText style="border:2px; border-color: black; border-style: double; background: activeborder" value="#{staffMB.staff.phoneNo}"/></div>
+                    </div>
+                      <br style="clear: both"/>
+
+                    <div style="padding: 5px">
+                        <div style="float: left;width: 25%; text-align: right"><h:outputText value="Email "/></div>
+                        <div style="float:right;width:73%;text-align: left"> <h:inputText  style="border:2px; border-color: black; border-style: double; background: activeborder" value="#{staffMB.staff.email}"/></div>
+                    </div>
+                      <br style="clear: both"/>
+
+                    <div style="padding: 5px">
+                        <div style="float: left;width: 25%; text-align: right"><h:outputLabel value="Role " for="RoleId"/></div>
+                        <div style="float:right;width:73%;text-align: left"><h:selectOneMenu style="border:2px; border-color: black; border-style: double; background: activeborder" id="RoleId" title="RoleId" value="#{staffMB.role.roleId}">
+                                <f:selectItems  var="it" value="#{staffMB.roletList}" itemLabel="#{it.roleName}" itemValue="#{it.roleId}"/>
+                            </h:selectOneMenu></div>
+                    </div>
+                     <br style="clear: both"/>
+                    <div style="padding: 5px; text-align: center"><h:commandButton value="Add" action="#{staffMB.CreateStaff}"/></div>
+                    <!--                </div>-->
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

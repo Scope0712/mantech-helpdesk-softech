@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./Employee_template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://java.sun.com/jsf/core">
+
+    <script type="text/javascript" language="JavaScipt">
+        function add_photo()
+        {
+                show_gray_bg();
+                document.forms.mainform.action='/new_complaint/#images';
+                document.forms.mainform.submit();
+                //showbox('Uploading photo...<br/><img src="/img/loadinganim.gif"/>', null,220);
+        }
+    </script>
+
+
+
+    <ui:define name="content">
+        <h:form>
+            <table border="0">
+                <tr>
+                    <td>Category: </td>
+                    <td class="border" align="left">
+
+                        <h:selectOneMenu value="#{newComplaintBean.categories}">
+                            <c:selectItem id="si7" itemLabel="Select Category" itemValue="" />
+                            <c:selectItem id="si1" itemLabel="Usb" itemValue="Usb" />
+                            <c:selectItem id="si2" itemLabel="Floppy Disk" itemValue="Floppy Disk" />
+                            <c:selectItem id="si3" itemLabel="Hand Disk" itemValue="Hard Disk" />
+                            <c:selectItem id="si4" itemLabel="Software" itemValue="Software" />
+                            <c:selectItem id="si5" itemLabel="Network" itemValue="Network" />
+                            <c:selectItem id="si6" itemLabel="Operating System" itemValue="Operatot System" />
+                        </h:selectOneMenu>>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" class="border">Complaint Details:</td>
+                    <td align="left"><h:inputTextarea value="#{newComplaintBean.content}" rows="10" cols="60" style=""/></td>
+                </tr>
+                
+                <tr>
+                    <td>Image:</td>
+                    <td class="border" align="left"><input type="file" name="image" onchange="add_photo()" class="file"/> </td>
+                </tr>                
+                <tr>
+                    <td><h:commandButton value="Submit" action="#{newComplaintBean.NewComplaint()}"/></td>
+                </tr>
+                
+            </table>
+        </h:form>
+    </ui:define>
+
+
+
+</ui:composition>
