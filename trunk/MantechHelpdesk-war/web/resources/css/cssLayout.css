@@ -1,28 +1,27 @@
 
 /*#top {
     position: relative;
-    background-color: #036fab;
-    color: white;
-    padding: 5px;
-    margin: 0px 0px 10px 0px;
-}*/
+ 
 
-/*#bottom {
-    position: relative;
-    background-color: #c2dfef;
-    padding: 5px;
-    margin: 10px 0px 0px 0px;
 }
-*/
 
+#bottom {
+    position: relative;
+  
+  
+}*/
 /*
+#left{
+     position: relative;
+   
+}
+
 #right {
     float: right;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
-}
 
+    
+}*/
+/*
 .center_content {
     position: relative;
     background-color: #dddddd;
@@ -41,39 +40,78 @@
     margin: 0px 170px 0px 170px;
 }*/
 
+/*
+#top a:link,#top a:visited{
+    color: white;
+    font-weight : bold;
+    background-image: url(l1_1.png);
+    text-decoration: none;
+    height: 60px;
+    width: 120px;
+    padding-top: 6px;
+    padding-bottom:6px;
+    padding-left: 40px;
+    padding-right: 40px;
+
+}
+
+#top a:active, #top a:hover {
+    color:red;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 60px;
+    width:120px;
+    font-weight : bold;
+    background-image: inherit;
+    text-decoration :none;
+}*/
+a:link{
+    color: red;
+    font-weight : bold;
+    background:inherit;
+    text-decoration: none;
+}
+
+a:hover,a:active{
+    color: black;
+    font-weight : bold;
+    text-decoration : none;
+    text-decoration: underline;
+
+}
 
 #top a:link, #top a:visited {
-  color: white;
-  font-weight : bold;
-  background-image: url(l1_1.png);
-  text-decoration: none;
-   height: 60px;
-   width: 120px;
-   padding-top: 6px;
-   padding-bottom:6px;
-   padding-left: 40px;
-   padding-right: 40px;
+    color: white;
+    font-weight : bold;
+    background-image: url(l1_1.png);
+    text-decoration: none;
+    height: 60px;
+    width: 125px;
+    padding-top: 6px;
+    padding-bottom:6px;
+    padding-left: 38px;
+
+    padding-right:38px;
 }
 
-#top a:link:hover, #top a:visited:hover  {
-  color:red;
- padding-left: 40px;
-   padding-right: 40px;
-  height: 60px;
-  width:120px;
-  font-weight : bold;
-  background-image: inherit;
-  text-decoration :none;
+#top a:link:hover, #top a:visited:hover {
+    color:red;
+    padding-left: 38px;
+    padding-right: 38px;
+    height: 60px;
+    width:125px;
+    font-weight : bold;
+    background-image: inherit;
+    text-decoration :none;
 }
-#contenthome a:link:hover, a:visited:hover  {
-  color: red;
-  width: 300px;
-  padding-left: 100px;
-  padding-right: 100px;
-   padding-bottom: 10px;
-  padding-top: 10px;
-  background: inherit;
-  font-weight : bold;
-  text-decoration : none;
-  font-size: larger;
+
+#content a:link:hover, #content a:visited:hover  {
+    color: red;
+    width: 300px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background: inherit;
+    font-weight : bold;
+    text-decoration : none;
+    font-size: larger;
 }
