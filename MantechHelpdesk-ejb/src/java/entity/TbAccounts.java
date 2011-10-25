@@ -27,6 +27,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "TbAccounts.findByAccountId", query = "SELECT t FROM TbAccounts t WHERE t.accountId = :accountId"),
     @NamedQuery(name = "TbAccounts.findByPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password"),
     @NamedQuery(name = "TbAccounts.findByStatus", query = "SELECT t FROM TbAccounts t WHERE t.status = :status"),
+    @NamedQuery(name = "TbAccounts.findNewAccount", query = "SELECT t FROM TbAccounts t WHERE t.accountId = (SELECT max(o.accountId) from TbAccounts o)"),
     @NamedQuery(name = "TbAccounts.findByUsernameAndPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password and t.accountId=:accountId")})
 public class TbAccounts implements Serializable {
     private static final long serialVersionUID = 1L;

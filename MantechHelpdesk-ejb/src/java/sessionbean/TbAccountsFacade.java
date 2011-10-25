@@ -36,4 +36,10 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
             return null;
        }
     }
+
+    @Override
+    public TbAccounts findNewAccount() {
+        return (TbAccounts) em.createNamedQuery("TbAccounts.findNewAccount").getSingleResult();
+       
+    }
 }
