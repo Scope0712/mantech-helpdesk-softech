@@ -13,7 +13,7 @@
 
     <h:body ><!--
 style="background-image:  url(../images/map1.png)"-->
-      <div style="width:1024px; text-align: center; margin-right: auto; margin-left: auto;">
+      <div style="width:900px; text-align: center; margin-right: auto; margin-left: auto;">
 
         <div id="top">
             <ui:insert name="top">
@@ -22,10 +22,10 @@ style="background-image:  url(../images/map1.png)"-->
         </div>
 <!--          <div>-->
           <div style="background-image:  url(../images/map1.png)">
-            <div id="left" style="width:270px">
-                <ui:insert name="left"><ui:include src="../admin/AdminMenu.xhtml"/></ui:insert>
+            <div id="left" style="width:240px">
+                <ui:insert name="left"><ui:include src="#{accountMB.login_menu}"/></ui:insert>
             </div>
-            <div id="content" class="left_content">
+            <div id="content" >
                 <ui:insert name="content">Content</ui:insert>
             </div>
                <br style="clear: both"/>

@@ -15,18 +15,18 @@ h1 {
     padding: 0px;
     color: #D20005;
 }*/
-
-a:link, a:visited {
+/*
+a:link{
   color: red;
   font-weight : bold;
    background:inherit;
   text-decoration: none;
 }
 
-a:link:hover, a:visited:hover  {
-  color: red;
+a:hover,a:active{
+  color: black;
   font-weight : bold;
   text-decoration : none;
   text-decoration: underline;
  
-}
+}*/
