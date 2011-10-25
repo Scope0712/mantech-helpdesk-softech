@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+    <body>
+
+        <ui:composition template="./template/newTemplate.xhtml">
+
+            <ui:define name="left">
+                
+                <div style="width:70%; float: left; height: auto; " align="left">
+
+                    <img src="../images/home3.png" width="600" height="400"/>
+
+                </div>
+            </ui:define>
+
+            <ui:define name="contenthome">
+               
+                <div style="width: 28%;float: right; color: red" align="left">
+                    <br/>
+                    <br/>
+
+                    <div style="height: 50px">
+                        <h3>
+                            <a href="Article.xhtml">Article</a></h3>
+                    </div>
+                    <br/>
+                    <br/>  <div style="height: 50px">
+                        <h3>
+                            <a href="Faq.xhtml">FAQ</a></h3>
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <div style="height: 50px">
+                        <h3>
+                            <a href="Login.xhml">Login</a>
+                        </h3>
+                    </div>
+                </div>
+                <br style="clear: both"/>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
