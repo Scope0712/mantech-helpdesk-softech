@@ -32,4 +32,6 @@ public interface TbAccountsFacadeLocal {
 
     TbAccounts checkUsernamePassword(String username, String password);
 
+    TbAccounts findNewAccount();
+
 }

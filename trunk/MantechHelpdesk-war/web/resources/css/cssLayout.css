@@ -65,16 +65,16 @@
     background-image: inherit;
     text-decoration :none;
 }*/
-a:link{
+#left a:link{
     color: red;
-    font-weight : bold;
+   
     background:inherit;
     text-decoration: none;
 }
 
-a:hover,a:active{
+#left a:hover,left a:active{
     color: black;
-    font-weight : bold;
+   
     text-decoration : none;
     text-decoration: underline;
 
@@ -105,7 +105,7 @@ a:hover,a:active{
     text-decoration :none;
 }
 
-#content a:link:hover, #content a:visited:hover  {
+#contenthome a:link:hover, #contenthome a:visited:hover  {
     color: red;
     width: 300px;
     padding-bottom: 10px;

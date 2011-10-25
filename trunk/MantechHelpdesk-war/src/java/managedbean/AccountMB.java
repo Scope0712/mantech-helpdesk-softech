@@ -6,6 +6,7 @@ package managedbean;
 
 import entity.TbAccounts;
 import java.io.IOException;
+import java.util.Collection;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -32,6 +33,24 @@ public class AccountMB {
     HttpServletResponse response;
     HttpSession session;// = request.getSession();
     String login_label="Login";
+    TbAccounts newacc;
+    Collection<TbAccounts> listAcc;
+
+    public Collection<TbAccounts> getListAcc() {
+        return tbAccountsFacade.findAll();
+    }
+
+    public void setListAcc(Collection<TbAccounts> listAcc) {
+        this.listAcc = listAcc;
+    }
+   
+    public TbAccounts getNewacc() {
+        return tbAccountsFacade.findNewAccount();
+    }
+
+    public void setNewacc(TbAccounts newacc) {
+        this.newacc = newacc;
+    }
 
     public String getLogin_label() {
   
@@ -145,5 +164,11 @@ public class AccountMB {
         } else {
             return "/Home";
         }
+    }
+    public String deleteAcc(){
+        return null;
+    }
+    public String editAcc(){
+        return null;
     }
 }
