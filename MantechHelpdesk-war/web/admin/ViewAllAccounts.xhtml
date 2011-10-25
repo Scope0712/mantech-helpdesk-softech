@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./Admin_Temp.xhtml">
+            <!--
+                        <ui:define name="top">
+                            top
+                        </ui:define>-->
+
+
+            <ui:define name="content">
+                <h:form style="border-color: black; width:630px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
+                    View Information of All Accounts
+                    <hr/>
+                    <table  style="text-align: center" align="center">
+                        <tr style="background: #EC9B9B; text-align: center">
+                            <td>
+                                <h:outputText value="User Name"/>
+                            </td>
+                            <td>
+                                <h:outputText value="Name"/>
+                            </td>
+                            <td>
+
+                                <h:outputText value="Identity Card"/>
+                            </td>
+                            <td>
+
+                                <h:outputText value="role"/>
+                            </td>
+                            <td>
+                                <h:outputText value="Department"/>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <c:forEach var="items" items="#{accountMB.listAcc}">
+                            <tr style="background: lightgrey; text-align: left">
+                                <td>
+                                   <h:outputText value="#{items.accountId}"/>
+                                </td>
+                                <td>
+                                    <h:outputText value="#{items.tbStaffs.firstName} #{items.tbStaffs.lastName}"/>
+                                </td>
+                                <td>
+
+                                   <h:outputText value="#{items.tbStaffs.identityCard}"/>
+                                </td>
+                                <td>
+
+                                    <h:outputText value="#{items.tbStaffs.identityCard}"/>
+                                </td>
+                                <td>
+                                   <h:outputText value="#{items.tbStaffs.tbDepartments.departmentName}"/>
+                                </td>
+                                <td><h:commandLink action="#{accountMB.editAcc}" value="Edit"/></td>
+                                <td><h:commandLink action="#{accountMB.deleteAcc}" value="Delete"/></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
