@@ -6,6 +6,8 @@ package managedbean;
 
 import entity.TbAccounts;
 import java.io.IOException;
+import java.util.AbstractCollection;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbean.TbAccountsFacadeLocal;
+import sessionbean.TbStaffsFacade;
+import sessionbean.TbStaffsFacadeLocal;
 
 /**
  *
@@ -23,6 +27,8 @@ import sessionbean.TbAccountsFacadeLocal;
 @ManagedBean
 @RequestScoped
 public class AccountMB {
+    @EJB
+    private TbStaffsFacadeLocal tbStaffsFacade;
 
     @EJB
     private TbAccountsFacadeLocal tbAccountsFacade;
@@ -32,9 +38,30 @@ public class AccountMB {
     HttpServletRequest request;
     HttpServletResponse response;
     HttpSession session;// = request.getSession();
-    String login_label="Login";
+    String login_label = "Login";
     TbAccounts newacc;
     Collection<TbAccounts> listAcc;
+    private static ArrayList<Account> listAccount = null;
+
+    public ArrayList<Account> getListAccount() {
+        if (listAccount == null) {
+            listAccount = new ArrayList<Account>();
+            listAcc = getListAcc();
+            if (listAcc != null) {
+
+                for (TbAccounts a : listAcc) {
+
+
+                    listAccount.add(new Account(a));
+                }
+            }
+            return listAccount;
+
+        } else {
+
+            return listAccount;
+        }
+    }
 
     public Collection<TbAccounts> getListAcc() {
         return tbAccountsFacade.findAll();
@@ -43,7 +70,7 @@ public class AccountMB {
     public void setListAcc(Collection<TbAccounts> listAcc) {
         this.listAcc = listAcc;
     }
-   
+
     public TbAccounts getNewacc() {
         return tbAccountsFacade.findNewAccount();
     }
@@ -53,8 +80,8 @@ public class AccountMB {
     }
 
     public String getLogin_label() {
-  
-         return login_label;
+
+        return login_label;
     }
 
     public void setLogin_label(String login_label) {
@@ -70,7 +97,7 @@ public class AccountMB {
     }
 
     public HttpServletResponse getResponse() {
-      return  (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        return (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
     }
 
     public void setResponse(HttpServletResponse response) {
@@ -78,7 +105,7 @@ public class AccountMB {
     }
 
     public HttpSession getSession() {
-         return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
     }
 
     public void setSession(HttpSession session) {
@@ -141,22 +168,22 @@ public class AccountMB {
         setAcc(tbAccountsFacade.checkUsernamePassword(name, password));
         if (acc != null) {
             if (acc.getTbRoles().getRoleId().equals("Roles00003")) {
-                System.out.println(acc.getTbRoles().getRoleId()+":"+acc.getTbRoles().getRoleName());
-                session =  (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                System.out.println(acc.getTbRoles().getRoleId() + ":" + acc.getTbRoles().getRoleName());
+                session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("login_menu", "../admin/AdminMenu.xhtml");
-                login_label="Logout";
+                login_label = "Logout";
                 return "../admin/CreateAccount.xhtml?title=New Account";
             }
             if (acc.getTbRoles().getRoleId().equals("Roles00002")) {
-                session = (HttpSession)  FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("login_menu", "../technician/TechnicianMenu.xhtml");
-                 login_label="Logout";
+                login_label = "Logout";
                 return "/technician/RetrieveComplaint.xhtml?title=View Complaints";
             }
             if (acc.getTbRoles().getRoleId().equals("Roles00001")) {
                 session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("login_menu", "../employee/EmployeeMenu.xhtml");
-                 login_label="Logout";
+                login_label = "Logout";
                 return "/employee/Employee_template.xhtml?title=View My Complaint";
             }
             return "/Home";
@@ -165,10 +192,51 @@ public class AccountMB {
             return "/Home";
         }
     }
-    public String deleteAcc(){
+
+    public String saveAction() {
+
+        //get all existing value but set "editable" to false
+        for (Account a : listAccount) {
+            a.setEditable(false);
+            tbAccountsFacade.edit(a.ac);
+            tbStaffsFacade.edit(a.ac.getTbStaffs());
+            // a.setEditAction(false);
+        }
+        //return to current page
+        return null;
+
+    }
+
+    public String editAction(Account a) {
+        a.setEditable(true);
+        System.out.println(a.editable);
+
         return null;
     }
-    public String editAcc(){
-        return null;
+
+    public static class Account {
+
+        TbAccounts ac;
+        boolean editable;
+
+        public TbAccounts getAc() {
+            return ac;
+        }
+
+        public void setAc(TbAccounts ac) {
+            this.ac = ac;
+        }
+
+        public boolean isEditable() {
+            return editable;
+        }
+
+        public void setEditable(boolean editable) {
+            this.editable = editable;
+        }
+
+        public Account(TbAccounts ac) {
+            this.ac = ac;
+        }
     }
 }

@@ -25,11 +25,14 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "TbAccounts.findAll", query = "SELECT t FROM TbAccounts t"),
     @NamedQuery(name = "TbAccounts.findByAccountId", query = "SELECT t FROM TbAccounts t WHERE t.accountId = :accountId"),
+    //update account
+  //  @NamedQuery(name = "TbAccounts.UpdateByAccount", query = "UPDATE t SET t.first TbAccounts t WHERE t.accountId = :accountId"),
     @NamedQuery(name = "TbAccounts.findByPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password"),
     @NamedQuery(name = "TbAccounts.findByStatus", query = "SELECT t FROM TbAccounts t WHERE t.status = :status"),
     @NamedQuery(name = "TbAccounts.findNewAccount", query = "SELECT t FROM TbAccounts t WHERE t.accountId = (SELECT max(o.accountId) from TbAccounts o)"),
     @NamedQuery(name = "TbAccounts.findByUsernameAndPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password and t.accountId=:accountId")})
 public class TbAccounts implements Serializable {
+  //  private boolean editAction;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -47,6 +50,16 @@ public class TbAccounts implements Serializable {
     @JoinColumn(name = "Role_Id", referencedColumnName = "Role_Id")
     @ManyToOne(optional = false)
     private TbRoles tbRoles;
+   
+//
+//    public boolean isEditAction() {
+//        return editAction;
+//    }
+//
+//    public void setEditAction(boolean editAction) {
+//        this.editAction = editAction;
+//    }
+//
 
     public TbAccounts() {
     }
