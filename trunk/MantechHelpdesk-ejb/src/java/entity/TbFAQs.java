@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
 @Table(name = "tbFAQs")
 @NamedQueries({
     @NamedQuery(name = "TbFAQs.findAll", query = "SELECT t FROM TbFAQs t"),
-    @NamedQuery(name = "TbFAQs.findByFAQId", query = "SELECT t FROM TbFAQs t WHERE t.fAQId = :fAQId"),
+    @NamedQuery(name = "TbFAQs.findByfaqId", query = "SELECT t FROM TbFAQs t WHERE t.faqId = :faqId"),
     @NamedQuery(name = "TbFAQs.findByCreateDate", query = "SELECT t FROM TbFAQs t WHERE t.createDate = :createDate"),
     @NamedQuery(name = "TbFAQs.findByUpdateDate", query = "SELECT t FROM TbFAQs t WHERE t.updateDate = :updateDate"),
     @NamedQuery(name = "TbFAQs.findByStatus", query = "SELECT t FROM TbFAQs t WHERE t.status = :status")})
@@ -37,7 +37,7 @@ public class TbFAQs implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "FAQ_Id")
-    private String fAQId;
+    private String faqId;
     @Basic(optional = false)
     @Lob
     @Column(name = "Content_Question")
@@ -69,24 +69,24 @@ public class TbFAQs implements Serializable {
     public TbFAQs() {
     }
 
-    public TbFAQs(String fAQId) {
-        this.fAQId = fAQId;
+    public TbFAQs(String faqId) {
+        this.faqId = faqId;
     }
 
-    public TbFAQs(String fAQId, String contentQuestion, Date createDate, Date updateDate, String status) {
-        this.fAQId = fAQId;
+    public TbFAQs(String faqId, String contentQuestion, Date createDate, Date updateDate, String status) {
+        this.faqId = faqId;
         this.contentQuestion = contentQuestion;
         this.createDate = createDate;
         this.updateDate = updateDate;
         this.status = status;
     }
 
-    public String getFAQId() {
-        return fAQId;
+    public String getfaqId() {
+        return faqId;
     }
 
-    public void setFAQId(String fAQId) {
-        this.fAQId = fAQId;
+    public void setfaqId(String faqId) {
+        this.faqId = faqId;
     }
 
     public String getContentQuestion() {
@@ -156,7 +156,7 @@ public class TbFAQs implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (fAQId != null ? fAQId.hashCode() : 0);
+        hash += (faqId != null ? faqId.hashCode() : 0);
         return hash;
     }
 
@@ -167,7 +167,7 @@ public class TbFAQs implements Serializable {
             return false;
         }
         TbFAQs other = (TbFAQs) object;
-        if ((this.fAQId == null && other.fAQId != null) || (this.fAQId != null && !this.fAQId.equals(other.fAQId))) {
+        if ((this.faqId == null && other.faqId != null) || (this.faqId != null && !this.faqId.equals(other.faqId))) {
             return false;
         }
         return true;
@@ -175,7 +175,7 @@ public class TbFAQs implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.TbFAQs[fAQId=" + fAQId + "]";
+        return "entity.TbFAQs[faqId=" + faqId + "]";
     }
 
 }

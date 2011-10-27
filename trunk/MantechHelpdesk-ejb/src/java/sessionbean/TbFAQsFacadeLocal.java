@@ -30,4 +30,5 @@ public interface TbFAQsFacadeLocal {
 
     int count();
 
+    java.util.Collection<TbFAQs> findFAQById(String id);
 }
