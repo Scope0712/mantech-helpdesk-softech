@@ -2,23 +2,31 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="publish/successful.xhtml" x="650" y="450" zoom="true"/>
-        <Node id="publish/Login.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="admin/ViewAllAccounts.xhtml" x="900" y="450" zoom="true"/>
         <Node id="index.jsp" x="150" y="300" zoom="true"/>
-        <Node id="employee/Employee_template.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="public/Login.xhtml" x="650" y="600" zoom="true"/>
         <Node id="admin/CreateAccount.xhtml" x="900" y="150" zoom="true"/>
         <Node id="publish/LoginContent.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="technician/Technician_template.xhtml" x="400" y="150" zoom="true"/>
         <Node id="admin/Admin_Temp.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="public/LoginContent.xhtml" x="400" y="750" zoom="true"/>
         <Node id="Home.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="common/ContentHome.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="admin/RetrieveComplaint.xhtml" x="1150" y="450" zoom="true"/>
         <Node id="employee/EmployeeMenu.xhtml" x="400" y="600" zoom="true"/>
-        <Node id="template/newTemplate.xhtml" x="1400" y="150" zoom="true"/>
-        <Node id="common/Footer.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="public/Article.xhtml" x="1400" y="300" zoom="true"/>
         <Node id="publish/Article.xhtml" x="650" y="150" zoom="true"/>
-        <Node id="admin/AdminMenu.xhtml" x="150" y="750" zoom="true"/>
         <Node id="publish/fail.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="admin/AdminMenu.xhtml" x="150" y="750" zoom="true"/>
         <Node id="common/Header.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="public/successful.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="publish/successful.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="publish/Login.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="employee/LodgeNewComplaint.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="employee/Employee_template.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="technician/Technician_template.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="common/ContentHome.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="template/newTemplate.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="public/fail.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="common/Footer.xhtml" x="1150" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

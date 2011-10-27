@@ -6,9 +6,11 @@
 package sessionbean;
 
 import entity.TbFAQs;
+import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,6 +27,13 @@ public class TbFAQsFacade extends AbstractFacade<TbFAQs> implements TbFAQsFacade
 
     public TbFAQsFacade() {
         super(TbFAQs.class);
+    }
+
+    @Override
+    public Collection<TbFAQs> findFAQById(String id) {
+        Query q = em.createNativeQuery("SELECT * FROM tbFAQs AS a WHERE a.FAQ_Id = ?value", TbFAQs.class);
+        q.setParameter("value","%"+ id +"%");
+        return q.getResultList();
     }
 
 }
