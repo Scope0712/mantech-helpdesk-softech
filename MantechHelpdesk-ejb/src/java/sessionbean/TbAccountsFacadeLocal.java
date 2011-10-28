@@ -6,6 +6,9 @@
 package sessionbean;
 
 import entity.TbAccounts;
+import entity.TbDepartments;
+import entity.TbStaffs;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -33,5 +36,7 @@ public interface TbAccountsFacadeLocal {
     TbAccounts checkUsernamePassword(String username, String password);
 
     TbAccounts findNewAccount();
+
+    TbAccounts searchDepartment(TbStaffs staff);
 
 }

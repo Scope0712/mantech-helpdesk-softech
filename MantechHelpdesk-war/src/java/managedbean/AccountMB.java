@@ -5,8 +5,9 @@
 package managedbean;
 
 import entity.TbAccounts;
+import entity.TbDepartments;
+import entity.TbStaffs;
 import java.io.IOException;
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbean.TbAccountsFacadeLocal;
-import sessionbean.TbStaffsFacade;
+import sessionbean.TbDepartmentsFacadeLocal;
 import sessionbean.TbStaffsFacadeLocal;
 
 /**
@@ -28,8 +29,10 @@ import sessionbean.TbStaffsFacadeLocal;
 @RequestScoped
 public class AccountMB {
     @EJB
-    private TbStaffsFacadeLocal tbStaffsFacade;
+    private TbDepartmentsFacadeLocal tbDepartmentsFacade;
 
+    @EJB
+   private TbStaffsFacadeLocal tbStaffsFacade;
     @EJB
     private TbAccountsFacadeLocal tbAccountsFacade;
     String name;
@@ -42,19 +45,34 @@ public class AccountMB {
     TbAccounts newacc;
     Collection<TbAccounts> listAcc;
     private static ArrayList<Account> listAccount = null;
+    String departId="";//="Depar00001";
+    TbDepartments depart;
+    Collection<TbDepartments> deplist;
+
+    public String getDepartId() {
+        return departId;
+    }
+
+    public void setDepartId(String departId) {
+        this.departId = departId;
+    }
+
 
     public ArrayList<Account> getListAccount() {
         if (listAccount == null) {
+           // System.out.println("da null roi");
             listAccount = new ArrayList<Account>();
             listAcc = getListAcc();
+          //  System.out.println("list acc co ko "+listAcc.size());
+          //  System.out.println("length of listAcc ="+listAcc.size());
             if (listAcc != null) {
 
                 for (TbAccounts a : listAcc) {
 
-
+                  //  System.out.println("da in sert");
                     listAccount.add(new Account(a));
                 }
-            }
+           }
             return listAccount;
 
         } else {
@@ -62,9 +80,65 @@ public class AccountMB {
             return listAccount;
         }
     }
+   
+    public Collection<TbDepartments> getDeplist() {
+
+        return tbDepartmentsFacade.findAll();
+    }
+
+    public void setDeplist(Collection<TbDepartments> deplist) {
+        this.deplist = deplist;
+    }
+
+    public TbDepartments getDepart() {
+        return depart;
+    }
+
+    public void setDepart(TbDepartments depart) {
+        this.depart = depart;
+    }
 
     public Collection<TbAccounts> getListAcc() {
-        return tbAccountsFacade.findAll();
+     
+       // TbStaffs st=new TbStaffs();
+      // depart.setDepartmentId("Depar00001");
+        System.out.println("name depart "+departId);
+        //listAccount=null;
+        depart.setDepartmentId(departId);
+        Collection<TbStaffs> l;
+         ArrayList<TbAccounts> la=new ArrayList<TbAccounts>();
+        l= tbStaffsFacade.searchStaffFromDepart(depart);
+        if(l!=null){
+       // System.out.println("leng l="+l.size());
+        int i=1;
+        for(TbStaffs st:l){
+        //    System.out.println("length "+l.size());
+            TbAccounts tbacc= new TbAccounts();
+            tbacc= tbAccountsFacade.searchDepartment(st);
+          //  System.out.println("tbacc "+i+": "+tbacc.getAccountId());
+            if(tbacc!=null){
+                la.add(tbacc);
+                System.out.println("xong thu "+ i);
+                i++;
+            }
+        }
+       // staff.setTbDepartments(depart);
+      //  acc.setTbStaffs(staff);
+       // System.out.println("la="+la.size());
+        }
+        return la;
+       //  return tbAccountsFacade.findAll();
+       
+    }
+    public String searchDepart(){
+      //  System.out.println("depart id="+depart.getDepartmentId());
+      //  System.out.println("kich thuoc chinsh "+listAccount.size());
+        System.out.println("da kich");
+        listAccount=null;
+       listAccount=getListAccount();
+       // System.out.println(listAccount.size());
+      //  listAccount=null;
+        return null;
     }
 
     public void setListAcc(Collection<TbAccounts> listAcc) {
@@ -116,7 +190,7 @@ public class AccountMB {
 
     public String getLogin_menu() {
         request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        System.out.println(request.getSession().getAttribute("login_menu").toString());
+      //  System.out.println(request.getSession().getAttribute("login_menu").toString());
         return request.getSession().getAttribute("login_menu").toString();
     }
 
@@ -162,13 +236,15 @@ public class AccountMB {
     /** Creates a new instance of AccountMB */
     public AccountMB() {
         acc = new TbAccounts();
+        depart=new TbDepartments();
     }
+    //Function to check username and password are correct
 
     public String checkLogin() throws IOException {
         setAcc(tbAccountsFacade.checkUsernamePassword(name, password));
         if (acc != null) {
             if (acc.getTbRoles().getRoleId().equals("Roles00003")) {
-                System.out.println(acc.getTbRoles().getRoleId() + ":" + acc.getTbRoles().getRoleName());
+              //  System.out.println(acc.getTbRoles().getRoleId() + ":" + acc.getTbRoles().getRoleName());
                 session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("login_menu", "../admin/AdminMenu.xhtml");
                 login_label = "Logout";
@@ -193,6 +269,7 @@ public class AccountMB {
         }
     }
 
+    //Function to save edition of account
     public String saveAction() {
 
         //get all existing value but set "editable" to false
@@ -200,19 +277,26 @@ public class AccountMB {
             a.setEditable(false);
             tbAccountsFacade.edit(a.ac);
             tbStaffsFacade.edit(a.ac.getTbStaffs());
-            // a.setEditAction(false);
+
         }
         //return to current page
         return null;
 
     }
+    //Function to set editabe avariable equal true order to edit
 
     public String editAction(Account a) {
         a.setEditable(true);
-        System.out.println(a.editable);
+     //   session.setAttribute("status_edit",listAccount);
 
         return null;
     }
+
+ 
+
+    //Function to search with multi criterial
+   
+    //Class to help in editation
 
     public static class Account {
 
@@ -239,4 +323,5 @@ public class AccountMB {
             this.ac = ac;
         }
     }
+
 }

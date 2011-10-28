@@ -25,8 +25,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "TbAccounts.findAll", query = "SELECT t FROM TbAccounts t"),
     @NamedQuery(name = "TbAccounts.findByAccountId", query = "SELECT t FROM TbAccounts t WHERE t.accountId = :accountId"),
-    //update account
-  //  @NamedQuery(name = "TbAccounts.UpdateByAccount", query = "UPDATE t SET t.first TbAccounts t WHERE t.accountId = :accountId"),
+    //search account
+    @NamedQuery(name = "TbAccounts.searchDepartment", query = "SELECT t FROM TbAccounts t WHERE t.tbStaffs = :staff"),
     @NamedQuery(name = "TbAccounts.findByPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password"),
     @NamedQuery(name = "TbAccounts.findByStatus", query = "SELECT t FROM TbAccounts t WHERE t.status = :status"),
     @NamedQuery(name = "TbAccounts.findNewAccount", query = "SELECT t FROM TbAccounts t WHERE t.accountId = (SELECT max(o.accountId) from TbAccounts o)"),

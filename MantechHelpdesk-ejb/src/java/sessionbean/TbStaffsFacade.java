@@ -5,7 +5,9 @@
 
 package sessionbean;
 
+import entity.TbDepartments;
 import entity.TbStaffs;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +27,17 @@ public class TbStaffsFacade extends AbstractFacade<TbStaffs> implements TbStaffs
 
     public TbStaffsFacade() {
         super(TbStaffs.class);
+    }
+
+    @Override
+    public List<TbStaffs> searchStaffFromDepart(TbDepartments depart) {
+      //  System.out.println(depart.getDepartmentName());
+        try{
+        return (List<TbStaffs>) em.createNamedQuery("TbStaffs.searchStaffFromDepart").setParameter("tbDepartments", depart).getResultList();
+        }
+        catch(Exception ex){
+            return null;
+        }
     }
 
 }
