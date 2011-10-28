@@ -5,6 +5,9 @@
 package sessionbean;
 
 import entity.TbAccounts;
+import entity.TbDepartments;
+import entity.TbStaffs;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,5 +44,16 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
     public TbAccounts findNewAccount() {
         return (TbAccounts) em.createNamedQuery("TbAccounts.findNewAccount").getSingleResult();
        
+    }
+
+    @Override
+    public  TbAccounts searchDepartment(TbStaffs staff){
+        try{
+       return (TbAccounts) em.createNamedQuery("TbAccounts.searchDepartment").setParameter("staff", staff).getSingleResult();
+        }
+        catch(Exception ex){
+         //   ex.printStackTrace();
+        return null;
+        }
     }
 }

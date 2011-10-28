@@ -5,6 +5,7 @@
 
 package sessionbean;
 
+import entity.TbDepartments;
 import entity.TbStaffs;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,7 @@ public interface TbStaffsFacadeLocal {
     List<TbStaffs> findRange(int[] range);
 
     int count();
+
+   List<TbStaffs> searchStaffFromDepart(TbDepartments depart);
 
 }

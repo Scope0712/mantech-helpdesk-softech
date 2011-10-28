@@ -40,7 +40,10 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "TbStaffs.findByIdentityCard", query = "SELECT t FROM TbStaffs t WHERE t.identityCard = :identityCard"),
     @NamedQuery(name = "TbStaffs.findByDateOfBirth", query = "SELECT t FROM TbStaffs t WHERE t.dateOfBirth = :dateOfBirth"),
     @NamedQuery(name = "TbStaffs.findByPhoneNo", query = "SELECT t FROM TbStaffs t WHERE t.phoneNo = :phoneNo"),
-    @NamedQuery(name = "TbStaffs.findByEmail", query = "SELECT t FROM TbStaffs t WHERE t.email = :email")})
+    @NamedQuery(name = "TbStaffs.findByEmail", query = "SELECT t FROM TbStaffs t WHERE t.email = :email"),
+    //search employee from  @NamedQuery(name = "TbStaffs.findByEmail", query = "SELECT t FROM TbStaffs t WHERE t.email = :email"),department
+    @NamedQuery(name = "TbStaffs.searchStaffFromDepart", query = "SELECT t FROM TbStaffs t WHERE t.tbDepartments= :tbDepartments")
+})
 public class TbStaffs implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

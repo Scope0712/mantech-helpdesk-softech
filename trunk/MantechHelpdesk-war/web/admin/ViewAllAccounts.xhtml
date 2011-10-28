@@ -18,6 +18,15 @@
             <ui:define name="content">
                 <h:form style="border-color: black; width:630px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
                     View Information of All Accounts
+
+                    <h:selectOneMenu style="border:2px; border-color: black; border-style: inset; background: activeborder"  value="#{accountMB.departId}"  >
+                      
+                        <f:selectItem itemLabel="-select-" itemValue=""/>
+                        <f:selectItems value="#{accountMB.deplist}"
+                                           var="ite"  itemLabel="#{ite.departmentName}" itemValue="#{ite.departmentId}" />
+                       
+                    </h:selectOneMenu>
+                   <h:commandButton value="search" action="#{accountMB.searchDepart}"/>
                     <hr/>
                     <!--                    <table  style="text-align: center" align="center">
                                             <tr style="background: #EC9B9B; text-align: center">

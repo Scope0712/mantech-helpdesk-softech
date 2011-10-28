@@ -108,7 +108,7 @@ public class StaffMB {
     }
 
     public String CreateStaff() {
-
+        
         staff.setStaffId("a");
         staff.setTbDepartments(depart);
         tbStaffsFacade.create(staff);
