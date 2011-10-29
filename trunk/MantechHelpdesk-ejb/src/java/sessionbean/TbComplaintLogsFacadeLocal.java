@@ -30,4 +30,6 @@ public interface TbComplaintLogsFacadeLocal {
 
     int count();
 
+    int findResendNo(String complaintId);
+
 }
