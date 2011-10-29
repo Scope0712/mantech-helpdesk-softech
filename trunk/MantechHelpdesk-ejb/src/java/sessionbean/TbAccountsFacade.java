@@ -5,9 +5,13 @@
 package sessionbean;
 
 import entity.TbAccounts;
+
+import java.util.List;
+
 import entity.TbDepartments;
 import entity.TbStaffs;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -46,6 +50,15 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
        
     }
 
+
+    public List<TbAccounts> findByRoleAndStatus( String roleId,String status) {
+        return (List<TbAccounts>) em.createQuery("SELECT t FROM TbAccounts t WHERE t.status =:status and t.tbRoles.roleId=:roleId").setParameter("status", status).setParameter("roleId", roleId).getResultList();
+       // return (List<TbAccounts>) em.createNamedQuery("TbAccounts.findByRoleAndStatus").setParameter("status", status).setParameter("roleId", roleId).getResultList();
+    }
+
+
+
+
     @Override
     public  TbAccounts searchDepartment(TbStaffs staff){
         try{
@@ -56,4 +69,5 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
         return null;
         }
     }
+
 }
