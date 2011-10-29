@@ -6,6 +6,8 @@ package managedbean;
 
 import entity.ComplDetailAndCurrentStatus;
 import entity.TbAssignTasks;
+import entity.TbComplaintLogs;
+import entity.TbComplaintLogsPK;
 import entity.TbComplaints;
 import entity.TbStaffs;
 import java.util.Date;
@@ -16,6 +18,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.servlet.http.HttpSession;
 import sessionbean.ComplDetailAndCurrentStatusFacadeLocal;
 import sessionbean.TbAssignTasksFacadeLocal;
+import sessionbean.TbComplaintLogsFacadeLocal;
 import sessionbean.TbComplaintsFacadeLocal;
 import sessionbean.TbStaffsFacadeLocal;
 
@@ -75,15 +78,19 @@ public class TNewComplaintMB {
     }
     //Assign task
     @EJB
+    private TbComplaintLogsFacadeLocal tbComplaintLogsFacade;
+    @EJB
     private TbComplaintsFacadeLocal tbComplaintsFacade;
     @EJB
     private TbStaffsFacadeLocal tbStaffsFacade;
     @EJB
     private TbAssignTasksFacadeLocal tbAssignTasksFacade;
+
     private TbAssignTasks task;
     private TbComplaints comp;
     private TbStaffs admin;
     private TbStaffs technician;
+    private TbComplaintLogs log;
     private String staffId;
 
     public void createTask() {
@@ -104,7 +111,8 @@ public class TNewComplaintMB {
         newComp = (ComplDetailAndCurrentStatus)((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).getAttribute("compl");
         if (newComp != null) {
             System.out.println(newComp.getComplaintid());
-            task.setTbComplaints(tbComplaintsFacade.find(newComp.getComplaintid()));
+            comp = tbComplaintsFacade.find(newComp.getComplaintid());
+            task.setTbComplaints(comp);
             System.out.println("set compl ok");
         }else {
             System.out.println("newCompl null");
@@ -116,6 +124,13 @@ public class TNewComplaintMB {
 
         //create task
         tbAssignTasksFacade.create(task);
+
+        //if reassign for an unsolved task then change complaint status from unsolved(Statu00004) to pending(Statu00001)
+        log = new TbComplaintLogs(comp.getComplaintId(), new Date(), "Statu00001");
+        System.out.println("Ghi log: complaint Id" + comp.getComplaintId());
+        log.setResendNo(tbComplaintLogsFacade.findResendNo(comp.getComplaintId()));
+        tbComplaintLogsFacade.create(log);
+
     }
 
     public void technicianChanged(ValueChangeEvent e) {
