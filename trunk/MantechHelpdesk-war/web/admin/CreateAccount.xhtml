@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <body>
         <ui:composition template="./Admin_Temp.xhtml">
@@ -86,8 +87,9 @@
                     <div style="padding: 5px; text-align: center"><h:commandButton value="Add" action="#{staffMB.CreateStaff}"/></div>
                     <!--                </div>-->
                     <!--                    display list of employee's account-->
-                   
 
+                 
+                  
                     <table border="1px" style="text-align: center" align="center">
                         <tr style="background: #EC9B9B">
                             <td>
@@ -110,25 +112,27 @@
                         </tr>
                         <tr style="background: lightgrey">
                             <td>
-                                <h:outputText value="#{accountMB.newacc.accountId}"/>
+                                <h:outputText value="#{staffMB.newacc.accountId}"/>
                             </td>
                             <td>
-                                <h:outputText value="#{accountMB.newacc.tbStaffs.firstName} #{accountMB.newacc.tbStaffs.lastName}"/>
-                            </td>
-                            <td>
-
-                                <h:outputText value="#{accountMB.newacc.tbStaffs.identityCard}"/>
+                                <h:outputText value="#{staffMB.newacc.tbStaffs.firstName} #{staffMB.newacc.tbStaffs.lastName}"/>
                             </td>
                             <td>
 
-                                <h:outputText value="#{accountMB.newacc.tbRoles.roleName}"/>
+                                <h:outputText value="#{staffMB.newacc.tbStaffs.identityCard}"/>
                             </td>
                             <td>
-                                <h:outputText value="#{accountMB.newacc.tbStaffs.tbDepartments.departmentName}"/>
+
+                                <h:outputText value="#{staffMB.newacc.tbRoles.roleName}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{staffMB.newacc.tbStaffs.tbDepartments.departmentName}"/>
                             </td>
                         </tr>
                     </table>
-
+                   <br style="clear: both"/>
+                   <br style="clear: both"/>
+                   <br style="clear: both"/>
                 </h:form>
             </ui:define>
         </ui:composition>

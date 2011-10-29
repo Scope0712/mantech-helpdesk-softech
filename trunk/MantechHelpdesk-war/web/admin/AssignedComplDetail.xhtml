@@ -17,35 +17,36 @@
 
             <ui:define name="content">
                 <f:view>
-                    <h:form>
+                    <h:form  style="border-color: black; width:580px; float: right; text-align: left; padding-left: 50px;padding-right: 10px; border-width: 1px; border-style: outset;">
                         <h1><h:outputText value="Create/Edit"/></h1>
-                        <h:panelGrid columns="2">
+                        <h:panelGrid columns="2" >
                             <h:outputLabel value="Complaintid:" for="complaintid" />
-                            <h:inputText id="complaintid" value="#{tNewComplaintMB.newComp.complaintid}" disabled="true" title="Complaintid" required="true" requiredMessage="The Complaintid field is required."/>
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="complaintid" value="#{tNewComplaintMB.newComp.complaintid}" disabled="true" title="Complaintid" required="true" requiredMessage="The Complaintid field is required."/>
                             <h:outputLabel value="Employeeid:" for="employeeid" />
-                            <h:inputText id="employeeid" value="#{tNewComplaintMB.newComp.employeeid}" title="Employeeid" required="true" requiredMessage="The Employeeid field is required."/>
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="employeeid" value="#{tNewComplaintMB.newComp.employeeid}" title="Employeeid" required="true" requiredMessage="The Employeeid field is required."/>
                             <h:outputLabel value="CategoryId:" for="categoryId" />
-                            <h:inputText id="categoryId" value="#{tNewComplaintMB.newComp.categoryId}" title="CategoryId" required="true" requiredMessage="The CategoryId field is required."/>
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="categoryId" value="#{tNewComplaintMB.newComp.categoryId}" title="CategoryId" required="true" requiredMessage="The CategoryId field is required."/>
                             <h:outputLabel value="Problemcontent:" for="problemcontent" />
-                            <h:inputTextarea rows="4" cols="30" id="problemcontent" value="#{tNewComplaintMB.newComp.problemcontent}"  title="Problemcontent" required="true" requiredMessage="The Problemcontent field is required."/>
+                            <h:inputTextarea style="border:2px; border-color: black; border-style:inset; background: activeborder" rows="4" cols="30" id="problemcontent" value="#{tNewComplaintMB.newComp.problemcontent}"  title="Problemcontent" required="true" requiredMessage="The Problemcontent field is required."/>
                             <h:outputLabel value="PriorityValue:" for="priorityValue" />
-                            <h:inputText id="priorityValue" value="#{tNewComplaintMB.newComp.priorityValue}" title="PriorityValue" required="true" requiredMessage="The PriorityValue field is required."/>
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="priorityValue" value="#{tNewComplaintMB.newComp.priorityValue}" title="PriorityValue" required="true" requiredMessage="The PriorityValue field is required."/>
                             <h:outputLabel value="Date:" for="date" />
-                            <h:inputText id="date" value="#{tNewComplaintMB.newComp.date}" title="Date" >
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="date" value="#{tNewComplaintMB.newComp.date}" title="Date" >
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:inputText>
                             <h:outputLabel value="Status:" for="status" />
-                            <h:inputText id="status" value="#{tNewComplaintMB.newComp.status}" title="Status" />
+                            <h:inputText  style="border:2px; border-color: black; border-style:inset; background: activeborder" id="status" value="#{tNewComplaintMB.newComp.status}" title="Status" />
                             <h:outputLabel value="ResendNo:" for="resendNo" />
-                            <h:inputText id="resendNo" value="#{tNewComplaintMB.newComp.resendNo}" title="ResendNo" />
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="resendNo" value="#{tNewComplaintMB.newComp.resendNo}" title="ResendNo" />
 
                             <h:outputLabel value="Assign to Technician:" for="techList" />
-                            <h:selectOneMenu id="techList" valueChangeListener="#{tNewComplaintMB.technicianChanged}">
+                            <h:selectOneMenu style="border:2px; border-color: black; border-style:inset; background: activeborder" id="techList" valueChangeListener="#{tNewComplaintMB.technicianChanged}">
                                 <f:selectItems value="#{tAccountMB.technicianList}" var="item" itemLabel="#{item.tbStaffs.staffId}" itemValue="#{item.tbStaffs.staffId}"/>
                             </h:selectOneMenu>
                             <h:commandButton value="Save Assign" action="#{tNewComplaintMB.createTask}"/>
                             <h:commandButton value="Back To List" action="/admin/AssignComplaint.xhtml"/>
                         </h:panelGrid>
+                        <br style="clear: both"/>
                     </h:form>
                 </f:view>
 
