@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./Employee_template.xhtml"
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                template="./../admin/Admin_Temp.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:c="http://java.sun.com/jsf/core">
@@ -19,10 +19,11 @@
 
 
     <ui:define name="content">
-        <h:form>
-            <table border="0">
+        <h:form style="border-color: black; width:630px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
+            <table border="0" >
                 <tr>
-                    <td>Category: </td>
+                    <td  >Category: </td>
+                  
                     <td class="border" align="left">
 
                         <h:selectOneMenu value="#{newComplaintBean.categories}">
@@ -37,8 +38,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="left" class="border">Complaint Details:</td>
-                    <td align="left"><h:inputTextarea value="#{newComplaintBean.content}" rows="10" cols="60" style=""/></td>
+                    <td valign="top" align="left" class="border">Complaint Details:</td>
+                    <td align="left"><h:inputTextarea value="#{newComplaintBean.content}" rows="10" cols="60" style="border-style: inset"/></td>
                 </tr>
                 
                 <tr>
@@ -46,11 +47,17 @@
                     <td class="border" align="left"><input type="file" name="image" onchange="add_photo()" class="file"/> </td>
                 </tr>                
                 <tr>
-                    <td><h:commandButton value="Submit" action="#{newComplaintBean.NewComplaint()}"/></td>
+                    <td></td>
+                    <td > <br/><h:commandButton value="Submit" action="#{newComplaintBean.NewComplaint()}"/></td>
                 </tr>
                 
             </table>
+             <br/>
+        <br/> <br/>
+        <br style="clear: both"/>
+        <br style="clear: both"/>
         </h:form>
+       
     </ui:define>
 
 

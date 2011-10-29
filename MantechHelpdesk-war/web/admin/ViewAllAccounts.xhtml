@@ -136,11 +136,11 @@
                         <h:column>
                             <f:facet name="header">Role</f:facet>
 
-<!--                                <h:selectOneMenu style="border:2px; border-color: black; border-style:inset; background: activeborder" id="RoleId" title="RoleId" value="#{staffMB.role.roleId}">
-                                    <f:selectItems  var="it" value="{staffMB.roletList}" itemLabel="{it.roleName}" itemValue="#{it.roleId}"/>
-                                </h:selectOneMenu>-->
+                            <h:selectOneMenu style="border:2px; border-color: black; border-style:inset; background: activeborder" id="RoleId" title="RoleId" value="#{o.ac.tbRoles.roleId}" rendered="#{o.editable}">
+                                <f:selectItems  var="it" value="#{staffMB.roletList}" itemLabel="#{it.roleName}" itemValue="#{it.roleId}"/>
+                                </h:selectOneMenu>
 
-                            <h:outputText value="#{o.ac.tbRoles.roleName}" />
+                            <h:outputText value="#{o.ac.tbRoles.roleName}" rendered="#{not o.editable}" />
 
                         </h:column>
 
@@ -165,6 +165,8 @@
                     </h:dataTable>
 
                     <h:commandButton value="Save Changes" action="#{accountMB.saveAction}" />
+                    <br style="clear: both"/>
+                    <br style="clear: both"/>
                 </h:form>
             </ui:define>
 

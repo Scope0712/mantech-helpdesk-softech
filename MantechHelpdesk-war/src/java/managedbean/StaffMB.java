@@ -48,7 +48,17 @@ public class StaffMB {
     Collection<TbDepartments> departList;
     Collection<TbRoles> roletList;
     Collection<TbStaffs> staffList;
+    TbAccounts newacc;
 
+    public TbAccounts getNewacc() {
+        
+        return tbAccountsFacade.findNewAccount();
+       
+    }
+
+    public void setNewacc(TbAccounts newacc) {
+        this.newacc = newacc;
+    }
     public Collection<TbStaffs> getStaffList() {
         return staffList;
     }
