@@ -37,6 +37,10 @@ public interface TbAccountsFacadeLocal {
 
     TbAccounts findNewAccount();
 
+
+    List<TbAccounts> findByRoleAndStatus(String status, String roleId);
+
+
     TbAccounts searchDepartment(TbStaffs staff);
 
 }
