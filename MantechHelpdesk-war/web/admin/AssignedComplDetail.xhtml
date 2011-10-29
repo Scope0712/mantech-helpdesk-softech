@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./Admin_Temp.xhtml">
+
+
+            <!--
+                        <ui:define name="left">
+                            left
+                        </ui:define>-->
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Create/Edit"/></h1>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Complaintid:" for="complaintid" />
+                            <h:inputText id="complaintid" value="#{tNewComplaintMB.newComp.complaintid}" disabled="true" title="Complaintid" required="true" requiredMessage="The Complaintid field is required."/>
+                            <h:outputLabel value="Employeeid:" for="employeeid" />
+                            <h:inputText id="employeeid" value="#{tNewComplaintMB.newComp.employeeid}" title="Employeeid" required="true" requiredMessage="The Employeeid field is required."/>
+                            <h:outputLabel value="CategoryId:" for="categoryId" />
+                            <h:inputText id="categoryId" value="#{tNewComplaintMB.newComp.categoryId}" title="CategoryId" required="true" requiredMessage="The CategoryId field is required."/>
+                            <h:outputLabel value="Problemcontent:" for="problemcontent" />
+                            <h:inputTextarea rows="4" cols="30" id="problemcontent" value="#{tNewComplaintMB.newComp.problemcontent}"  title="Problemcontent" required="true" requiredMessage="The Problemcontent field is required."/>
+                            <h:outputLabel value="PriorityValue:" for="priorityValue" />
+                            <h:inputText id="priorityValue" value="#{tNewComplaintMB.newComp.priorityValue}" title="PriorityValue" required="true" requiredMessage="The PriorityValue field is required."/>
+                            <h:outputLabel value="Date:" for="date" />
+                            <h:inputText id="date" value="#{tNewComplaintMB.newComp.date}" title="Date" >
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputLabel value="Status:" for="status" />
+                            <h:inputText id="status" value="#{tNewComplaintMB.newComp.status}" title="Status" />
+                            <h:outputLabel value="ResendNo:" for="resendNo" />
+                            <h:inputText id="resendNo" value="#{tNewComplaintMB.newComp.resendNo}" title="ResendNo" />
+
+                            <h:outputLabel value="Assign to Technician:" for="techList" />
+                            <h:selectOneMenu id="techList" valueChangeListener="#{tNewComplaintMB.technicianChanged}">
+                                <f:selectItems value="#{tAccountMB.technicianList}" var="item" itemLabel="#{item.tbStaffs.staffId}" itemValue="#{item.tbStaffs.staffId}"/>
+                            </h:selectOneMenu>
+                            <h:commandButton value="Save Assign" action="#{tNewComplaintMB.createTask}"/>
+                            <h:commandButton value="Back To List" action="/admin/AssignComplaint.xhtml"/>
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </body>
+</html>
