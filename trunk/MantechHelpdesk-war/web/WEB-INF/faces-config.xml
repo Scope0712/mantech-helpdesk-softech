@@ -12,4 +12,39 @@
             <var>bundle</var>
         </resource-bundle>
     </application>
+    <managed-bean>
+        <managed-bean-name>tNewComplaintMB</managed-bean-name>
+        <managed-bean-class>managedbean.TNewComplaintMB</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>tCategoryMB</managed-bean-name>
+        <managed-bean-class>managedbean.TCategoryMB</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>tStatusMB</managed-bean-name>
+        <managed-bean-class>managedbean.TStatusMB</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/admin/AssignComplaint.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>DETAIL</from-outcome>
+            <to-view-id>/admin/AssignedComplDetail.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/AssignedComplDetail.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>LIST</from-outcome>
+            <to-view-id>/admin/AssignComplaint.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>tAccountMB</managed-bean-name>
+        <managed-bean-class>managedbean.TAccountMB</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+  
 </faces-config>
