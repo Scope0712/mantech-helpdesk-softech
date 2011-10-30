@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Admin_Temp.xhtml">       
+    
+
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable value="#{tCategoryMB.categoryList}" var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Category Id"/>
+                            </f:facet>
+                            <h:outputText value="#{item.category.categoryId}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Category Name"/>
+                            </f:facet>
+                            <h:outputText value="#{item.category.categoryName}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Priority"/>
+                            </f:facet>
+                            <h:outputText value="#{item.category.priority}" rendered="#{not item.editable}"/>
+                            <h:selectOneMenu value="#{item.category.priority}" rendered="#{item.editable}">
+                                <f:selectItem itemValue="1"/>
+                                <f:selectItem itemValue="2"/>
+                                <f:selectItem itemValue="3"/>
+                                <f:selectItem itemValue="4"/>
+                                <f:selectItem itemValue="5"/>
+                                <f:selectItem itemValue="6"/>
+                                <f:selectItem itemValue="7"/>
+                                <f:selectItem itemValue="8"/>
+                                <f:selectItem itemValue="9"/>
+                                <f:selectItem itemValue="10"/>                               
+                            </h:selectOneMenu>
+                        </h:column>
+                        <h:column>
+                            <!--                            <f:facet name="header">
+                                                            <h:outputText value=""/>
+                                                        </f:facet>-->
+                            <h:commandLink value="Change Priority" action="#{tCategoryMB.editAction(item)}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:commandButton value="Save changes" action="#{tCategoryMB.saveAction}"/>
+                </h:form>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>
