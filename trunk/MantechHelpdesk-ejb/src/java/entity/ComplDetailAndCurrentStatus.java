@@ -34,7 +34,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findByResendNo", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.resendNo = :resendNo"),
     //tuyen
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findAllNeedAssign", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.status = 'Statu00001' or c.status = 'Statu00004'"),
-    @NamedQuery(name = "ComplDetailAndCurrentStatus.findNewCompls", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.status = 'Statu00001' and c.resendNo = 0"),
+    @NamedQuery(name = "ComplDetailAndCurrentStatus.findNewCompls", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.status = 'Statu00001' and c.resendNo = 0 and c.complaintid not in (Select o.tbComplaints.complaintId from TbAssignTasks o)"),
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findResendCompls", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.status = 'Statu00001' and c.resendNo <> 0")})
 public class ComplDetailAndCurrentStatus implements Serializable {
 
