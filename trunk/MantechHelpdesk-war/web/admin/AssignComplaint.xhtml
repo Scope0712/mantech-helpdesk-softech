@@ -10,57 +10,57 @@
         <ui:composition template="./Admin_Temp.xhtml">
 
 
-            <!--                    <ui:define name="left">
-                                    left
-                                </ui:define>-->
+            <ui:define name="left">
+            </ui:define>
 
             <ui:define name="content">
                 <f:view>
                     <h:form>
-                        <h:outputText value="Need assign for:" />
+                        Need assign for:
+<!--                        <h:outputText value="Need assign for:" style="text-align: left" />-->
                         <h:selectOneRadio onchange="submit()" valueChangeListener="#{tNewComplaintMB.complTypeChanged}">
-<!--                            <f:selectItem  itemLabel="All" itemValue="0"/>-->
+                            <!--                            <f:selectItem  itemLabel="All" itemValue="0"/>-->
                             <f:selectItem itemLabel="New complaints" itemValue="1"/>
-<!--                            <f:selectItem itemLabel="Re-send complaints" itemValue="2"/>-->
+                            <!--                            <f:selectItem itemLabel="Re-send complaints" itemValue="2"/>-->
                             <f:selectItem  itemLabel="Unsolved complaints" itemValue="2"/>
                         </h:selectOneRadio>
                         <h1><h:outputText value="Complaint List:"/></h1>
-                        <h:dataTable value="#{tNewComplaintMB.newCompList}" var="item">
+                        <h:dataTable value="#{tNewComplaintMB.newCompList}" var="item" border="1" >
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Complaintid"/>
+                                    <h:outputText value="Complaint id"/>
                                 </f:facet>
                                 <h:outputText value="#{item.complaintid}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Employeeid"/>
+                                    <h:outputText value="Employee id"/>
                                 </f:facet>
                                 <h:outputText value="#{item.employeeid}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="CategoryId"/>
+                                    <h:outputText value="Category Id"/>
                                 </f:facet>
                                 <h:outputText value="#{tCategoryMB.findCategory(item.categoryId).getCategoryName()}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Problemcontent"/>
+                                    <h:outputText value="Problem content"/>
                                 </f:facet>
                                 <h:outputText value="#{item.problemcontent}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="PriorityValue"/>
+                                    <h:outputText value="Priority"/>
                                 </f:facet>
                                 <h:outputText value="#{item.priorityValue}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Date"/>
+                                    <h:outputText value="Lodging Date"/>
                                 </f:facet>
-                                <h:outputText value="#{item.date}">
+                                <h:outputText value="#{item.lodgingDate}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:outputText>
                             </h:column>
@@ -72,7 +72,7 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="ResendNo"/>
+                                    <h:outputText value="Resend No"/>
                                 </f:facet>
                                 <h:outputText value="#{item.resendNo}"/>
                             </h:column>

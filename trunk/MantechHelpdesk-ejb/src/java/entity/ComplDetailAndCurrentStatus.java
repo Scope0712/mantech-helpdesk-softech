@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findByEmployeeid", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.employeeid = :employeeid"),
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findByCategoryId", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.categoryId = :categoryId"),
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findByPriorityValue", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.priorityValue = :priorityValue"),
-    @NamedQuery(name = "ComplDetailAndCurrentStatus.findByDate", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.date = :date"),
+    @NamedQuery(name = "ComplDetailAndCurrentStatus.findByLodgingDate", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.lodgingDate = :lodgingDate"),
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findByStatus", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.status = :status"),
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findByResendNo", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.resendNo = :resendNo"),
     //tuyen
@@ -56,13 +56,15 @@ public class ComplDetailAndCurrentStatus implements Serializable {
     @Basic(optional = false)
     @Column(name = "Priority_Value")
     private int priorityValue;
-    @Column(name = "date")
+    @Column(name = "Lodging_Date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date lodgingDate;
+    @Basic(optional = false)
     @Column(name = "status")
     private String status;
+    @Basic(optional = false)
     @Column(name = "resend_no")
-    private Integer resendNo;
+    private int resendNo;
 
     public ComplDetailAndCurrentStatus() {
     }
@@ -107,12 +109,12 @@ public class ComplDetailAndCurrentStatus implements Serializable {
         this.priorityValue = priorityValue;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getLodgingDate() {
+        return lodgingDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setLodgingDate(Date lodgingDate) {
+        this.lodgingDate = lodgingDate;
     }
 
     public String getStatus() {
@@ -123,11 +125,11 @@ public class ComplDetailAndCurrentStatus implements Serializable {
         this.status = status;
     }
 
-    public Integer getResendNo() {
+    public int getResendNo() {
         return resendNo;
     }
 
-    public void setResendNo(Integer resendNo) {
+    public void setResendNo(int resendNo) {
         this.resendNo = resendNo;
     }
 }
