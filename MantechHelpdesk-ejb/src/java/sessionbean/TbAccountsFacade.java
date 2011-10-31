@@ -34,40 +34,51 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
         super(TbAccounts.class);
     }
 
-     @Override
+    @Override
     public TbAccounts checkUsernamePassword(String username, String password) {
-       try{
-         return (TbAccounts) em.createNamedQuery("TbAccounts.findByUsernameAndPassword").setParameter("accountId", username).setParameter("password", password).getSingleResult();
-        }
-       catch(Exception ex){
+        try {
+            return (TbAccounts) em.createNamedQuery("TbAccounts.findByUsernameAndPassword").setParameter("accountId", username).setParameter("password", password).getSingleResult();
+        } catch (Exception ex) {
             return null;
-       }
+        }
     }
 
     @Override
     public TbAccounts findNewAccount() {
         return (TbAccounts) em.createNamedQuery("TbAccounts.findNewAccount").getSingleResult();
-       
+
     }
-
-
-    public List<TbAccounts> findByRoleAndStatus( String roleId,String status) {
-        return (List<TbAccounts>) em.createQuery("SELECT t FROM TbAccounts t WHERE t.status =:status and t.tbRoles.roleId=:roleId").setParameter("status", status).setParameter("roleId", roleId).getResultList();
-       // return (List<TbAccounts>) em.createNamedQuery("TbAccounts.findByRoleAndStatus").setParameter("status", status).setParameter("roleId", roleId).getResultList();
-    }
-
-
-
 
     @Override
-    public  TbAccounts searchDepartment(TbStaffs staff){
-        try{
-       return (TbAccounts) em.createNamedQuery("TbAccounts.searchDepartment").setParameter("staff", staff).getSingleResult();
-        }
-        catch(Exception ex){
-         //   ex.printStackTrace();
-        return null;
+    public List<TbAccounts> findByRoleAndStatus(String roleId, String status) {
+        return (List<TbAccounts>) em.createQuery("SELECT t FROM TbAccounts t WHERE t.status =:status and t.tbRoles.roleId=:roleId").setParameter("status", status).setParameter("roleId", roleId).getResultList();
+        // return (List<TbAccounts>) em.createNamedQuery("TbAccounts.findByRoleAndStatus").setParameter("status", status).setParameter("roleId", roleId).getResultList();
+    }
+
+    @Override
+    public TbAccounts searchDepartment(TbStaffs staff) {
+        try {
+            return (TbAccounts) em.createNamedQuery("TbAccounts.searchDepartment").setParameter("staff", staff).getSingleResult();
+        } catch (Exception ex) {
+            //   ex.printStackTrace();
+            return null;
         }
     }
 
+    @Override
+    public boolean unavailableAccount(String accountId) {
+
+        try {
+            if (em.createNamedQuery("TbAccounts.UnavailableAccount").setParameter("accountId", accountId).executeUpdate() > 0) {
+                return true;
+
+            } else {
+                return false;
+            }
+                }
+         catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

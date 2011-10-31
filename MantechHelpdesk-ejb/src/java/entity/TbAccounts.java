@@ -25,14 +25,16 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "TbAccounts.findAll", query = "SELECT t FROM TbAccounts t"),
     @NamedQuery(name = "TbAccounts.findByAccountId", query = "SELECT t FROM TbAccounts t WHERE t.accountId = :accountId"),
-
+    //Unavailable status of account
+     @NamedQuery(name = "TbAccounts.UnavailableAccount", query = "UPDATE TbAccounts t SET t.status = 'Disable' WHERE t.accountId = :accountId"),
     //search account
-    @NamedQuery(name = "TbAccounts.searchDepartment", query = "SELECT t FROM TbAccounts t WHERE t.tbStaffs = :staff"),
+    @NamedQuery(name = "TbAccounts.searchDepartment", query = "SELECT t FROM TbAccounts t WHERE t.tbStaffs = :staff and t.status='Enable'"),
 
     @NamedQuery(name = "TbAccounts.findByPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password"),
     @NamedQuery(name = "TbAccounts.findByStatus", query = "SELECT t FROM TbAccounts t WHERE t.status = :status"),
+    //the newest account
     @NamedQuery(name = "TbAccounts.findNewAccount", query = "SELECT t FROM TbAccounts t WHERE t.accountId = (SELECT max(o.accountId) from TbAccounts o)"),
-    @NamedQuery(name = "TbAccounts.findByUsernameAndPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password and t.accountId=:accountId"),
+    @NamedQuery(name = "TbAccounts.findByUsernameAndPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password and t.accountId=:accountId and t.status='Enable'"),
     //tuyen
     @NamedQuery(name = "TbAccounts.findByRoleAndStatus", query = "SELECT t FROM TbAccounts t WHERE t.status =:status and t.tbRoles.roleId=:roleId")
 })

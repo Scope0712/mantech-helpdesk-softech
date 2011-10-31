@@ -154,10 +154,11 @@
                         </h:column>
                         <h:column>
 
-                            <f:facet name="header">Boolean</f:facet>
+                            <f:facet name="header">Action</f:facet>
 
-                            <h:outputText value="#{o.editable}"
-                                          />
+                            <h:commandLink value="Unavailable" action="#{accountMB.unavailableAction(o)}"
+                                           rendered="#{not o.editable}"  />
+
 
                         </h:column>
 

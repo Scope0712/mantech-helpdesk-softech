@@ -6,6 +6,7 @@
 package sessionbean;
 
 import entity.TbAssignTasks;
+import entity.TbStaffs;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface TbAssignTasksFacadeLocal {
     List<TbAssignTasks> findRange(int[] range);
 
     int count();
+
+    List<TbAssignTasks> findTask(TbStaffs tbStaffs);
 
 }

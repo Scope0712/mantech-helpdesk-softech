@@ -2,17 +2,102 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     
     <body>
         
         <ui:composition template="./../admin/Admin_Temp.xhtml">                    
             <ui:define name="content">
-                 <h:form style="border-color: black; width:630px;height: 300px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
-                chức năng này chưa có
-                <br style="clear: both"/>
-                <br style="clear: both"/>
-               
+                   <h:form style="border-color: black; width:630px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
+
+                       <h:dataTable value="#{assignTaskMB.listATL}" var="o"
+                                 styleClass="order-table"
+                                 headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row"
+                                 >
+
+                        <h:column>
+
+                            <f:facet name="header">Complaint Id</f:facet>
+                            <h:outputText value="#{o.at.tbComplaints.complaintId}" />
+
+                        </h:column>
+
+                        <h:column>
+
+                            <f:facet name="header">Priority </f:facet>
+                            <h:outputText value="#{o.at.tbComplaints.priorityValue}"  />
+
+                        </h:column>
+                        <h:column>
+
+                            <f:facet name="header">Content</f:facet>
+                            <h:outputText value="#{o.at.tbComplaints.problemContent}" />
+
+                        </h:column>
+
+                        <h:column>
+
+                            <f:facet name="header">Category Name</f:facet>
+
+                            <h:outputText  value="#{o.at.tbComplaints.tbCategories.categoryName}" />
+
+                        </h:column>
+<!-- <h:column>
+
+                            <f:facet name="header">Status</f:facet>
+
+                            <h:outputText  value="{o.at.tbComplaints.tbComplaintLogsCollection.tbComplaintStatus.statusName}" />
+
+                        </h:column>-->
+<!--                        <h:column>
+
+                            <f:facet name="header">Department</f:facet>
+
+                                <h:selectOneMenu style="border:2px; border-color: black; border-style: inset; background: activeborder" id="departmentId"  value="#{staffMB.depart.departmentId}" rendered="#{o.editable}">
+                                    <f:selectItems value="{staffMB.departList}"
+                                                   var="item"  itemLabel="{item.departmentName}" itemValue="{item.departmentId}"/>
+                                </h:selectOneMenu>
+
+                            <h:outputText value="{o.ac.tbStaffs.tbDepartments.departmentName}" />
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Role</f:facet>
+
+                            <h:selectOneMenu style="border:2px; border-color: black; border-style:inset; background: activeborder" id="RoleId" title="RoleId" value="#{o.ac.tbRoles.roleId}" rendered="#{o.editable}">
+                                <f:selectItems  var="it" value="{staffMB.roletList}" itemLabel="{it.roleName}" itemValue="{it.roleId}"/>
+                                </h:selectOneMenu>
+
+                            <h:outputText value="{o.ac.tbRoles.roleName}" rendered="{not o.editable}" />
+
+                        </h:column>
+
+                        <h:column>
+
+                            <f:facet name="header">Action</f:facet>
+
+                            <h:commandLink value="Edit" action="{accountMB.editAction(o)}"
+                                           rendered="{not o.editable}" />
+
+                        </h:column>
+                        <h:column>
+
+                            <f:facet name="header">Action</f:facet>
+
+                            <h:commandLink value="Unavailable" action="{accountMB.unavailableAction(o)}"
+                                           rendered="{not o.editable}"  />
+
+
+                        </h:column>-->
+
+
+                    </h:dataTable>
+
+<!--                    <h:commandButton value="Save Changes" action="{accountMB.saveAction}" />-->
+                    <br style="clear: both"/>
+                    <br style="clear: both"/>
                 </h:form>
             </ui:define>
            
