@@ -18,16 +18,33 @@ public class TCategoryMB {
 
     @EJB
     private TbCategoriesFacadeLocal tbCategoriesFacade;
-//    private List<TbCategories> tbcategoryList;
-    private static List<Category> categoryList;
+    private static List<Category> categoryList; //ko phai static se ko luu gia tri edit
+    private TbCategories newcategory; //new category will be added to the list
 
     /** Creates a new instance of TCategoryMB */
-    public TCategoryMB() {        
+    public TCategoryMB() {
+        newcategory = new TbCategories();
+//        List<TbCategories> list = tbCategoriesFacade.findAll();
+//        if (categoryList == null) {
+//            categoryList = new Vector<Category>();
+//        }
+//        if (categoryList.isEmpty()) {
+//            for (TbCategories c : list) {
+//                categoryList.add(new Category(c));
+//            }
+//        }
+    }
+
+    public TbCategories getCategory() {
+        return newcategory;
+    }
+
+    public void setCategory(TbCategories category) {
+        this.newcategory = category;
     }
 
     public List<Category> getCategoryList() {
-        List<TbCategories> list = tbCategoriesFacade.findAll();
-        //categoryList = new Vector<Category>();
+       List<TbCategories> list = tbCategoriesFacade.findAll();
         if (categoryList == null)categoryList = new Vector<Category>();
         if (categoryList.isEmpty()) {
             for (TbCategories c : list) {
@@ -45,7 +62,7 @@ public class TCategoryMB {
         System.out.println("goi saveAction");
         for (Category c : categoryList) {
             c.setEditable(false);
-            System.out.println("category: id "+c.category.getCategoryId()+" Name:"+c.category.getCategoryName()+" priority:"+c.category.getPriority());
+            System.out.println("category: id " + c.category.getCategoryId() + " Name:" + c.category.getCategoryName() + " priority:" + c.category.getPriority());
             tbCategoriesFacade.edit(c.category);
         }
         //return current page
@@ -55,6 +72,15 @@ public class TCategoryMB {
     public String editAction(Category category) {
         category.setEditable(true);
         //return current page
+        return null;
+    }
+
+    public String addAction() {
+        //newcategory = new TbCategories();
+        //newcategory.setCategoryId("");
+        System.out.println("Add category: ID= " + newcategory.getCategoryId() + " Name= " + newcategory.getCategoryName() + " Priority=" + newcategory.getPriority());
+        tbCategoriesFacade.create(newcategory);
+        categoryList.add(new Category(newcategory));
         return null;
     }
 
