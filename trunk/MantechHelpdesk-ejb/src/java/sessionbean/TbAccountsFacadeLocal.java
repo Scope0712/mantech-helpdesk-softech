@@ -43,4 +43,6 @@ public interface TbAccountsFacadeLocal {
 
     TbAccounts searchDepartment(TbStaffs staff);
 
+    boolean unavailableAccount(String accountId);
+
 }

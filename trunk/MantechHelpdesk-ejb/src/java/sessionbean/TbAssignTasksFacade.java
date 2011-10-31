@@ -6,6 +6,8 @@
 package sessionbean;
 
 import entity.TbAssignTasks;
+import entity.TbStaffs;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +27,11 @@ public class TbAssignTasksFacade extends AbstractFacade<TbAssignTasks> implement
 
     public TbAssignTasksFacade() {
         super(TbAssignTasks.class);
+    }
+
+    @Override
+    public List<TbAssignTasks> findTask(TbStaffs tbStaffs) {
+        return em.createNamedQuery("TbAssignTasks.findTask").setParameter("tbStaffs",tbStaffs).getResultList();
     }
 
 }
