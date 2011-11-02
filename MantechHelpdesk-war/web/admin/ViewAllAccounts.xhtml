@@ -9,12 +9,7 @@
     <body>
 
         <ui:composition template="./Admin_Temp.xhtml">
-            <!--
-                        <ui:define name="top">
-                            top
-                        </ui:define>-->
-
-
+          
             <ui:define name="content">
                 <h:form style="border-color: black; width:630px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
                     View Information of All Accounts
@@ -27,71 +22,17 @@
                        
                     </h:selectOneMenu>
                    <h:commandButton value="search" action="#{accountMB.searchDepart}"/>
-                    <hr/>
-                    <!--                    <table  style="text-align: center" align="center">
-                                            <tr style="background: #EC9B9B; text-align: center">
-                                                <td>
-                                                    <h:outputText value="User Name"/>
-                                                </td>
-                                                <td>
-                                                    <h:outputText value="Name"/>
-                                                </td>
-                                                <td>
-
-                                                    <h:outputText value="Identity Card"/>
-                                                </td>
-                                                <td>
-
-                                                    <h:outputText value="role"/>
-                                                </td>
-                                                <td>
-                                                    <h:outputText value="Department"/>
-                                                </td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <c:forEach var="items" items="{accountMB.listAcc}">
-                                                <tr style="background: lightgrey; text-align: left">
-                                                    <td>
-                                                       <h:outputText value="{items.accountId}"/>
-                                                    </td>
-                                                    <td>
-                                                        <h:outputText value="{items.tbStaffs.firstName} {items.tbStaffs.lastName}"/>
-                                                    </td>
-                                                    <td>
-
-                                                       <h:outputText value="{items.tbStaffs.identityCard}"/>
-                                                    </td>
-                                                    <td>
-
-                                                        <h:outputText value="{items.tbStaffs.identityCard}"/>
-                                                    </td>
-                                                    <td>
-                                                       <h:outputText value="{items.tbStaffs.tbDepartments.departmentName}"/>
-                                                    </td>
-                                                    <td><h:commandLink action="{accountMB.editAcc}" value="Edit"/></td>
-                                                    <td><h:commandLink action="{accountMB.deleteAcc}" value="Delete"/></td>
-                                                </tr>
-                                            </c:forEach>
-                                        </table>-->
-
-                    <!--                    <h:form>-->
+                    <hr/>                
                     <h:dataTable value="#{accountMB.listAccount}" var="o"
                                  styleClass="order-table"
                                  headerClass="order-table-header"
                                  rowClasses="order-table-odd-row,order-table-even-row"
                                  >
-
                         <h:column>
-
                             <f:facet name="header">Account Id</f:facet>
-
-
-
                             <h:outputText value="#{o.ac.accountId}" />
 
                         </h:column>
-
                         <h:column>
 
                             <f:facet name="header">First Name</f:facet>
@@ -102,11 +43,8 @@
 
                         </h:column>
                         <h:column>
-
                             <f:facet name="header">Last Name</f:facet>
-
                             <h:inputText value="#{o.ac.tbStaffs.lastName}" size="10" rendered="#{o.editable}" />
-
                             <h:outputText value="#{o.ac.tbStaffs.lastName}" rendered="#{not o.editable}" />
 
                         </h:column>
@@ -120,15 +58,8 @@
                             <h:outputText  value="#{o.ac.tbStaffs.identityCard}" rendered="#{not o.editable}" />
 
                         </h:column>
-
                         <h:column>
-
                             <f:facet name="header">Department</f:facet>
-
-<!--                                <h:selectOneMenu style="border:2px; border-color: black; border-style: inset; background: activeborder" id="departmentId"  value="#{staffMB.depart.departmentId}" rendered="#{o.editable}">
-                                    <f:selectItems value="{staffMB.departList}"
-                                                   var="item"  itemLabel="{item.departmentName}" itemValue="{item.departmentId}"/>
-                                </h:selectOneMenu>-->
 
                             <h:outputText value="#{o.ac.tbStaffs.tbDepartments.departmentName}" />
 
@@ -150,19 +81,12 @@
 
                             <h:commandLink value="Edit" action="#{accountMB.editAction(o)}"
                                            rendered="#{not o.editable}" />
-
                         </h:column>
                         <h:column>
-
                             <f:facet name="header">Action</f:facet>
-
                             <h:commandLink value="Unavailable" action="#{accountMB.unavailableAction(o)}"
                                            rendered="#{not o.editable}"  />
-
-
                         </h:column>
-
-
                     </h:dataTable>
 
                     <h:commandButton value="Save Changes" action="#{accountMB.saveAction}" />
