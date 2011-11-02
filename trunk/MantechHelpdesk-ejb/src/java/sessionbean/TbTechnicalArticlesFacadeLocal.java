@@ -30,4 +30,5 @@ public interface TbTechnicalArticlesFacadeLocal {
 
     int count();
 
+    List<TbTechnicalArticles> findAllBySearch(String search);
 }

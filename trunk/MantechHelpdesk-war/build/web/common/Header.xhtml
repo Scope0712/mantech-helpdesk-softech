@@ -31,17 +31,24 @@
     </style>
     <h:body>
 
-
         <div style="width: 900px;height: 30px; background-image: url(./../images/logo_banner.png); padding-top: 80px">
             <!--                <img src="./../images/banner.png" align="left"/>           -->
             <div style="width: 100%;">
                 <div  class="roundangle"><a href="../Home.xhtml">Home</a> </div>
                 <div  class="roundangle"><a href="../Article.xhtml">Article</a></div>
                 <div  class="roundangle"><a href="../faq.xhtml">&nbsp;FAQ&nbsp;</a></div>
+<!--                <c:if test="{accountMB.login_label=='Login'}">-->
                 <div  class="roundangle"><a href="public/Login.xhtml">
                             <h:outputText value="#{accountMB.login_label}"/>                                      
                     </a></div>
+<!--                </c:if>
+                <c:otherwise>
+                     <div  class="roundangle"><a href="../Home.xhtml">
+                            <h:outputText value="{accountMB.login_label}"/>
+                    </a></div>
+                </c:otherwise>-->
             </div>
+<!--            <div style="float:right; text-align: right" >{accountMB.user_online}</div>-->
         </div>
     </h:body>
 </html>
