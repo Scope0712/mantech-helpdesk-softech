@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./Employee_template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+    <ui:define name="content">
+        <h:form id="form1" style="border-color: blue; width: 680px; float: left; text-align: center; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
+             <span style="font-size: x-large;">
+                <b>View All Complaint Not Solved</b>
+            </span>
+                    <hr/>
+                    <h:dataTable value="#{thAllComplaint.listNotSolved}" var="item" border="1" style="width: 680px;text-align: center"
+                                 styleClass="order-table"
+                                 headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row"
+                                 >
+
+                        <h:column>
+                            <f:facet name="header">ComplaintId</f:facet>
+                            <h:outputText value="#{item.complaintId}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Content</f:facet>
+                            <h:outputText value="#{item.problemContent}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Category</f:facet>
+                            <h:outputText  value="#{item.categoryName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Date Lodge</f:facet>
+                            <h:outputText value="#{item.date}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Status</f:facet>
+                            <h:outputText  value="#{item.statusName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">ResendNo</f:facet>
+                            <h:outputText  value="#{item.resendNo}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+    </ui:define>
+
+</ui:composition>
