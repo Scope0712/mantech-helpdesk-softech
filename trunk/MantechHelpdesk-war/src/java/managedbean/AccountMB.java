@@ -48,7 +48,7 @@ public class AccountMB {
     TbDepartments depart;
     Collection<TbDepartments> deplist;
     TbRoles role;
-    String user_online = "a";
+    String user_online ;
 
     public String getUser_online() {
         request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -57,7 +57,7 @@ public class AccountMB {
         if (!user.equals(null)) {
             return user + "is online";
         } else {
-            return "a";
+            return "";
         }
     }
 
