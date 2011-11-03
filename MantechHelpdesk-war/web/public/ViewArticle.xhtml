@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+        <ui:composition template="./../template/template.xhtml">
+            <ui:define name="left">
+            </ui:define>
+            <ui:define name="content">
+                <h1><h:outputText value="Detail Article Information"></h:outputText></h1>
+                <table border="0">
+                    <td align="left">
+                        <tr>
+                            <td><h:outputLabel value="Title" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.title}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Content" ></h:outputLabel></td>
+                            <td><div class="answer"><h:outputText value="#{ArticleMB.myTbTechnicalArticle.content}"></h:outputText></div></td>
+                            <script type="text/javascript">
+                                $(document).ready(function(){
+                                    $(".answer").readmore();
+                                });
+                            </script>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="View Number" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.viewNo}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Rate Image" ></h:outputLabel></td>
+                            <td>
+                                <h:graphicImage alt="image" id="image1" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starOne==1}"/>
+                                <h:graphicImage alt="image" id="image2" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starOne==0}"/>
+
+                                <h:graphicImage alt="image" id="image3" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTwo==1}"/>
+                                <h:graphicImage alt="image" id="image4" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTwo==0}"/>
+
+                                <h:graphicImage alt="image" id="image5" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starThree==1}"/>
+                                <h:graphicImage alt="image" id="image6" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starThree==0}"/>
+
+                                <h:graphicImage alt="image" id="image7" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFour==1}"/>
+                                <h:graphicImage alt="image" id="image8" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFour==0}"/>
+
+                                <h:graphicImage alt="image" id="image9" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFive==1}"/>
+                                <h:graphicImage alt="image" id="image10" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFive==0}"/>
+
+                                <h:graphicImage alt="image" id="image11" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSix==1}"/>
+                                <h:graphicImage alt="image" id="image12" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSix==0}"/>
+
+                                <h:graphicImage alt="image" id="image13" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSeven==1}"/>
+                                <h:graphicImage alt="image" id="image14" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSeven==0}"/>
+
+                                <h:graphicImage alt="image" id="image15" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starEight==1}"/>
+                                <h:graphicImage alt="image" id="image16" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starEight==0}"/>
+
+                                <h:graphicImage alt="image" id="image17" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starNine==1}"/>
+                                <h:graphicImage alt="image" id="image18" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starNine==0}"/>
+
+                                <h:graphicImage alt="image" id="image19" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTen==1}"/>
+                                <h:graphicImage alt="image" id="image20" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTen==0}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Create Date" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.createDate}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Update Date" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.updateDate}"></h:outputText></td>
+                        </tr>
+                    </td>
+                </table>
+                <h1><h:outputText value="Rate Articele"></h:outputText></h1>
+                <tr>
+                    <form action="/DemoCkeditorAndRating-war/RatingServlet" method="POST">
+
+                        <input type="hidden" name="articleid" value="#{ArticleMB.myTbTechnicalArticle.articleId}" readonly="false"/>
+
+                        <input type="radio" name="rategroup" value="1" checked="checked" >
+                            <h:graphicImage alt="image" name="../images/onestart.jpg"/>
+                            <h:outputText value="One Star"/><br/>
+                        </input>
+
+                        <input type="radio" name="rategroup" value="2">
+                            <h:graphicImage alt="image" name="../images/twostart.jpg"/>
+                            <h:outputText value="Two Star"/><br/>
+                        </input>
+
+                        <input type="radio" name="rategroup" value="3">
+                            <h:graphicImage alt="image" name="../images/threestart.jpg"/>
+                            <h:outputText value="Three Star"/><br/>
+                        </input>
+
+                        <input type="radio" name="rategroup" value="4">
+                            <h:graphicImage alt="image" name="../images/fourstart.jpg"/>
+                            <h:outputText value="Four Star"/><br/>
+                        </input>
+
+                        <input type="radio" name="rategroup" value="5">
+                            <h:graphicImage alt="image" name="../images/fivestart.jpg"/>
+                            <h:outputText value="Five Star"/><br/>
+                        </input>
+
+                        <input type="radio" name="rategroup" value="6">
+                            <h:graphicImage alt="image" name="../images/sixstart.jpg"/>
+                            <h:outputText value="Six Star"/><br/>
+                        </input>
+
+                        <input type="radio" name="rategroup" value="7">
+                            <h:graphicImage alt="image" name="../images/sevenstart.jpg"/>
+                            <h:outputText value="Seven Star"/><br/>
+                        </input>
+
+                        <input type="radio" name="rategroup" value="8">
+                            <h:graphicImage alt="image" name="../images/eightstart.jpg"/>
+                            <h:outputText value="Eight Star"/><br/>
+                        </input>
+
+                        <input type="radio" name="rategroup" value="9">
+                            <h:graphicImage alt="image" name="../images/ninestart.jpg"/>
+                            <h:outputText value="Nine Star"/><br/>
+                        </input>
+
+                        <input type="radio" name="rategroup" value="10">
+                            <h:graphicImage alt="image" name="../images/tenstart.jpg"/>
+                            <h:outputText value="Ten Star"/><br/>
+                        </input>
+
+                        <input value="Submit Rate" type="submit"/>
+                    </form>
+                </tr>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
