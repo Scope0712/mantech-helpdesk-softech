@@ -11,9 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -28,7 +26,7 @@ import javax.persistence.TemporalType;
 @Table(name = "tbFAQs")
 @NamedQueries({
     @NamedQuery(name = "TbFAQs.findAll", query = "SELECT t FROM TbFAQs t"),
-    @NamedQuery(name = "TbFAQs.findByfaqId", query = "SELECT t FROM TbFAQs t WHERE t.faqId = :faqId"),
+    @NamedQuery(name = "TbFAQs.findByFaqId", query = "SELECT t FROM TbFAQs t WHERE t.faqId = :faqId"),
     @NamedQuery(name = "TbFAQs.findByCreateDate", query = "SELECT t FROM TbFAQs t WHERE t.createDate = :createDate"),
     @NamedQuery(name = "TbFAQs.findByUpdateDate", query = "SELECT t FROM TbFAQs t WHERE t.updateDate = :updateDate"),
     @NamedQuery(name = "TbFAQs.findByStatus", query = "SELECT t FROM TbFAQs t WHERE t.status = :status")})
@@ -36,21 +34,15 @@ public class TbFAQs implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "FAQ_Id")
+    @Column(name = "Faq_Id")
     private String faqId;
     @Basic(optional = false)
     @Lob
     @Column(name = "Content_Question")
     private String contentQuestion;
     @Lob
-    @Column(name = "Short_Answer")
-    private String shortAnswer;
-    @Lob
-    @Column(name = "Long_Answer")
-    private String longAnswer;
-    @Lob
-    @Column(name = "Image")
-    private String image;
+    @Column(name = "Detail_Answer")
+    private String detailAnswer;
     @Basic(optional = false)
     @Column(name = "Create_Date")
     @Temporal(TemporalType.TIMESTAMP)
@@ -62,9 +54,6 @@ public class TbFAQs implements Serializable {
     @Basic(optional = false)
     @Column(name = "Status")
     private String status;
-    @JoinColumn(name = "Category_Id", referencedColumnName = "Category_Id")
-    @ManyToOne(optional = false)
-    private TbCategories tbCategories;
 
     public TbFAQs() {
     }
@@ -81,11 +70,11 @@ public class TbFAQs implements Serializable {
         this.status = status;
     }
 
-    public String getfaqId() {
+    public String getFaqId() {
         return faqId;
     }
 
-    public void setfaqId(String faqId) {
+    public void setFaqId(String faqId) {
         this.faqId = faqId;
     }
 
@@ -97,28 +86,12 @@ public class TbFAQs implements Serializable {
         this.contentQuestion = contentQuestion;
     }
 
-    public String getShortAnswer() {
-        return shortAnswer;
+    public String getDetailAnswer() {
+        return detailAnswer;
     }
 
-    public void setShortAnswer(String shortAnswer) {
-        this.shortAnswer = shortAnswer;
-    }
-
-    public String getLongAnswer() {
-        return longAnswer;
-    }
-
-    public void setLongAnswer(String longAnswer) {
-        this.longAnswer = longAnswer;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public void setDetailAnswer(String detailAnswer) {
+        this.detailAnswer = detailAnswer;
     }
 
     public Date getCreateDate() {
@@ -143,14 +116,6 @@ public class TbFAQs implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public TbCategories getTbCategories() {
-        return tbCategories;
-    }
-
-    public void setTbCategories(TbCategories tbCategories) {
-        this.tbCategories = tbCategories;
     }
 
     @Override
