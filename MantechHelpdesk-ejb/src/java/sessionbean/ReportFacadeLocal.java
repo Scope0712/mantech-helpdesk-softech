@@ -30,4 +30,10 @@ public interface ReportFacadeLocal {
 
     int count();
 
+    List<Report> findReportByTechnician(String technicianId);
+
+    List<Report> findReportByCategory(String categoryId);
+
+    List<Report> findReportByDepartment(String departmentId);
+
 }
