@@ -18,32 +18,68 @@
             <ui:define name="content">
                 <f:view>
                     <h:form  style="border-color: black; width:580px; float: right; text-align: left; padding-left: 50px;padding-right: 10px; border-width: 1px; border-style: outset;">
-                        <h1><h:outputText value="Assign Complaint to technician:"/></h1>
+                        <h1><h:outputText value="Retrieve New Complaint:"/></h1>
                         <h:panelGrid columns="2" >
+                            <h:outputLabel value="Complaint Info:" style="color: blue;font-style: oblique;font-weight: bold"/>
+                            <br/>
+                            <hr/>
                             <h:outputLabel value="Complaint id:" for="complaintid" />
-                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="complaintid" value="#{tNewComplaintMB.newComp.complaintid}" disabled="true" title="Complaintid"/>
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="complaintid" value="#{tNewComplaintMB.newComp.complaintid}" readonly="true" title="Complaintid"/>
+
                             <h:outputLabel value="Employee id:" for="employeeid" />
-                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="employeeid" value="#{tNewComplaintMB.newComp.employeeid}" title="Employeeid" disabled="true"/>
-                            <h:outputLabel value="Category Id:" for="categoryId" />
-                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="categoryId" value="#{tNewComplaintMB.newComp.categoryId}" title="CategoryId"/>
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="employeeid" value="#{tNewComplaintMB.newComp.employeeid}" title="Employeeid" readonly="true"/>
+
                             <h:outputLabel value="Problem content:" for="problemcontent" />
-                            <h:inputTextarea style="border:2px; border-color: black; border-style:inset; background: activeborder" rows="4" cols="30" id="problemcontent" value="#{tNewComplaintMB.newComp.problemcontent}"  title="Problemcontent" disabled="true"/>
-                            <h:outputLabel value="Priority Value:" for="priorityValue" />
-                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="priorityValue" value="#{tNewComplaintMB.newComp.priorityValue}" title="PriorityValue" required="true" requiredMessage="The PriorityValue field is required."/>
+                            <h:inputTextarea style="border:2px; border-color: black; border-style:inset; background: activeborder" rows="4" cols="30" id="problemcontent" value="#{tNewComplaintMB.newComp.problemcontent}"  title="Problemcontent" readonly="true"/>
+
                             <h:outputLabel value="Lodging Date:" for="date" />
-                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="date" value="#{tNewComplaintMB.newComp.lodgingDate}" title="Date" disabled="true">
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="date" value="#{tNewComplaintMB.newComp.lodgingDate}" title="Date" readonly="true">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:inputText>
-                            <h:outputLabel value="Status:" for="status" />
-                            <h:inputText  style="border:2px; border-color: black; border-style:inset; background: activeborder" id="status" value="#{tNewComplaintMB.newComp.status}" title="Status" disabled="true"/>
-                            <h:outputLabel value="Resend No:" for="resendNo" />
-                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="resendNo" value="#{tNewComplaintMB.newComp.resendNo}" title="ResendNo" disabled="true"/>
 
+                            <h:outputLabel value="Status:" for="status" />
+                            <h:inputText  style="border:2px; border-color: black; border-style:inset; background: activeborder" id="status" value="#{tNewComplaintMB.newComp.status}" title="Status" readonly="true"/>
+
+                            <h:outputLabel value="Resend No:" for="resendNo" />
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="resendNo" value="#{tNewComplaintMB.newComp.resendNo}" title="ResendNo" readonly="true"/>
+
+                            <h:outputLabel value="Category:" for="categoryId" />
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="categoryId" value="#{tNewComplaintMB.newComp.categoryId}" title="CategoryId"/>
+
+                            <h:outputLabel value="Priority:" for="priorityValue"/>
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" id="priorityValue" value="#{tNewComplaintMB.newComp.priorityValue}" title="PriorityValue"/>
+
+                            <h:outputLabel value="Change Category" style="color: blue;font-style: oblique;font-weight: bold"/><br/><hr/>
+                            <h:outputLabel value="Category :" for="categorycbb" />
+                            <h:selectOneMenu id="categorycbb" valueChangeListener="${tNewComplaintMB.categoryChanged}">
+                                <f:selectItems value="#{tNewComplaintMB.categoryList}" var="item" itemLabel="#{item.getCategoryName()}" itemValue="#{item.getCategoryId()}"/>
+                            </h:selectOneMenu>                       
+
+                            <h:outputLabel value="Change Priority" style="color: blue;font-style: oblique;font-weight: bold"/><br/><hr/>
+                            <h:outputLabel value="Priority :" for="prioritycbb" />
+                            <h:selectOneMenu id="prioritycbb" valueChangeListener="${tNewComplaintMB.priorityChanged}">
+                                <f:selectItem itemValue="1"/>
+                                <f:selectItem itemValue="2"/>
+                                <f:selectItem itemValue="3"/>
+                                <f:selectItem itemValue="4"/>
+                                <f:selectItem itemValue="5"/>
+                                <f:selectItem itemValue="6"/>
+                                <f:selectItem itemValue="7"/>
+                                <f:selectItem itemValue="8"/>
+                                <f:selectItem itemValue="9"/>
+                                <f:selectItem itemValue="10"/>
+                            </h:selectOneMenu>
+
+                            <h:outputLabel value="Assign technician" style="color: blue;font-style: oblique;font-weight: bold"/><br/><hr/>
                             <h:outputLabel value="Assign to Technician:" for="techList" />
-                            <h:selectOneMenu style="border:2px; border-color: black; border-style:inset; background: activeborder" id="techList" valueChangeListener="#{tNewComplaintMB.technicianChanged}">
+                            <h:selectOneMenu  style="border:2px; border-color: black; border-style:inset; background: activeborder" id="techList" valueChangeListener="#{tNewComplaintMB.technicianChanged}" required="true" requiredMessage="Select tecnhnician to assign for this complaint">
+                                <f:selectItem itemLabel="--Select technician--" itemValue=""/>
                                 <f:selectItems value="#{tAccountMB.technicianList}" var="item" itemLabel="#{item.tbStaffs.staffId}" itemValue="#{item.tbStaffs.staffId}"/>
                             </h:selectOneMenu>
-                            <h:commandButton value="Save Assign" action="#{tNewComplaintMB.createTask}"/>
+                            
+                            <h:commandButton value="Save Assign" action="#{tNewComplaintMB.createTask}" disabled="#{tNewComplaintMB.assignDisable}">
+                                <f:ajax render="priorityValue categoryId @this" execute="@form"/>
+                            </h:commandButton>
                             <h:commandButton value="Back To List" action="/admin/AssignComplaint.xhtml"/>
                         </h:panelGrid>
                         <br style="clear: both"/>
