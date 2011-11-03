@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        <ui:composition
+            template="./../template/template.xhtml">
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <table width="100%">
+                            <h:dataTable value="#{ArticleMB.listArticle}" var="item">
+                                <tr>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Title"/>
+                                            </f:facet>
+                                            <h:commandLink action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}" value="#{item.title}">
+                                                <f:param id="articleId_view" value="#{item.articleId}"/>
+                                            </h:commandLink>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Content"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.content}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Rate Total"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.rateTotal}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Vote Image"/>
+                                            </f:facet>
+                                            <h:graphicImage alt="image" id="image1" name="../images/full.gif" rendered="#{item.starOne==1}"/>
+                                            <h:graphicImage alt="image" id="image2" name="../images/none.gif" rendered="#{item.starOne==0}"/>
+
+                                            <h:graphicImage alt="image" id="image3" name="../images/full.gif" rendered="#{item.starTwo==1}"/>
+                                            <h:graphicImage alt="image" id="image4" name="../images/none.gif" rendered="#{item.starTwo==0}"/>
+
+                                            <h:graphicImage alt="image" id="image5" name="../images/full.gif" rendered="#{item.starThree==1}"/>
+                                            <h:graphicImage alt="image" id="image6" name="../images/none.gif" rendered="#{item.starThree==0}"/>
+
+                                            <h:graphicImage alt="image" id="image7" name="../images/full.gif" rendered="#{item.starFour==1}"/>
+                                            <h:graphicImage alt="image" id="image8" name="../images/none.gif" rendered="#{item.starFour==0}"/>
+
+                                            <h:graphicImage alt="image" id="image9" name="../images/full.gif" rendered="#{item.starFive==1}"/>
+                                            <h:graphicImage alt="image" id="image10" name="../images/none.gif" rendered="#{item.starFive==0}"/>
+
+                                            <h:graphicImage alt="image" id="image11" name="../images/full.gif" rendered="#{item.starSix==1}"/>
+                                            <h:graphicImage alt="image" id="image12" name="../images/none.gif" rendered="#{item.starSix==0}"/>
+
+                                            <h:graphicImage alt="image" id="image13" name="../images/full.gif" rendered="#{item.starSeven==1}"/>
+                                            <h:graphicImage alt="image" id="image14" name="../images/none.gif" rendered="#{item.starSeven==0}"/>
+
+                                            <h:graphicImage alt="image" id="image15" name="../images/full.gif" rendered="#{item.starEight==1}"/>
+                                            <h:graphicImage alt="image" id="image16" name="../images/none.gif" rendered="#{item.starEight==0}"/>
+
+                                            <h:graphicImage alt="image" id="image17" name="../images/full.gif" rendered="#{item.starNine==1}"/>
+                                            <h:graphicImage alt="image" id="image18" name="../images/none.gif" rendered="#{item.starNine==0}"/>
+
+                                            <h:graphicImage alt="image" id="image19" name="../images/full.gif" rendered="#{item.starTen==1}"/>
+                                            <h:graphicImage alt="image" id="image20" name="../images/none.gif" rendered="#{item.starTen==0}"/>
+                                        </h:column>
+                                    </td>
+                                </tr>
+                            </h:dataTable>
+                        </table>
+
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
