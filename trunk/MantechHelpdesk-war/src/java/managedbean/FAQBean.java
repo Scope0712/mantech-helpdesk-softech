@@ -52,7 +52,7 @@ public class FAQBean {
     }
 
     public void createFAQ(ActionEvent event) {
-        myFAQ.setfaqId("dasda");
+        myFAQ.setFaqId("dasda");
         myFAQ.setTbCategories(myCategory);
         getInstanse().create(myFAQ);
     }
