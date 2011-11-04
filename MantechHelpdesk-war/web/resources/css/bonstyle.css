@@ -11,10 +11,14 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
-h:body {
-    background: url("../images/redbg.jpg") no-repeat scroll center 50px #CFCFCF;
-    font-family: Georgia;
-    font-size: 14px;
+body {
+    background-color: #000000;
+    background-image: url("../../images/redbg.jpg");
+    background-repeat: repeat-x;
+    color: #333333;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    line-height: 18px;
     margin: 0;
     padding: 0;
 }
