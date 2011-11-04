@@ -11,10 +11,9 @@
 
             <ui:define name="content">
 
-
-                <h:form>
-                    <h:outputText value="Change priority"/>
-                    <h:dataTable value="#{tCategoryMB.categoryList}" var="item">
+                <h:form >
+                    <h1 style="float:none;text-align: left;color: blue">Category List </h1>
+                    <h:dataTable value="#{tCategoryMB.categoryList}" var="item" id="tb2" style="float: none" border="1">
                         <!--                        <h:column>
                                                     <f:facet name="header">
                                                         <h:outputText value="Category Id"/>
@@ -51,18 +50,21 @@
                             <f:facet name="header">
                                 <h:outputText value="Action"/>
                             </f:facet>
-                            <h:commandLink value="Change Priority" action="#{tCategoryMB.editAction(item)}"/>
+                            <h:commandLink value="Edit" action="#{tCategoryMB.editAction(item)}"/>
                         </h:column>
                     </h:dataTable>
-                    <h:commandButton value="Save changes" action="#{tCategoryMB.saveAction}"/>
+                    <div style="float: left">
+                        <h:commandButton value="Save changes" action="#{tCategoryMB.saveAction}"/>
+                    </div>
                 </h:form>
+                <br clear="right"/>
                 <h:form>
-                    <h:outputText value="Add new Category"/><br/>
+                    <h1 style="float:none;text-align: left;color: blue">Add new category</h1>
                     <h:outputLabel value="Category Name:" for="categoryName"/>
                     <h:inputText id="categoryName" value="#{tCategoryMB.category.categoryName}" required="true" requiredMessage="The category name field is required" />
                     <h:outputLabel value="Priority" for="priority"/>
                     <h:selectOneMenu id="priority" value="#{tCategoryMB.category.priority}" required="true" requiredMessage="Select the priority of the complaint">
-                        <f:selectItem itemLabel="-Select Priority-" itemValue=""/>
+                        <f:selectItem itemLabel="-Select-" itemValue=""/>
                         <f:selectItem itemValue="1"/>
                         <f:selectItem itemValue="2"/>
                         <f:selectItem itemValue="3"/>

@@ -11,120 +11,40 @@
 
 
 
-            <ui:define name="left">
-
+            <ui:define name="left" >
             </ui:define>
 
             <ui:define name="content">
-                <!--                <f:view>
-                                    <h:form>
-                                        <h1><h:outputText value="List"/></h1>
-                                        <h:dataTable value="#{tReportMB.reportList}" var="item">
-
-
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Technician_id"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.technicianid}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="ComplaintId"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.complaintId}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Categoryid"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.categoryid}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Employeeid"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.employeeid}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="DepartmentId"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.departmentid}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="ResendNo"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.resendNo}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Status"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.status}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="LodgingDate"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.lodgingDate}">
-                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                                </h:outputText>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="AssigningDate"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.assigningDate}">
-                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                                </h:outputText>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="LatestModifyDate"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.latestModifyDate}">
-                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                                </h:outputText>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="SolvingTime"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.solvingTime}"/>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </h:form>
-                                </f:view>-->
 
 
                 <h:form>
-                    <h:outputLabel id="lb1" for="cbb1" value="Period type:"/>
-                    <h:selectOneMenu id="cbb1" value="#{tReportMB.periodType}">
-                        <f:selectItem itemLabel="--Select period--" itemValue=""/>
-                        <f:selectItem itemLabel="Daily" itemValue="Daily"/>
-                        <f:selectItem itemLabel="Weekly" itemValue="Weekly"/>
-                        <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
-                        <f:ajax render="dt1" execute="@this"/>
-                    </h:selectOneMenu>
+                    <div  style="float: left;margin-top: 20px;margin-bottom: 30px">
+                        <h:outputLabel id="lb1" for="cbb1" value="Period type:"/>
+                        <h:selectOneMenu id="cbb1" value="#{tReportMB.periodType}">
+                            <f:selectItem itemLabel="--Select period--" itemValue=""/>
+                            <f:selectItem itemLabel="Daily" itemValue="Daily"/>
+                            <f:selectItem itemLabel="Weekly" itemValue="Weekly"/>
+                            <f:selectItem itemLabel="Monthly" itemValue="Monthly"/>
+                            <f:ajax render="dt1 cbb2" execute="@this"/>
+                        </h:selectOneMenu>
 
-                    <h:outputLabel id="lb2" for="cbb2" value="Filter criteria:"/>
-                    <h:selectOneMenu id="cbb2" value="#{tReportMB.filter}" >
-                        <f:selectItem itemLabel="--Select filter--"/>
-                        <f:selectItem itemLabel="Category" itemValue="Category"/>
-                        <f:selectItem itemLabel="Technician" itemValue="Technician"/>
-                        <f:selectItem itemLabel="Department" itemValue="Department"/>
-                        <f:selectItem itemLabel="None" itemValue="None"/>
-                        <f:ajax render="cbb3" execute="@this"/>
-                    </h:selectOneMenu>
+                        <h:outputLabel id="lb2" for="cbb2" value="Filter:"/>
+                        <h:selectOneMenu id="cbb2" value="#{tReportMB.filter}" disabled="#{tReportMB.filterDisabled}" >
+                            <f:selectItem itemLabel="--Select filter--" itemValue=""/>
+                            <f:selectItem itemLabel="Category" itemValue="Category_Id"/>
+                            <f:selectItem itemLabel="Technician" itemValue="Technician_Id"/>
+                            <f:selectItem itemLabel="Department" itemValue="Department_Id"/>
+                            <f:selectItem itemLabel="None" itemValue="None"/>
+                            <f:ajax render="cbb3" execute="@this"/>
+                        </h:selectOneMenu>
 
-                    <h:selectOneMenu id="cbb3" rendered="#{tReportMB.rendered}" value="#{tReportMB.selectedValue}">
-                        <f:selectItems value="#{tReportMB.options}"/>
-                        <f:ajax render="dt1" execute="@this"/>
-                    </h:selectOneMenu>
-
-                    <h:dataTable id="dt1" value="#{tReportMB.detailreport}" var="item" border="1">
+                        <h:outputLabel id="lb3" for="cbb3" value="Filter Value:" />
+                        <h:selectOneMenu id="cbb3"  value="#{tReportMB.filterValue}" disabled="#{tReportMB.filterValueDisabled}">
+                            <f:selectItems value="#{tReportMB.options}"/>
+                            <f:ajax render="dt1" execute="@this"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <h:dataTable id="dt1" value="#{tReportMB.detailreport}" var="item" border="1" style="float: left">
                         <h:column id="col1">
                             <f:facet name="header">
                                 <h:outputText value="Complaint ID"/>
