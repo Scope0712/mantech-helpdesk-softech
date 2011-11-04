@@ -8,12 +8,33 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript"  src="./ckeditor/ckeditor.js" language="javascript"></script>
-        <script type="text/javascript" src="./ckfinder/ckfinder.js"></script>
-        <title>Facelets Template</title>
+        <link href="./../resources/css/bonstyle.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../resources/jquery-1.6.4.js"></script>
+        <script type="text/javascript" src="../resources/jqFancyTransitions.1.8.min.js"></script>
+        <script type="text/javascript" src="../resources/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#ft").jqFancyTransitions({
+                    effect: 'curtain', // wave, zipper, curtain
+                    width: 500,// width of panel
+                    height: 250, // height of panel
+                    strips: 20, // number of strips
+                    delay: 5000, // delay between images in ms
+                    stripDelay: 50, // delay beetwen strips in ms
+                    titleOpacity: 0.7, // opacity of title
+                    titleSpeed: 1000, // speed of title appereance in ms
+                    position: 'alternate', // top, bottom, alternate, curtain
+                    direction: 'fountainAlternate', // left, right, alternate, random, fountain, fountainAlternate
+                    navigation: true, // prev and next navigation buttons
+                    links: true // show images as links
+                });
+                $( "#tabs" ).tabs();
+            });
+        </script>
+        <title>Mantech Helpdesk</title>
     </h:head>
 
-    <h:body>
+    <h:body id="body">
         <div style="width:900px; text-align: center; margin-right: auto; margin-left: auto;">
             <div id="top">
                 <ui:insert name="top">
@@ -23,6 +44,40 @@
             <div style="background-image: url(../images/bg6.gif)">
                 <div id="left">
                     <ui:insert name="left"></ui:insert>
+                    <div id="ft">
+                        <img src="../images/zakynthos_ivan_jekic.jpg" alt='' />
+                        <img src="../images/terrace_view_marko_manojlovic.jpg" alt='' />
+                        <img src="../images/nbg1_goran_jovanovic.jpg" alt='' />
+                        <img src="../images/blue_window_igor_srdanovic.jpg" alt='' />
+                    </div>
+
+                    <div class="demo">
+
+                        <div id="tabs">
+                            <ul>
+                                <li><a href="#tabs-1">Nunc tincidunt</a></li>
+                                <li><a href="#tabs-2">Proin dolor</a></li>
+                                <li><a href="#tabs-3">Aenean lacinia</a></li>
+                            </ul>
+                            <div id="tabs-1">
+                                <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                            </div>
+                            <div id="tabs-2">
+                                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                            </div>
+                            <div id="tabs-3">
+                                <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                                <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+                            </div>
+                        </div>
+
+                    </div><!-- End demo -->
+
+
+
+                    <div style="display: none;" class="demo-description">
+                        <p>Click tabs to swap between content that is broken into logical sections.</p>
+                    </div><!-- End demo-description -->
                 </div>
                 <div id="content" class="left_content">
                     <ui:insert name="contenthome"></ui:insert>
