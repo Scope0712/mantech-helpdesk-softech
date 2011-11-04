@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sessionbean;
 
 import entity.Report;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -36,4 +36,9 @@ public interface ReportFacadeLocal {
 
     List<Report> findReportByDepartment(String departmentId);
 
+    List<Report> findDailyReportWithFilter(Date date, String filterName, String fiterValue);
+
+    List<Report> findWeeklyReportWithFilter(Date startDate, Date endDate, String filterName, String fiterValue);
+
+    List<Report> findMonthlyReportWithFilter(int month, int year, String filterName,String filterValue);
 }

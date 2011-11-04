@@ -41,39 +41,47 @@ import javax.persistence.TemporalType;
 public class Report implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Basic(optional = false)
     @Column(name = "complaint_id")
     @Id
     private String complaintId;
+
     @Basic(optional = false)
     @Column(name = "Category_id")
     private String categoryid;
+
     @Basic(optional = false)
     @Column(name = "Resend_No")
     private int resendNo;
+
     @Column(name = "Lodging_Date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lodgingDate;
+
     @Column(name = "Assigning_Date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date assigningDate;
+
     @Column(name = "Latest_Modify_Date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date latestModifyDate;
+
     @Column(name = "Solving_Time")
     private Integer solvingTime;
     //----------------
-    @Basic(optional = false)
+    //@Basic(optional = false)
     @Column(name = "Employee_id")
     private String employeeid;
+
     @Basic(optional = false)
     @Column(name = "Department_Id")
     private String departmentid;
 
-    @Basic(optional = false)
+    //@Basic(optional = false)
     @Column(name = "Technician_id")
-    @Id
     private String technicianid;
+
     @Basic(optional = false)
     @Column(name = "Status")
     private String status;
@@ -172,5 +180,5 @@ public class Report implements Serializable {
         this.departmentid = departmentid;
     }
 
-   
+
 }
