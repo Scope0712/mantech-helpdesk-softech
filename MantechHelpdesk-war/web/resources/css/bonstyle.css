@@ -14,7 +14,7 @@
 body {
     background-color: #000000;
     background-image: url("../../images/redbg.jpg");
-    background-repeat: repeat-x;
+    /* background-repeat: repeat-x; */
     color: #333333;
     font-family: Verdana,Arial,Helvetica,sans-serif;
     font-size: 11px;
@@ -129,7 +129,7 @@ h3 {
     width: 500px;
 }
 #ft {
-    border: 5px solid #BAD340;
+    border: 5px solid #CCCCCC;
     border-radius: 5px 5px 5px 5px;
 }
 #example {
