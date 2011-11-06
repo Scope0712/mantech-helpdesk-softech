@@ -24,15 +24,7 @@ public class TCategoryMB {
     /** Creates a new instance of TCategoryMB */
     public TCategoryMB() {
         newcategory = new TbCategories();
-//        List<TbCategories> list = tbCategoriesFacade.findAll();
-//        if (categoryList == null) {
-//            categoryList = new Vector<Category>();
-//        }
-//        if (categoryList.isEmpty()) {
-//            for (TbCategories c : list) {
-//                categoryList.add(new Category(c));
-//            }
-//        }
+
     }
 
     public TbCategories getCategory() {
@@ -54,9 +46,9 @@ public class TCategoryMB {
         return categoryList;
     }
 
-    public TbCategories findCategory(String categoryId) {
-        return tbCategoriesFacade.find(categoryId);
-    }
+//    public TbCategories findCategory(String categoryId) {
+//        return tbCategoriesFacade.find(categoryId);
+//    }
 
     public String saveAction() {
         System.out.println("goi saveAction");
@@ -79,7 +71,9 @@ public class TCategoryMB {
         //newcategory = new TbCategories();
         //newcategory.setCategoryId("");
         System.out.println("Add category: ID= " + newcategory.getCategoryId() + " Name= " + newcategory.getCategoryName() + " Priority=" + newcategory.getPriority());
+        //save to db
         tbCategoriesFacade.create(newcategory);
+        //add to display list
         categoryList.add(new Category(newcategory));
         return null;
     }
