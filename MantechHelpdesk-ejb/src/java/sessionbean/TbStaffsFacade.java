@@ -33,11 +33,12 @@ public class TbStaffsFacade extends AbstractFacade<TbStaffs> implements TbStaffs
     public List<TbStaffs> searchStaffFromDepart(TbDepartments depart) {
       //  System.out.println(depart.getDepartmentName());
         try{
-        return (List<TbStaffs>) em.createNamedQuery("TbStaffs.searchStaffFromDepart").setParameter("tbDepartments", depart).getResultList();
+        return (List<TbStaffs>) em.createQuery("SELECT t FROM TbStaffs t WHERE t.tbDepartments= :tbDepartments").setParameter("tbDepartments", depart).getResultList();
         }
         catch(Exception ex){
             return null;
         }
     }
+ //   @NamedQuery(name = "TbStaffs.searchStaffFromDepart", query = "SELECT t FROM TbStaffs t WHERE t.tbDepartments= :tbDepartments")
 
 }

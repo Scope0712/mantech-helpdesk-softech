@@ -30,11 +30,11 @@ public interface ReportFacadeLocal {
 
     int count();
 
-    List<Report> findReportByTechnician(String technicianId);
-
-    List<Report> findReportByCategory(String categoryId);
-
-    List<Report> findReportByDepartment(String departmentId);
+//    List<Report> findReportByTechnician(String technicianId);
+//
+//    List<Report> findReportByCategory(String categoryId);
+//
+//    List<Report> findReportByDepartment(String departmentId);
 
     List<Report> findDailyReportWithFilter(Date date, String filterName, String fiterValue);
 
