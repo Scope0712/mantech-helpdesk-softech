@@ -46,10 +46,9 @@ public class TReportMB {
     private TbDepartments department;
     private String summaryreport;
     private List<Report> detailreport;
-    private String filterValue;   
+    private String filterValue;
     private boolean filterDisabled = true;
     private boolean filterValueDisabled = true;
-
 
     /** Creates a new instance of TReportMB */
     public TReportMB() {
@@ -72,12 +71,11 @@ public class TReportMB {
     }
 
     public List<Report> getDetailreport() {
-
         System.out.println("get Report table");
         System.out.println(filter);
         System.out.println(filterValue);
         System.out.println(periodType);
-        if (filter != null && filterValue != null) {
+        if (filter != null && !filter.equals("None")&& filterValue != null) {
             if (periodType.equals("Daily")) {
                 detailreport = reportFacade.findDailyReportWithFilter(new Date(), filter, filterValue);
                 System.out.println("goi session bean daily");
@@ -89,7 +87,6 @@ public class TReportMB {
                 Calendar cal = Calendar.getInstance();
                 detailreport = reportFacade.findMonthlyReportWithFilter(cal.get(Calendar.MONTH)+1, cal.get(Calendar.YEAR), filter, filterValue);
             }
-
         }
 
         return detailreport;
@@ -163,7 +160,7 @@ public class TReportMB {
         System.out.println(filterValueDisabled);
         List<SelectItem> options = new ArrayList<SelectItem>();
 
-        if (filter != null && !filterValueDisabled) {
+        if (filter != null && !filterValueDisabled && !filter.equals("None")) {
             if (filter.equals("Category_Id")) {
                 options.add(new SelectItem("--Select Category--"));
                 List<TbCategories> cgrList = tbCategoriesFacade.findAll();
@@ -193,9 +190,12 @@ public class TReportMB {
         return options;
     }
 
-    public TbCategories findCategory(String categoryId){
-        return tbCategoriesFacade.find(categoryId);
+
+    public List<Report> getReportList() {
+        return reportFacade.findAll();
     }
-   
-   
+
+    public List<Report> getDailyList() {
+        return reportFacade.findDailyReportWithFilter(new Date(), "Department_Id", "Depar00002");
+    }
 }
