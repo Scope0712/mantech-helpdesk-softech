@@ -32,8 +32,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "TbAssignTasks.findAll", query = "SELECT t FROM TbAssignTasks t"),
     @NamedQuery(name = "TbAssignTasks.findByTaskId", query = "SELECT t FROM TbAssignTasks t WHERE t.taskId = :taskId"),
     @NamedQuery(name = "TbAssignTasks.findByCreateDate", query = "SELECT t FROM TbAssignTasks t WHERE t.createDate = :createDate"),
-    //view assign task of technician
-     @NamedQuery(name = "TbAssignTasks.findTask", query = "SELECT t FROM TbAssignTasks t WHERE t.tbStaffs = :tbStaffs")
+    @NamedQuery(name = "TbAssignTasks.findTask", query = "SELECT t FROM TbAssignTasks t WHERE t.tbStaffs = :tbStaffs")
 })
 public class TbAssignTasks implements Serializable {
     private static final long serialVersionUID = 1L;

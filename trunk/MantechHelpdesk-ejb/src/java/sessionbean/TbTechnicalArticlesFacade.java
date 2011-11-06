@@ -9,10 +9,11 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
- * @author tuyenbui
+ * @author DELL
  */
 @Stateless
 public class TbTechnicalArticlesFacade extends AbstractFacade<TbTechnicalArticles> implements TbTechnicalArticlesFacadeLocal {
@@ -30,6 +31,20 @@ public class TbTechnicalArticlesFacade extends AbstractFacade<TbTechnicalArticle
 
     @Override
     public List<TbTechnicalArticles> findAllBySearch(String search) {
-        return getEntityManager().createQuery("select object(o) from TbTechnicalArticles o where o.title like '%ptimal Deterrence when%'").getResultList();
+        Query q = em.createNativeQuery("SELECT * FROM TbTechnicalArticles AS c WHERE c.Title LIKE ?value Or c.Detail_Content LIKE ?value", TbTechnicalArticles.class);
+        q.setParameter("value", "%" + search + "%");
+        return q.getResultList();
+    }
+
+    @Override
+    public List<TbTechnicalArticles> selectTopArticles() {
+        Query q = em.createNativeQuery("SELECT Top 5 * FROM TbTechnicalArticles c ORDER BY c.View_No DESC", TbTechnicalArticles.class);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<TbTechnicalArticles> selectNewArticles() {
+        Query q = em.createNativeQuery("SELECT TOP 5 * FROM TbTechnicalArticles c ORDER BY c.Create_Date DESC", TbTechnicalArticles.class);
+        return q.getResultList();
     }
 }
