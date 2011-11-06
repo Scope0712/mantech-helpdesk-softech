@@ -46,9 +46,9 @@ public class TCategoryMB {
         return categoryList;
     }
 
-//    public TbCategories findCategory(String categoryId) {
-//        return tbCategoriesFacade.find(categoryId);
-//    }
+    public TbCategories findCategory(String categoryId) {
+        return tbCategoriesFacade.find(categoryId);
+    }
 
     public String saveAction() {
         System.out.println("goi saveAction");
