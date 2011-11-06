@@ -1,39 +1,92 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
     <body>
-        <ui:composition
-            template="./../template/template.xhtml">
-            <ui:define name="contenthome">
+        <ui:composition template="./../template/template.xhtml">
+            <ui:define name="content">
                 <f:view>
                     <h:form>
+                        <h1><h:outputText value="Display Search Article Information"></h:outputText></h1>
                         <table width="100%">
-                            <h:dataTable value="#{ArticleMB.listArticle}" var="item">
+                            <h:dataTable value="#{ArticleMB.listArticleSearch}" var="item">
                                 <tr>
                                     <td>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="Title"/>
+                                                <h:outputText value="View Detail"/>
                                             </f:facet>
-                                            <h:commandLink action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}" value="#{item.title}">
+                                            <h:commandLink  action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}" value="View">
                                                 <f:param id="articleId_view" value="#{item.articleId}"/>
                                             </h:commandLink>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
+                                                <h:outputText value="Edit Detail"/>
+                                            </f:facet>
+                                            <h:commandLink  action="EditArticle.xhtml"  actionListener="#{ArticleMB.editArticle}" value="Edit">
+                                                <f:param id="articleId_edit" value="#{item.articleId}"/>
+                                            </h:commandLink>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Delete"/>
+                                            </f:facet>
+                                            <h:commandLink  actionListener="#{ArticleMB.delete}" value="Delete">
+                                                <f:param id="articleId_delete" value="#{item.articleId}"/>
+                                            </h:commandLink>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Article Id"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.articleId}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Category"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.tbCategories.categoryId}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Title"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.title}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
                                                 <h:outputText value="Content"/>
                                             </f:facet>
-                                            <h:outputText value="#{item.detailContent}"/>
+                                            <h:outputText value="#{item.content}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="View Number"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.viewNo}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Rating Number"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.rating}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Rate Total"/>
                                             </f:facet>
                                             <h:outputText value="#{item.rateTotal}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Rate Number"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.rate}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
@@ -69,14 +122,16 @@
                                             <h:graphicImage alt="image" id="image19" name="../images/full.gif" rendered="#{item.starTen==1}"/>
                                             <h:graphicImage alt="image" id="image20" name="../images/none.gif" rendered="#{item.starTen==0}"/>
                                         </h:column>
+
                                     </td>
+
                                 </tr>
                             </h:dataTable>
                         </table>
-
                     </h:form>
                 </f:view>
             </ui:define>
         </ui:composition>
+
     </body>
 </html>
