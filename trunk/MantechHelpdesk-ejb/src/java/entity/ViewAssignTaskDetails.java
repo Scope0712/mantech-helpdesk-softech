@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author dell
+ * @author tuyenbui
  */
 @Entity
 @Table(name = "ViewAssignTaskDetails")
@@ -30,8 +30,6 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "ViewAssignTaskDetails.findByCategoryName", query = "SELECT v FROM ViewAssignTaskDetails v WHERE v.categoryName = :categoryName"),
     @NamedQuery(name = "ViewAssignTaskDetails.findByComplaintId", query = "SELECT v FROM ViewAssignTaskDetails v WHERE v.complaintId = :complaintId"),
     @NamedQuery(name = "ViewAssignTaskDetails.findByFullName", query = "SELECT v FROM ViewAssignTaskDetails v WHERE v.fullName = :fullName"),
-    @NamedQuery(name = "ViewAssignTaskDetails.findByProblemContent", query = "SELECT v FROM ViewAssignTaskDetails v WHERE v.problemContent = :problemContent"),
-    @NamedQuery(name = "ViewAssignTaskDetails.findByImage", query = "SELECT v FROM ViewAssignTaskDetails v WHERE v.image = :image"),
     @NamedQuery(name = "ViewAssignTaskDetails.findByDepartmentName", query = "SELECT v FROM ViewAssignTaskDetails v WHERE v.departmentName = :departmentName"),
     @NamedQuery(name = "ViewAssignTaskDetails.findByPriorityValue", query = "SELECT v FROM ViewAssignTaskDetails v WHERE v.priorityValue = :priorityValue"),
     @NamedQuery(name = "ViewAssignTaskDetails.findByDate", query = "SELECT v FROM ViewAssignTaskDetails v WHERE v.date = :date"),
@@ -41,35 +39,45 @@ public class ViewAssignTaskDetails implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @Column(name = "Technician_Id")
+    @Id
     private String technicianId;
+
     @Basic(optional = false)
     @Column(name = "Category_Name")
     private String categoryName;
+
     @Basic(optional = false)
     @Column(name = "Complaint_Id")
-    @Id
     private String complaintId;
+
     @Basic(optional = false)
-   
+    @Lob
     @Column(name = "Problem_Content")
     private String problemContent;
 
+    @Lob
     @Column(name = "Image")
     private String image;
+
     @Basic(optional = false)
     @Column(name = "Full_Name")
     private String fullName;
+
     @Basic(optional = false)
     @Column(name = "Department_Name")
     private String departmentName;
+
     @Basic(optional = false)
     @Column(name = "Priority_Value")
     private int priorityValue;
+
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
     @Column(name = "resendno")
     private Integer resendno;
+
     @Basic(optional = false)
     @Column(name = "Status_Name")
     private String statusName;

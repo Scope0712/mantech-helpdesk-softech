@@ -28,10 +28,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "TbComplaintLogs.findByComplaintId", query = "SELECT t FROM TbComplaintLogs t WHERE t.tbComplaintLogsPK.complaintId = :complaintId"),
     @NamedQuery(name = "TbComplaintLogs.findByDate", query = "SELECT t FROM TbComplaintLogs t WHERE t.tbComplaintLogsPK.date = :date"),
     @NamedQuery(name = "TbComplaintLogs.findByStatus", query = "SELECT t FROM TbComplaintLogs t WHERE t.tbComplaintLogsPK.status = :status"),
-    @NamedQuery(name = "TbComplaintLogs.findByResendNo", query = "SELECT t FROM TbComplaintLogs t WHERE t.resendNo = :resendNo"),
-    //update status of complaint
-     @NamedQuery(name = "TbComplaintLogs.updateStatus", query = "UPDATE TbComplaintLogs t SET t.tbComplaintStatus = :tbComplaintStatus WHERE t.tbComplaints = :tbComplaints")
-})
+    @NamedQuery(name = "TbComplaintLogs.findByResendNo", query = "SELECT t FROM TbComplaintLogs t WHERE t.resendNo = :resendNo")})
 public class TbComplaintLogs implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId

@@ -56,6 +56,8 @@ public class TbComplaints implements Serializable {
     private TbCategories tbCategories;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbComplaints")
     private Collection<TbAssignTasks> tbAssignTasksCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbComplaints")
+    private Collection<LastestModifyDate> lastestModifyDateCollection;
 
     public TbComplaints() {
     }
@@ -132,6 +134,14 @@ public class TbComplaints implements Serializable {
 
     public void setTbAssignTasksCollection(Collection<TbAssignTasks> tbAssignTasksCollection) {
         this.tbAssignTasksCollection = tbAssignTasksCollection;
+    }
+
+    public Collection<LastestModifyDate> getLastestModifyDateCollection() {
+        return lastestModifyDateCollection;
+    }
+
+    public void setLastestModifyDateCollection(Collection<LastestModifyDate> lastestModifyDateCollection) {
+        this.lastestModifyDateCollection = lastestModifyDateCollection;
     }
 
     @Override

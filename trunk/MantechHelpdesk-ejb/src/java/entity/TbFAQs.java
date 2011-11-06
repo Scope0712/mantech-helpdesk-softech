@@ -56,7 +56,7 @@ public class TbFAQs implements Serializable {
     @Basic(optional = false)
     @Column(name = "Status")
     private String status;
-     @JoinColumn(name = "Category_Id", referencedColumnName = "Category_Id")
+    @JoinColumn(name = "Category_Id", referencedColumnName = "Category_Id")
     @ManyToOne(optional = false)
     private TbCategories tbCategories;
 
@@ -130,7 +130,6 @@ public class TbFAQs implements Serializable {
     public void setTbCategories(TbCategories tbCategories) {
         this.tbCategories = tbCategories;
     }
-
 
     @Override
     public int hashCode() {

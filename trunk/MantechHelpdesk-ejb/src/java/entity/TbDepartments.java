@@ -41,6 +41,8 @@ public class TbDepartments implements Serializable {
     @Column(name = "Priority")
     private int priority;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbDepartments")
+    private Collection<Report> reportCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbDepartments")
     private Collection<TbStaffs> tbStaffsCollection;
 
     public TbDepartments() {
@@ -78,6 +80,14 @@ public class TbDepartments implements Serializable {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public Collection<Report> getReportCollection() {
+        return reportCollection;
+    }
+
+    public void setReportCollection(Collection<Report> reportCollection) {
+        this.reportCollection = reportCollection;
     }
 
     public Collection<TbStaffs> getTbStaffsCollection() {
