@@ -9,7 +9,7 @@
         <ui:composition template="./../template/template.xhtml">
             <ui:define name="left">
             </ui:define>
-            <ui:define name="content">
+            <ui:define name="contenthome">
                 <h:form>
                     <h1><h:outputText value="Detail Article Information"></h:outputText></h1>
                     <table border="0">
@@ -20,7 +20,7 @@
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Staff" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.staffId}"></h:outputText></td>
+                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.tbStaffs.staffId}"></h:outputText></td>
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Category" ></h:outputLabel></td>
@@ -32,12 +32,9 @@
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Content" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.content}"></h:outputText></td>
+                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.detailContent}"></h:outputText></td>
                             </tr>
-                            <tr>
-                                <td><h:outputLabel value="Image" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.image}"></h:outputText></td>
-                            </tr>
+
                             <tr>
                                 <td><h:outputLabel value="View Number" ></h:outputLabel></td>
                                 <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.viewNo}"></h:outputText></td>

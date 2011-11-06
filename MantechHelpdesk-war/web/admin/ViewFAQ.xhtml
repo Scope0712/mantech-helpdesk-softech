@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="./../template/newTemplate.xhtml">
+            <ui:define name="left">
+                Dang xem chi tiet
+            </ui:define>
+            <ui:define name="contenthome">
+                <h:form>
+                    <table border="0">
+                        <tbody>
+                            <tr>
+                                <td align="left">
+                                    <h1><h:outputText value="FAQ Information"></h:outputText></h1>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <h:panelGrid columns="8">
+                                        <tr>
+                                            <td><h:outputLabel value="FAQ Id" ></h:outputLabel></td>
+                                            <td><h:outputText value="#{FAQBean.myFAQ.faqId}"></h:outputText></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h:outputLabel value="Category" ></h:outputLabel></td>
+                                            <td><h:outputText value="#{FAQBean.myFAQ.tbCategories.categoryName}"></h:outputText></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h:outputLabel value="Question" ></h:outputLabel></td>
+                                            <td><h:outputText value="#{FAQBean.myFAQ.contentQuestion}"></h:outputText></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h:outputLabel value="Short Answer" ></h:outputLabel></td>
+                                            <td><h:outputText value="#{FAQBean.myFAQ.shortAnswer}"></h:outputText></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h:outputLabel value="Long Answer" ></h:outputLabel></td>
+                                            <td><h:outputText value="#{FAQBean.myFAQ.longAnswer}"></h:outputText></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h:outputLabel value="Status FAQ" ></h:outputLabel></td>
+                                            <td><h:outputText value="#{FAQBean.myFAQ.status}"></h:outputText></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h:outputLabel value="Create Date FAQ" ></h:outputLabel></td>
+                                            <td><h:outputText value="#{FAQBean.myFAQ.createDate}"></h:outputText></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h:outputLabel value="Update Date FAQ" ></h:outputLabel></td>
+                                            <td><h:outputText value="#{FAQBean.myFAQ.updateDate}"></h:outputText></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h:outputLabel value="Image" ></h:outputLabel></td>
+                                            <td><h:outputText value="#{FAQBean.myFAQ.image}"></h:outputText></td>
+                                        </tr>
+                                    </h:panelGrid>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
