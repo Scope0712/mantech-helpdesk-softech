@@ -37,9 +37,11 @@ public class ComplaintDetailsFacade extends AbstractFacade<ComplaintDetails> imp
         }
 
     }
+//Thanh:      @NamedQuery(name = "ComplaintDetails.findComplaintStatus", query = "SELECT c FROM ComplaintDetails c WHERE c.statusId = :statusId and c.employeeID= :employeeID")})
     public List<ComplaintDetails> findComplaintStatus(String id,String status) {
         try{
-        return (List<ComplaintDetails>) em.createNamedQuery("ComplaintDetails.findComplaintStatus").setParameter("statusId", status).setParameter("employeeID", id).getResultList();
+        //return (List<ComplaintDetails>) em.createNamedQuery("ComplaintDetails.findComplaintStatus").setParameter("statusId", status).setParameter("employeeID", id).getResultList();
+        return (List<ComplaintDetails>) em.createQuery("SELECT c FROM ComplaintDetails c WHERE c.statusId = :statusId and c.employeeID= :employeeID").setParameter("statusId", status).setParameter("employeeID", id).getResultList();
         }catch(Exception ex){
             System.out.println("error");
             return null;

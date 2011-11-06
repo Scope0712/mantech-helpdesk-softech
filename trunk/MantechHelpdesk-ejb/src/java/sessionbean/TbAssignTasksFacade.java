@@ -31,7 +31,7 @@ public class TbAssignTasksFacade extends AbstractFacade<TbAssignTasks> implement
 
     @Override
     public List<TbAssignTasks> findTask(TbStaffs tbStaffs) {
-        return em.createNamedQuery("TbAssignTasks.findTask").setParameter("tbStaffs",tbStaffs).getResultList();
+        return em.createQuery("SELECT t FROM TbAssignTasks t WHERE t.tbStaffs = :tbStaffs").setParameter("tbStaffs",tbStaffs).getResultList();
     }
-
+   //@NamedQuery(name = "TbAssignTasks.findTask", query = "SELECT t FROM TbAssignTasks t WHERE t.tbStaffs = :tbStaffs")
 }

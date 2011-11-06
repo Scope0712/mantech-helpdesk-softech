@@ -37,7 +37,7 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
     @Override
     public TbAccounts checkUsernamePassword(String username, String password) {
         try {
-            return (TbAccounts) em.createNamedQuery("TbAccounts.findByUsernameAndPassword").setParameter("accountId", username).setParameter("password", password).getSingleResult();
+            return (TbAccounts) em.createQuery("SELECT t FROM TbAccounts t WHERE t.password = :password and t.accountId=:accountId and t.status='Enable'").setParameter("accountId", username).setParameter("password", password).getSingleResult();
         } catch (Exception ex) {
             return null;
         }
@@ -45,7 +45,7 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
 
     @Override
     public TbAccounts findNewAccount() {
-        return (TbAccounts) em.createNamedQuery("TbAccounts.findNewAccount").getSingleResult();
+        return (TbAccounts) em.createQuery("SELECT t FROM TbAccounts t WHERE t.accountId = (SELECT max(o.accountId) from TbAccounts o)").getSingleResult();
 
     }
 
@@ -58,9 +58,9 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
     @Override
     public TbAccounts searchDepartment(TbStaffs staff) {
         try {
-            return (TbAccounts) em.createNamedQuery("TbAccounts.searchDepartment").setParameter("staff", staff).getSingleResult();
+            return (TbAccounts) em.createQuery("SELECT t FROM TbAccounts t WHERE t.tbStaffs = :staff and t.status='Enable'").setParameter("staff", staff).getSingleResult();
         } catch (Exception ex) {
-            //   ex.printStackTrace();
+              ex.printStackTrace();
             return null;
         }
     }
@@ -69,7 +69,7 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
     public boolean unavailableAccount(String accountId) {
 
         try {
-            if (em.createNamedQuery("TbAccounts.UnavailableAccount").setParameter("accountId", accountId).executeUpdate() > 0) {
+            if (em.createQuery("UPDATE TbAccounts t SET t.status = 'Disable' WHERE t.accountId = :accountId").setParameter("accountId", accountId).executeUpdate() > 0) {
                 return true;
 
             } else {
@@ -81,4 +81,20 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
             return false;
         }
     }
+//
+//     @NamedQuery(name = "TbAccounts.findAll", query = "SELECT t FROM TbAccounts t"),
+//    @NamedQuery(name = "TbAccounts.findByAccountId", query = "SELECT t FROM TbAccounts t WHERE t.accountId = :accountId"),
+//    //Unavailable status of account
+//     @NamedQuery(name = "TbAccounts.UnavailableAccount", query = "UPDATE TbAccounts t SET t.status = 'Disable' WHERE t.accountId = :accountId"),
+//    //search account
+//    @NamedQuery(name = "TbAccounts.searchDepartment", query = "SELECT t FROM TbAccounts t WHERE t.tbStaffs = :staff and t.status='Enable'"),
+//
+//    @NamedQuery(name = "TbAccounts.findByPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password"),
+//    @NamedQuery(name = "TbAccounts.findByStatus", query = "SELECT t FROM TbAccounts t WHERE t.status = :status"),
+//    //the newest account
+//    @NamedQuery(name = "TbAccounts.findNewAccount", query = "SELECT t FROM TbAccounts t WHERE t.accountId = (SELECT max(o.accountId) from TbAccounts o)"),
+//    @NamedQuery(name = "TbAccounts.findByUsernameAndPassword", query = "SELECT t FROM TbAccounts t WHERE t.password = :password and t.accountId=:accountId and t.status='Enable'"),
+//    //tuyen
+//    @NamedQuery(name = "TbAccounts.findByRoleAndStatus", query = "SELECT t FROM TbAccounts t WHERE t.status =:status and t.tbRoles.roleId=:roleId")
+//})
 }
