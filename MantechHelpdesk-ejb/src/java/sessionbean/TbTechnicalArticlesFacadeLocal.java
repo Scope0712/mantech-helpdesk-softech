@@ -31,4 +31,8 @@ public interface TbTechnicalArticlesFacadeLocal {
     int count();
 
     List<TbTechnicalArticles> findAllBySearch(String search);
+
+    List<TbTechnicalArticles> selectTopArticles();
+
+    List<TbTechnicalArticles> selectNewArticles();
 }
