@@ -44,6 +44,29 @@ public class ReportFacade extends AbstractFacade<Report> implements ReportFacade
     public List<Report> findReportByDepartment(String departmentId) {
         return (List<Report>) em.createNamedQuery("Report.findByDepartmentId").setParameter("departmentid", departmentId).getResultList();
     }
+//<<<<<<< .mine
+//
+//    public List<Report> findDailyReportWithFilter(Date date, String filterName, String filterValue) {
+//        //return (List<Report>) em.createQuery("SELECT r FROM Report r WHERE datediff(day,r.lodgingDate,:date)=0 and r.categoryid = :categoryid").setParameter("date", date).setParameter(categoryId, categoryId).getResultList();
+//        Query query = em.createNativeQuery("select * from report where DATEDIFF (DAY,Lodging_Date,?date)= 0 and +" + filterName + "= ?fiterValue", Report.class);
+//        query.setParameter("date", date).setParameter("fiterValue", filterValue);
+//        return (List<Report>) query.getResultList();
+//    }
+//
+//    public List<Report> findWeeklyReportWithFilter(Date startDate, Date endDate,String filterName, String filterValue) {
+//        Query query = em.createNativeQuery("select * from report where Lodging_Date between ?startdate and ?enddate and " + filterName + "= ?fiterValue", Report.class);
+//        query.setParameter("startdate", startDate).setParameter("enddate", endDate).setParameter("fiterValue", filterValue);
+//         return (List<Report>) query.getResultList();
+//        //complaint_id,Category_id,Employee_Id,Department_Id,Technician_Id,Resend_No,Status,Lodging_Date,Assigning_Date,Latest_Modify_Date,Solving_Time
+//    }
+//
+//    public List<Report> findMonthlyReportWithFilter(int month, int year, String filterName,String filterValue){
+//        Query query = em.createNativeQuery("select * from report where Month(Lodging_Date)= ?month and Year(Lodging_Date) = ?year and" + filterName + "= ?fiterValue", Report.class);
+//        query.setParameter("month", month).setParameter("year", year).setParameter("fiterValue", filterValue);
+//         return (List<Report>) query.getResultList();
+//    }
+//
+//=======
 
     public List<Report> findDailyReportWithFilter(Date date, String filterName, String filterValue) {   
         Query query = em.createNativeQuery("select * from report where DATEDIFF (DAY,Lodging_Date,?date)= 0 and +" + filterName + "= ?fiterValue", Report.class);
@@ -64,4 +87,5 @@ public class ReportFacade extends AbstractFacade<Report> implements ReportFacade
          return (List<Report>) query.getResultList();
     }
 
+//>>>>>>> .r54
 }
