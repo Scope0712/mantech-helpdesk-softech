@@ -124,7 +124,7 @@ public class AccountMB {
         ArrayList<TbAccounts> la = new ArrayList<TbAccounts>();
         l = tbStaffsFacade.searchStaffFromDepart(depart);
         if (l != null) {
-            // System.out.println("leng l="+l.size());
+             System.out.println("leng l="+l.size());
             int i = 1;
             for (TbStaffs st : l) {
                 //    System.out.println("length "+l.size());

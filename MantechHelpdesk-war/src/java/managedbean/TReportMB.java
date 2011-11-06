@@ -192,6 +192,10 @@ public class TReportMB {
 
         return options;
     }
+
+    public TbCategories findCategory(String categoryId){
+        return tbCategoriesFacade.find(categoryId);
+    }
    
    
 }
