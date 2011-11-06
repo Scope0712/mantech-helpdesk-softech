@@ -12,9 +12,9 @@
 */
 
 body {
-    background-color: #000000;
-    background-image: url("../../images/redbg.jpg");
-    /* background-repeat: repeat-x; */
+    background-color: #CCCCCC;
+    /* background-image: url("../../images/redbg.jpg"); */
+    background-repeat: repeat-x;
     color: #333333;
     font-family: Verdana,Arial,Helvetica,sans-serif;
     font-size: 11px;

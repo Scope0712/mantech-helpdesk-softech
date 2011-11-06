@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="./../template/template.xhtml">
+            <ui:define name="left">
+
+            </ui:define>
+            <ui:define name="contenthome">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="List All FAQs"></h:outputText></h1>
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <h:dataTable value="#{FAQBean.listFAQs}" var="item">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="View Detail"/>
+                                            </f:facet>
+                                            <h:commandLink  action="View_FAQ.xhtml"  actionListener="#{FAQBean.selectFAQs}" value="View">
+                                                <f:param id="faqId_view" value="#{item.faqId}"/>
+                                            </h:commandLink>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Edit Detail"/>
+                                            </f:facet>
+                                            <h:commandLink  action="Edit_FAQ.xhtml"  actionListener="#{FAQBean.selectFAQs}" value="Edit">
+                                                <f:param id="faqId_edit" value="#{item.faqId}"/>
+                                            </h:commandLink>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Delete FAQ"/>
+                                            </f:facet>
+                                            <h:commandLink  actionListener="#{FAQBean.deleteFAQ}" value="Delete">
+                                                <f:param id="faqId_delete" value="#{item.faqId}"/>
+                                            </h:commandLink>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="FAQId"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.faqId}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Category"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.tbCategories.categoryId}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Question"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.contentQuestion}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Answer"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.shortAnswer}"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="Add_FAQ.xhtml" value="New FAQ"></h:commandLink>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="Find_FAQ.xhtml" value="Search FAQ"></h:commandLink>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

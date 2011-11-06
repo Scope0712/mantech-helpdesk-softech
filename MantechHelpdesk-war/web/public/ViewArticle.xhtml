@@ -8,7 +8,7 @@
         <ui:composition template="./../template/template.xhtml">
             <ui:define name="left">
             </ui:define>
-            <ui:define name="content">
+            <ui:define name="contenthome">
                 <h1><h:outputText value="Detail Article Information"></h:outputText></h1>
                 <table border="0">
                     <td align="left">
@@ -18,7 +18,7 @@
                         </tr>
                         <tr>
                             <td><h:outputLabel value="Content" ></h:outputLabel></td>
-                            <td><div class="answer"><h:outputText value="#{ArticleMB.myTbTechnicalArticle.content}"></h:outputText></div></td>
+                            <td><div class="answer"><h:outputText value="#{ArticleMB.myTbTechnicalArticle.detailContent}"></h:outputText></div></td>
                             <script type="text/javascript">
                                 $(document).ready(function(){
                                     $(".answer").readmore();
@@ -73,7 +73,7 @@
                         </tr>
                     </td>
                 </table>
-                <h1><h:outputText value="Rate Articele"></h:outputText></h1>
+                <h1><h:outputText value="Rate Article"></h:outputText></h1>
                 <tr>
                     <form action="/DemoCkeditorAndRating-war/RatingServlet" method="POST">
 
