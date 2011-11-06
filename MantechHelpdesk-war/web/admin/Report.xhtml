@@ -8,10 +8,15 @@
     <body>
 
         <ui:composition template="./Admin_Temp.xhtml">
+
+
+
             <ui:define name="left" >
             </ui:define>
 
             <ui:define name="content">
+
+
                 <h:form>
                     <div  style="float: left;margin-top: 20px;margin-bottom: 30px">
                         <h:outputLabel id="lb1" for="cbb1" value="Period type:"/>
@@ -58,21 +63,21 @@
                             <f:facet name="header">
                                 <h:outputText value="Employee"/>
                             </f:facet>
-                            <h:outputText value="#{item.employeeid}"/>
+                            <h:outputText value="#{item.tbStaffs1.lastName} #{item.tbStaffs1.firstName}"/>
                         </h:column>
 
                         <h:column id="col4">
                             <f:facet name="header">
                                 <h:outputText value="Department"/>
                             </f:facet>
-                            <h:outputText value="#{item.departmentid}"/>
+                            <h:outputText value="#{item.tbDepartments.departmentName}"/>
                         </h:column>
 
                         <h:column id="col5">
                             <f:facet name="header">
                                 <h:outputText value="Technician"/>
                             </f:facet>
-                            <h:outputText value="#{item.technicianid}"/>
+                            <h:outputText value="#{item.tbStaffs.lastName} #{item.tbStaffs.firstName}"/>
                         </h:column>
 
                         <h:column id="col6">
