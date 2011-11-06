@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entity;
 
 import java.io.Serializable;
@@ -31,13 +32,8 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findByPriorityValue", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.priorityValue = :priorityValue"),
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findByLodgingDate", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.lodgingDate = :lodgingDate"),
     @NamedQuery(name = "ComplDetailAndCurrentStatus.findByStatus", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.status = :status"),
-    @NamedQuery(name = "ComplDetailAndCurrentStatus.findByResendNo", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.resendNo = :resendNo"),
-    //tuyen
-    @NamedQuery(name = "ComplDetailAndCurrentStatus.findAllNeedAssign", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.status = 'Statu00001' or c.status = 'Statu00004'"),
-    @NamedQuery(name = "ComplDetailAndCurrentStatus.findNewCompls", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.status = 'Statu00001' and c.resendNo = 0 and c.complaintid not in (Select o.tbComplaints.complaintId from TbAssignTasks o)"),
-    @NamedQuery(name = "ComplDetailAndCurrentStatus.findResendCompls", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.status = 'Statu00001' and c.resendNo <> 0")})
+    @NamedQuery(name = "ComplDetailAndCurrentStatus.findByResendNo", query = "SELECT c FROM ComplDetailAndCurrentStatus c WHERE c.resendNo = :resendNo")})
 public class ComplDetailAndCurrentStatus implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @Column(name = "Complaint_id")
@@ -132,4 +128,5 @@ public class ComplDetailAndCurrentStatus implements Serializable {
     public void setResendNo(int resendNo) {
         this.resendNo = resendNo;
     }
+
 }

@@ -38,6 +38,8 @@ public class TbComplaintStatus implements Serializable {
     private String statusName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbComplaintStatus")
     private Collection<TbComplaintLogs> tbComplaintLogsCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbComplaintStatus")
+    private Collection<Report> reportCollection;
 
     public TbComplaintStatus() {
     }
@@ -73,6 +75,14 @@ public class TbComplaintStatus implements Serializable {
 
     public void setTbComplaintLogsCollection(Collection<TbComplaintLogs> tbComplaintLogsCollection) {
         this.tbComplaintLogsCollection = tbComplaintLogsCollection;
+    }
+
+    public Collection<Report> getReportCollection() {
+        return reportCollection;
+    }
+
+    public void setReportCollection(Collection<Report> reportCollection) {
+        this.reportCollection = reportCollection;
     }
 
     @Override

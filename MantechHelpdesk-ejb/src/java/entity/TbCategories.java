@@ -41,9 +41,13 @@ public class TbCategories implements Serializable {
     @Column(name = "Priority")
     private int priority;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbCategories")
+    private Collection<TbTechnicalArticles> tbTechnicalArticlesCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbCategories")
     private Collection<TbSolutions> tbSolutionsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbCategories")
-    private Collection<TbTechnicalArticles> tbTechnicalArticlesCollection;
+    private Collection<TbComplaints> tbComplaintsCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbCategories")
+    private Collection<TbFAQs> tbFAQsCollection;
 
     public TbCategories() {
     }
@@ -82,6 +86,14 @@ public class TbCategories implements Serializable {
         this.priority = priority;
     }
 
+    public Collection<TbTechnicalArticles> getTbTechnicalArticlesCollection() {
+        return tbTechnicalArticlesCollection;
+    }
+
+    public void setTbTechnicalArticlesCollection(Collection<TbTechnicalArticles> tbTechnicalArticlesCollection) {
+        this.tbTechnicalArticlesCollection = tbTechnicalArticlesCollection;
+    }
+
     public Collection<TbSolutions> getTbSolutionsCollection() {
         return tbSolutionsCollection;
     }
@@ -90,12 +102,20 @@ public class TbCategories implements Serializable {
         this.tbSolutionsCollection = tbSolutionsCollection;
     }
 
-    public Collection<TbTechnicalArticles> getTbTechnicalArticlesCollection() {
-        return tbTechnicalArticlesCollection;
+    public Collection<TbComplaints> getTbComplaintsCollection() {
+        return tbComplaintsCollection;
     }
 
-    public void setTbTechnicalArticlesCollection(Collection<TbTechnicalArticles> tbTechnicalArticlesCollection) {
-        this.tbTechnicalArticlesCollection = tbTechnicalArticlesCollection;
+    public void setTbComplaintsCollection(Collection<TbComplaints> tbComplaintsCollection) {
+        this.tbComplaintsCollection = tbComplaintsCollection;
+    }
+
+    public Collection<TbFAQs> getTbFAQsCollection() {
+        return tbFAQsCollection;
+    }
+
+    public void setTbFAQsCollection(Collection<TbFAQs> tbFAQsCollection) {
+        this.tbFAQsCollection = tbFAQsCollection;
     }
 
     @Override

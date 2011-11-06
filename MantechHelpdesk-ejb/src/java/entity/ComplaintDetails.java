@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author THANH
+ * @author tuyenbui
  */
 @Entity
 @Table(name = "ComplaintDetails")
@@ -32,44 +32,53 @@ import javax.persistence.Table;
     @NamedQuery(name = "ComplaintDetails.findByDuration", query = "SELECT c FROM ComplaintDetails c WHERE c.duration = :duration"),
     @NamedQuery(name = "ComplaintDetails.findByResendNo", query = "SELECT c FROM ComplaintDetails c WHERE c.resendNo = :resendNo"),
     @NamedQuery(name = "ComplaintDetails.findByStatusId", query = "SELECT c FROM ComplaintDetails c WHERE c.statusId = :statusId"),
-    @NamedQuery(name = "ComplaintDetails.findByStatusName", query = "SELECT c FROM ComplaintDetails c WHERE c.statusName = :statusName"),
-     //thanh
-    @NamedQuery(name = "ComplaintDetails.findComplaintStatus", query = "SELECT c FROM ComplaintDetails c WHERE c.statusId = :statusId and c.employeeID= :employeeID")})
+    @NamedQuery(name = "ComplaintDetails.findByStatusName", query = "SELECT c FROM ComplaintDetails c WHERE c.statusName = :statusName")})
 public class ComplaintDetails implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @Column(name = "Complaint_Id")
     @Id
     private String complaintId;
+
     @Basic(optional = false)
     @Lob
     @Column(name = "Problem_Content")
     private String problemContent;
+
     @Lob
     @Column(name = "Image")
     private String image;
+
     @Basic(optional = false)
     @Column(name = "Employee_ID")
     private String employeeID;
+
     @Basic(optional = false)
     @Column(name = "First_Name")
     private String firstName;
+
     @Basic(optional = false)
     @Column(name = "Category_Id")
     private String categoryId;
+
     @Basic(optional = false)
     @Column(name = "Category_Name")
     private String categoryName;
+
     @Column(name = "Date")
     private String date;
+
     @Column(name = "Duration")
     private Integer duration;
+
     @Basic(optional = false)
     @Column(name = "Resend_No")
     private int resendNo;
+
     @Basic(optional = false)
     @Column(name = "Status_Id")
     private String statusId;
+
     @Basic(optional = false)
     @Column(name = "Status_Name")
     private String statusName;

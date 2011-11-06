@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -39,7 +40,8 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "TbStaffs.findByIdentityCard", query = "SELECT t FROM TbStaffs t WHERE t.identityCard = :identityCard"),
     @NamedQuery(name = "TbStaffs.findByDateOfBirth", query = "SELECT t FROM TbStaffs t WHERE t.dateOfBirth = :dateOfBirth"),
     @NamedQuery(name = "TbStaffs.findByPhoneNo", query = "SELECT t FROM TbStaffs t WHERE t.phoneNo = :phoneNo"),
-    @NamedQuery(name = "TbStaffs.findByEmail", query = "SELECT t FROM TbStaffs t WHERE t.email = :email")})
+    @NamedQuery(name = "TbStaffs.findByEmail", query = "SELECT t FROM TbStaffs t WHERE t.email = :email"),
+    @NamedQuery(name = "TbStaffs.findByPasswordMail", query = "SELECT t FROM TbStaffs t WHERE t.passwordMail = :passwordMail")})
 public class TbStaffs implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -73,13 +75,31 @@ public class TbStaffs implements Serializable {
     @Lob
     @Column(name = "Avatar")
     private String avatar;
+    @Column(name = "Password_Mail")
+    private String passwordMail;
+    @ManyToMany(mappedBy = "tbStaffsCollection")
+    private Collection<TbAssignTasks> tbAssignTasksCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
+    private Collection<TbTechnicalArticles> tbTechnicalArticlesCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
     private Collection<TbSolutions> tbSolutionsCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
+    private Collection<ComplCurrentAssign> complCurrentAssignCollection;
+    @OneToMany(mappedBy = "tbStaffs")
+    private Collection<TbAccounts> tbAccountsCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
+    private Collection<TbComplaints> tbComplaintsCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
+    private Collection<Report> reportCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs1")
+    private Collection<Report> reportCollection1;
     @JoinColumn(name = "Department_Id", referencedColumnName = "Department_Id")
     @ManyToOne(optional = false)
     private TbDepartments tbDepartments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
-    private Collection<TbTechnicalArticles> tbTechnicalArticlesCollection;
+    private Collection<TbAssignTasks> tbAssignTasksCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs1")
+    private Collection<TbAssignTasks> tbAssignTasksCollection2;
 
     public TbStaffs() {
     }
@@ -184,12 +204,76 @@ public class TbStaffs implements Serializable {
         this.avatar = avatar;
     }
 
+    public String getPasswordMail() {
+        return passwordMail;
+    }
+
+    public void setPasswordMail(String passwordMail) {
+        this.passwordMail = passwordMail;
+    }
+
+    public Collection<TbAssignTasks> getTbAssignTasksCollection() {
+        return tbAssignTasksCollection;
+    }
+
+    public void setTbAssignTasksCollection(Collection<TbAssignTasks> tbAssignTasksCollection) {
+        this.tbAssignTasksCollection = tbAssignTasksCollection;
+    }
+
+    public Collection<TbTechnicalArticles> getTbTechnicalArticlesCollection() {
+        return tbTechnicalArticlesCollection;
+    }
+
+    public void setTbTechnicalArticlesCollection(Collection<TbTechnicalArticles> tbTechnicalArticlesCollection) {
+        this.tbTechnicalArticlesCollection = tbTechnicalArticlesCollection;
+    }
+
     public Collection<TbSolutions> getTbSolutionsCollection() {
         return tbSolutionsCollection;
     }
 
     public void setTbSolutionsCollection(Collection<TbSolutions> tbSolutionsCollection) {
         this.tbSolutionsCollection = tbSolutionsCollection;
+    }
+
+    public Collection<ComplCurrentAssign> getComplCurrentAssignCollection() {
+        return complCurrentAssignCollection;
+    }
+
+    public void setComplCurrentAssignCollection(Collection<ComplCurrentAssign> complCurrentAssignCollection) {
+        this.complCurrentAssignCollection = complCurrentAssignCollection;
+    }
+
+    public Collection<TbAccounts> getTbAccountsCollection() {
+        return tbAccountsCollection;
+    }
+
+    public void setTbAccountsCollection(Collection<TbAccounts> tbAccountsCollection) {
+        this.tbAccountsCollection = tbAccountsCollection;
+    }
+
+    public Collection<TbComplaints> getTbComplaintsCollection() {
+        return tbComplaintsCollection;
+    }
+
+    public void setTbComplaintsCollection(Collection<TbComplaints> tbComplaintsCollection) {
+        this.tbComplaintsCollection = tbComplaintsCollection;
+    }
+
+    public Collection<Report> getReportCollection() {
+        return reportCollection;
+    }
+
+    public void setReportCollection(Collection<Report> reportCollection) {
+        this.reportCollection = reportCollection;
+    }
+
+    public Collection<Report> getReportCollection1() {
+        return reportCollection1;
+    }
+
+    public void setReportCollection1(Collection<Report> reportCollection1) {
+        this.reportCollection1 = reportCollection1;
     }
 
     public TbDepartments getTbDepartments() {
@@ -200,12 +284,20 @@ public class TbStaffs implements Serializable {
         this.tbDepartments = tbDepartments;
     }
 
-    public Collection<TbTechnicalArticles> getTbTechnicalArticlesCollection() {
-        return tbTechnicalArticlesCollection;
+    public Collection<TbAssignTasks> getTbAssignTasksCollection1() {
+        return tbAssignTasksCollection1;
     }
 
-    public void setTbTechnicalArticlesCollection(Collection<TbTechnicalArticles> tbTechnicalArticlesCollection) {
-        this.tbTechnicalArticlesCollection = tbTechnicalArticlesCollection;
+    public void setTbAssignTasksCollection1(Collection<TbAssignTasks> tbAssignTasksCollection1) {
+        this.tbAssignTasksCollection1 = tbAssignTasksCollection1;
+    }
+
+    public Collection<TbAssignTasks> getTbAssignTasksCollection2() {
+        return tbAssignTasksCollection2;
+    }
+
+    public void setTbAssignTasksCollection2(Collection<TbAssignTasks> tbAssignTasksCollection2) {
+        this.tbAssignTasksCollection2 = tbAssignTasksCollection2;
     }
 
     @Override

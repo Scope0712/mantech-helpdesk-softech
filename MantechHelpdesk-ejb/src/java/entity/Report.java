@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entity;
 
 import java.io.Serializable;
@@ -10,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,18 +33,9 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Report.findByLodgingDate", query = "SELECT r FROM Report r WHERE r.lodgingDate = :lodgingDate"),
     @NamedQuery(name = "Report.findByAssigningDate", query = "SELECT r FROM Report r WHERE r.assigningDate = :assigningDate"),
     @NamedQuery(name = "Report.findByLatestModifyDate", query = "SELECT r FROM Report r WHERE r.latestModifyDate = :latestModifyDate"),
-    //---
-    @NamedQuery(name = "Report.findByEmployeeId", query = "SELECT r FROM Report r WHERE r.employeeid = :employeeid"),
-    @NamedQuery(name = "Report.findByTechnicianId", query = "SELECT r FROM Report r WHERE r.technicianid = :technicianid"),
-    @NamedQuery(name = "Report.findByStatus", query = "SELECT r FROM Report r WHERE r.status = :status"),
-    @NamedQuery(name = "Report.findByDepartmentId", query = "SELECT r FROM Report r WHERE r.departmentid = :departmentid"),
-
-    //---
     @NamedQuery(name = "Report.findBySolvingTime", query = "SELECT r FROM Report r WHERE r.solvingTime = :solvingTime")})
 public class Report implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
     @Basic(optional = false)
     @Column(name = "complaint_id")
     @Id
@@ -69,52 +63,25 @@ public class Report implements Serializable {
 
     @Column(name = "Solving_Time")
     private Integer solvingTime;
-    //----------------
-    //@Basic(optional = false)
-    @Column(name = "Employee_id")
-    private String employeeid;
 
-    @Basic(optional = false)
-    @Column(name = "Department_Id")
-    private String departmentid;
+    @JoinColumn(name = "Technician_Id", referencedColumnName = "Staff_Id")
+    @ManyToOne(optional = false)
+    private TbStaffs tbStaffs;
 
-    //@Basic(optional = false)
-    @Column(name = "Technician_id")
-    private String technicianid;
+    @JoinColumn(name = "Status", referencedColumnName = "Status_Id")
+    @ManyToOne(optional = false)
+    private TbComplaintStatus tbComplaintStatus;
 
-    @Basic(optional = false)
-    @Column(name = "Status")
-    private String status;
-//--------------------------
+    @JoinColumn(name = "Employee_Id", referencedColumnName = "Staff_Id")
+    @ManyToOne(optional = false)
+    private TbStaffs tbStaffs1;
+
+    @JoinColumn(name = "Department_Id", referencedColumnName = "Department_Id")
+    @ManyToOne(optional = false)
+    private TbDepartments tbDepartments;
 
     public Report() {
     }
-
-    //------------------------------
-    public String getEmployeeid() {
-        return employeeid;
-    }
-
-    public void setEmployeeid(String employeeid) {
-        this.employeeid = employeeid;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getTechnicianid() {
-        return technicianid;
-    }
-
-    public void setTechnician_id(String technicianid) {
-        this.technicianid = technicianid;
-    }
-    //------------------------------
 
     public String getComplaintId() {
         return complaintId;
@@ -172,13 +139,36 @@ public class Report implements Serializable {
         this.solvingTime = solvingTime;
     }
 
-    public String getDepartmentid() {
-        return departmentid;
+    public TbStaffs getTbStaffs() {
+        return tbStaffs;
     }
 
-    public void setDepartmentid(String departmentid) {
-        this.departmentid = departmentid;
+    public void setTbStaffs(TbStaffs tbStaffs) {
+        this.tbStaffs = tbStaffs;
     }
 
+    public TbComplaintStatus getTbComplaintStatus() {
+        return tbComplaintStatus;
+    }
+
+    public void setTbComplaintStatus(TbComplaintStatus tbComplaintStatus) {
+        this.tbComplaintStatus = tbComplaintStatus;
+    }
+
+    public TbStaffs getTbStaffs1() {
+        return tbStaffs1;
+    }
+
+    public void setTbStaffs1(TbStaffs tbStaffs1) {
+        this.tbStaffs1 = tbStaffs1;
+    }
+
+    public TbDepartments getTbDepartments() {
+        return tbDepartments;
+    }
+
+    public void setTbDepartments(TbDepartments tbDepartments) {
+        this.tbDepartments = tbDepartments;
+    }
 
 }
