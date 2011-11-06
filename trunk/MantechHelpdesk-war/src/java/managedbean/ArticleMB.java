@@ -42,6 +42,8 @@ public class ArticleMB {
     private TbCategoriesFacadeLocal TbCategories;
     private Collection<TbTechnicalArticles> listArticle;
     private Collection<TbTechnicalArticles> listArticleSearch = new ArrayList<TbTechnicalArticles>();
+    private Collection<TbTechnicalArticles> listNewArticle = new ArrayList<TbTechnicalArticles>();
+    private Collection<TbTechnicalArticles> listTopArticle = new ArrayList<TbTechnicalArticles>();
     private TbTechnicalArticles myTbTechnicalArticle;
     private TbCategories myCategory;
 
@@ -138,6 +140,16 @@ public class ArticleMB {
         setListArticleSearch(getInstanseArticlesFacadeLocal().findAllBySearch(strSearch));
     }
 
+    public void selectTopArticle(){
+        listTopArticle.clear();
+        setListTopArticle(getInstanseArticlesFacadeLocal().selectTopArticles());
+    }
+
+    public void selectNewArticle(){
+        listNewArticle.clear();
+        setListNewArticle(getInstanseArticlesFacadeLocal().selectNewArticles());
+    }
+    
     /**
      * @return the strSearch
      */
@@ -164,5 +176,33 @@ public class ArticleMB {
      */
     public void setListArticleSearch(Collection<TbTechnicalArticles> listArticleSearch) {
         this.listArticleSearch = listArticleSearch;
+    }
+
+    /**
+     * @return the listNewArticle
+     */
+    public Collection<TbTechnicalArticles> getListNewArticle() {
+        return listNewArticle = getInstanseArticlesFacadeLocal().selectNewArticles();
+    }
+
+    /**
+     * @param listNewArticle the listNewArticle to set
+     */
+    public void setListNewArticle(Collection<TbTechnicalArticles> listNewArticle) {
+        this.listNewArticle = listNewArticle;
+    }
+
+    /**
+     * @return the listTopArticle
+     */
+    public Collection<TbTechnicalArticles> getListTopArticle() {
+        return listTopArticle = getInstanseArticlesFacadeLocal().selectTopArticles();
+    }
+
+    /**
+     * @param listTopArticle the listTopArticle to set
+     */
+    public void setListTopArticle(Collection<TbTechnicalArticles> listTopArticle) {
+        this.listTopArticle = listTopArticle;
     }
 }
