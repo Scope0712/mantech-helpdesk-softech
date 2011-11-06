@@ -9,7 +9,7 @@
     <body>
         <ui:composition
             template="./../template/template.xhtml">
-            <ui:define name="content">
+            <ui:define name="contenthome">
                 <f:view>
                     <h:form>
                         <h1><h:outputText value="List All Articles"></h:outputText></h1>
@@ -58,12 +58,6 @@
                                                 <h:outputText value="Title"/>
                                             </f:facet>
                                             <h:outputText value="#{item.title}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Content"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.content}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
