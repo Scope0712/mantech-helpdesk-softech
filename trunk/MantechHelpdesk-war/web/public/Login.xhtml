@@ -1,16 +1,64 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
     <body>
-        
-        <ui:composition template="./../template/template.xhtml">
+
+        <ui:composition template="../template/template.xhtml">
 
             <ui:define name="contenthome">
-                <ui:include src="LoginContent.xhtml"/>
+                <div style="height: 3%; border: 5px solid #CCCCCC;
+                     border-radius: 5px 5px 5px 5px;">
+                    <table width="100%">
+                        <tr>
+                            <td style="font-size: larger"><img src="../images/21.gif"/><a class="color_2" href="http://localhost:8080/MantechHelpdesk-war/faces/public/Home.xhtml"><strong>Home</strong></a><img width="27" height="5" src="../images/icon.jpg"/><strong class="color_2">Login</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="background-image: url('../images/2.gif'); background-color: #000000"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="height: 96%;border: 5px solid #CCCCCC;
+                     border-radius: 5px 5px 5px 5px;">
+                    <h:form >
+                        <div style="width: 100%; border-style:ridge; border-width: 0px; height: 300px;padding-top: 50px; " align="center">
+                            <table >
+                                <tr>
+                                    <td style="text-align: right">User Name </td>
+                                    <td  style="text-align: left"><h:inputText style="border-width: 1px; background: threedlightshadow" maxlength="20" value="#{accountMB.name}"/></td>
+                                </tr>
+                                <tr>
+                                    <td  style="text-align: right">  Password </td>
+                                    <td  style="text-align: left"> <h:inputSecret style="border-width: 1px; background: threedlightshadow" maxlength="20" value="#{accountMB.password}"/></td>
+                                </tr>
+                                <tr>
+                                    <td  style="text-align: right">
+                                        <h:selectBooleanCheckbox value="false" title="Remember password"/>
+
+                                    </td>
+                                    <td  style="text-align: left"><h:outputText value="Remember password?"/></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <h:commandLink action="#{accountMB.checkLogin}" value="Forgot your password ?"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <h:commandButton value="Login" action="#{accountMB.checkLogin}"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </h:form>
+                </div>
+
             </ui:define>        
         </ui:composition>
-        
+
     </body>
 </html>

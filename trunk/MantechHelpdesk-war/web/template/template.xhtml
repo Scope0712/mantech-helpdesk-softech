@@ -73,14 +73,29 @@
                             <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
                                 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all ui-sortable">
                                     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1">Search Articles</a></li>
-                                    <li class="ui-state-default ui-corner-top"><a href="#tabs-2">News - Event</a></li>
-                                    <li class="ui-state-default ui-corner-top"><a href="#tabs-3">Advertising</a></li>
+                                    <li class="ui-state-default ui-corner-top"><a href="#tabs-2">Hotline</a></li>
+                                    <!-- <li class="ui-state-default ui-corner-top"><a href="#tabs-3">Advertising</a></li> -->
                                 </ul>
-                                <div class="ui-tabs-panel ui-widget-content ui-corner-bottom " id="tabs-1">
-
+                                <div class="ui-tabs-panel ui-widget-content ui-corner-bottom " id="tabs-1" align="left">
+                                    <h:form style="border: 5px solid #CCCCCC;
+                                            border-radius: 5px 5px 5px 5px; background-color: #CCCCCC">
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="center"><h2>Content Search</h2></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center"><h:inputText style="width: 75%" id="search" value="#{ArticleMB.strSearch}"></h:inputText>
+                                                    <h:commandButton id="searchButton" value="Search" action="DisplaySearchArticles.xhtml" actionListener="#{ArticleMB.searchArticle}"></h:commandButton>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h:form>
                                 </div>
                                 <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-2">
-
+                                    <div style="border: 5px solid #CCCCCC;
+                                         border-radius: 5px 5px 5px 5px;">
+                                        <img alt="Error image" src="../images/lienhe2.png" height="80" width="320" />
+                                    </div>
                                 </div>
                                 <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tabs-3">
 
@@ -95,8 +110,8 @@
                         <div id="bottomcontent" style="width:880px ;border: 5px solid #CCCCCC;
                              border-radius: 5px 5px 5px 5px;  clear: left;">
                             <div>
-                                <div style="height: 1250px; width:200px;">
-                                    <div id="rightcontent" style="height: 1240px; width:200px; border: 5px solid #CCCCCC;
+                                <div style="height: 1500px; width:200px;">
+                                    <div id="rightcontent" style="height: 1490px; width:200px; border: 5px solid #CCCCCC;
                                          border-radius: 5px 5px 5px 5px; float: left">
                                         <div id="category" align="left">
                                             <table width="200" cellspacing="0" cellpadding="0" border="0">
@@ -120,13 +135,13 @@
                                                                     <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
                                                                         <h:dataTable width="90%" value="#{CategoryBean.listCategories}" var="item" style="margin-left: 15px;">
                                                                             <tr>
-
                                                                                 <h:column>
                                                                                     <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
                                                                                         <tr>
                                                                                             <td align="left" width="20px"><h:graphicImage alt="image" name="../images/21.gif"/></td>
-                                                                                            <td align="left"><h:commandLink  action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}" value="#{item.categoryName}">
-                                                                                                    <f:param id="articleId_view" value="#{item.categoryId}"/>
+                                                                                            <td align="left">
+                                                                                                <h:commandLink  action="DisplaySortArticles.xhtml"  actionListener="#{ArticleMB.sortArticlesByCategory}" value="#{item.categoryName}">
+                                                                                                    <f:param id="categoryId" value="#{item.categoryId}"/>
                                                                                                 </h:commandLink>
                                                                                             </td>
                                                                                         </tr>
@@ -136,7 +151,6 @@
                                                                                         </tr>
                                                                                     </table>
                                                                                 </h:column>
-
                                                                             </tr>
                                                                         </h:dataTable>
 
@@ -394,8 +408,8 @@
                                     </div>
 
 
-                                    <div style="height: 1250px; width: 880px; clear: inherit; float: inherit">
-                                        <div id="contenthome" class="contenthome" style="height: 1240px; width: 660px; border: 5px solid #CCCCCC;
+                                    <div style="height: 1500px; width: 880px; clear: inherit; float: inherit">
+                                        <div id="contenthome" class="contenthome" style="height: 1490px; width: 660px; border: 5px solid #CCCCCC;
                                              border-radius: 5px 5px 5px 5px; float: right">
                                             <ui:insert name="contenthome">Content</ui:insert>
                                         </div>

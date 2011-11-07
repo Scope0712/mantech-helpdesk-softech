@@ -74,7 +74,6 @@
 
 #left a:hover,left a:active{
     color: black;
-   
     text-decoration : none;
     text-decoration: underline;
 
@@ -104,9 +103,9 @@
     background-image: inherit;
     text-decoration :none;
 }
-
+/*
 #contenthome a:link:hover, #contenthome a:visited:hover  {
-    color: red;
+    color: n; 
     width: 300px;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -114,4 +113,4 @@
     font-weight : bold;
     text-decoration : none;
     font-size: larger;
-}
+}*/
