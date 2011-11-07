@@ -13,7 +13,7 @@
                      border-radius: 5px 5px 5px 5px;">
                     <table width="100%">
                         <tr>
-                            <td style="font-size: larger"><img src="../images/21.gif"/><a class="color_2" href="http://localhost:8080/MantechHelpdesk-war/faces/public/Home.xhtml"><strong>Home</strong></a><img width="27" height="5" src="../images/icon.jpg"/><strong class="color_2">Result Search Articles</strong></td>
+                            <td style="font-size: larger"><img src="../images/21.gif"/><a class="color_2" href="http://localhost:8080/MantechHelpdesk-war/faces/public/Home.xhtml"><strong>Home</strong></a></td>
                         </tr>
                         <tr>
                             <td style="background-image: url('../images/2.gif'); background-color: #000000"></td>
@@ -25,7 +25,7 @@
                     <f:view>
                         <h:form>
                             <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                                <h:dataTable value="#{ArticleMB.listArticleSearch}" var="item" style="margin-left: 15px;">
+                                <h:dataTable value="#{ArticleMB.listSortArticleByCategory}" var="item" style="margin-left: 15px;">
                                     <tr>
                                         <h:column>
                                             <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left">

@@ -48,7 +48,7 @@
                     <br>
                     <input value="100%" name="percent" style="border-style: none; padding: 0px; font-family: Comic Sans MS; font-size: 35px; font-weight: bolder; color: rgb(0, 0, 0); text-align: center;" size="5" type="text">
                 </p><p style="font-family: Verdana; font-weight: bold; font-size: 30px; color: rgb(255, 255, 255);" align="center">
-                    <a href="http://localhost:8080/MantechHelpdesk-war/faces/Home.xhtml"><span style="color:#000000">CLICK HERE GO TO WEBSITE!</span></a><br><br><br></p>
+                    <a href="http://localhost:8080/MantechHelpdesk-war/faces/public/Home.xhtml"><span style="color:#000000">CLICK HERE GO TO WEBSITE!</span></a><br><br><br></p>
                 <script>
                     var bar = 0
                     var line = "|"
@@ -62,6 +62,6 @@
                         if (bar<100)
                         {setTimeout("count()",30);}
                         else
-                        {window.location = "http://localhost:8080/MantechHelpdesk-war/faces/Home.xhtml";}
+                        {window.location = "http://localhost:8080/MantechHelpdesk-war/faces/public/Home.xhtml";}
                     }</script>
             </div></form></body></html>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="../template/template.xhtml">
+            <ui:define name="contenthome">
+                <div style="height: 3%; border: 5px solid #CCCCCC;
+                     border-radius: 5px 5px 5px 5px;">
+                    <table width="100%">
+                        <tr>
+                            <td style="font-size: larger"><img src="../images/21.gif"/><a class="color_2" href="http://localhost:8080/MantechHelpdesk-war/faces/public/Home.xhtml"><strong>Home</strong></a></td>
+                        </tr>
+                        <tr>
+                            <td style="background-image: url('../images/2.gif'); background-color: #000000"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="height: 96%;border: 5px solid #CCCCCC;
+                     border-radius: 5px 5px 5px 5px;">
+                    <ui:include src="HomeContent.xhtml" id="demo"/>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
