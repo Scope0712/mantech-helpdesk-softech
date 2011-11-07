@@ -24,38 +24,36 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author tuyenbui
+ * @author DELL
  */
 @Entity
-@Table(name = "tbAssignTasks")
+@Table(name = "tbAssignTasks", catalog = "MantechHelpdesk", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "TbAssignTasks.findAll", query = "SELECT t FROM TbAssignTasks t"),
     @NamedQuery(name = "TbAssignTasks.findByTaskId", query = "SELECT t FROM TbAssignTasks t WHERE t.taskId = :taskId"),
-    @NamedQuery(name = "TbAssignTasks.findByCreateDate", query = "SELECT t FROM TbAssignTasks t WHERE t.createDate = :createDate"),
-    @NamedQuery(name = "TbAssignTasks.findTask", query = "SELECT t FROM TbAssignTasks t WHERE t.tbStaffs = :tbStaffs")
-})
+    @NamedQuery(name = "TbAssignTasks.findByCreateDate", query = "SELECT t FROM TbAssignTasks t WHERE t.createDate = :createDate")})
 public class TbAssignTasks implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "Task_Id")
+    @Column(name = "Task_Id", nullable = false, length = 10)
     private String taskId;
     @Basic(optional = false)
-    @Column(name = "Create_Date")
+    @Column(name = "Create_Date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
     @JoinTable(name = "tbAssignTaskDetails", joinColumns = {
-        @JoinColumn(name = "Task_Id", referencedColumnName = "Task_Id")}, inverseJoinColumns = {
-        @JoinColumn(name = "Technician_Id", referencedColumnName = "Staff_Id")})
+        @JoinColumn(name = "Task_Id", referencedColumnName = "Task_Id", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "Technician_Id", referencedColumnName = "Staff_Id", nullable = false)})
     @ManyToMany
     private Collection<TbStaffs> tbStaffsCollection;
-    @JoinColumn(name = "Technician_Id", referencedColumnName = "Staff_Id")
+    @JoinColumn(name = "Technician_Id", referencedColumnName = "Staff_Id", nullable = false)
     @ManyToOne(optional = false)
     private TbStaffs tbStaffs;
-    @JoinColumn(name = "Admin_Id", referencedColumnName = "Staff_Id")
+    @JoinColumn(name = "Admin_Id", referencedColumnName = "Staff_Id", nullable = false)
     @ManyToOne(optional = false)
     private TbStaffs tbStaffs1;
-    @JoinColumn(name = "Complaint_Id", referencedColumnName = "Complaint_Id")
+    @JoinColumn(name = "Complaint_Id", referencedColumnName = "Complaint_Id", nullable = false)
     @ManyToOne(optional = false)
     private TbComplaints tbComplaints;
 
