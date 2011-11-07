@@ -19,10 +19,10 @@ import javax.persistence.Table;
 
 /**
  *
- * @author tuyenbui
+ * @author DELL
  */
 @Entity
-@Table(name = "tbCategories")
+@Table(name = "tbCategories", catalog = "MantechHelpdesk", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "TbCategories.findAll", query = "SELECT t FROM TbCategories t"),
     @NamedQuery(name = "TbCategories.findByCategoryId", query = "SELECT t FROM TbCategories t WHERE t.categoryId = :categoryId"),
@@ -32,22 +32,16 @@ public class TbCategories implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "Category_Id")
+    @Column(name = "Category_Id", nullable = false, length = 10)
     private String categoryId;
     @Basic(optional = false)
-    @Column(name = "Category_Name")
+    @Column(name = "Category_Name", nullable = false, length = 256)
     private String categoryName;
     @Basic(optional = false)
-    @Column(name = "Priority")
+    @Column(name = "Priority", nullable = false)
     private int priority;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbCategories")
-    private Collection<TbTechnicalArticles> tbTechnicalArticlesCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbCategories")
-    private Collection<TbSolutions> tbSolutionsCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbCategories")
     private Collection<TbComplaints> tbComplaintsCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbCategories")
-    private Collection<TbFAQs> tbFAQsCollection;
 
     public TbCategories() {
     }
@@ -86,36 +80,12 @@ public class TbCategories implements Serializable {
         this.priority = priority;
     }
 
-    public Collection<TbTechnicalArticles> getTbTechnicalArticlesCollection() {
-        return tbTechnicalArticlesCollection;
-    }
-
-    public void setTbTechnicalArticlesCollection(Collection<TbTechnicalArticles> tbTechnicalArticlesCollection) {
-        this.tbTechnicalArticlesCollection = tbTechnicalArticlesCollection;
-    }
-
-    public Collection<TbSolutions> getTbSolutionsCollection() {
-        return tbSolutionsCollection;
-    }
-
-    public void setTbSolutionsCollection(Collection<TbSolutions> tbSolutionsCollection) {
-        this.tbSolutionsCollection = tbSolutionsCollection;
-    }
-
     public Collection<TbComplaints> getTbComplaintsCollection() {
         return tbComplaintsCollection;
     }
 
     public void setTbComplaintsCollection(Collection<TbComplaints> tbComplaintsCollection) {
         this.tbComplaintsCollection = tbComplaintsCollection;
-    }
-
-    public Collection<TbFAQs> getTbFAQsCollection() {
-        return tbFAQsCollection;
-    }
-
-    public void setTbFAQsCollection(Collection<TbFAQs> tbFAQsCollection) {
-        this.tbFAQsCollection = tbFAQsCollection;
     }
 
     @Override

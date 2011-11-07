@@ -23,13 +23,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
- * @author tuyenbui
+ * @author DELL
  */
 @Entity
-@Table(name = "tbStaffs")
+@Table(name = "tbStaffs", catalog = "MantechHelpdesk", schema = "dbo", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"Identity_Card"})})
 @NamedQueries({
     @NamedQuery(name = "TbStaffs.findAll", query = "SELECT t FROM TbStaffs t"),
     @NamedQuery(name = "TbStaffs.findByStaffId", query = "SELECT t FROM TbStaffs t WHERE t.staffId = :staffId"),
@@ -46,54 +48,44 @@ public class TbStaffs implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "Staff_Id")
+    @Column(name = "Staff_Id", nullable = false, length = 10)
     private String staffId;
     @Basic(optional = false)
-    @Column(name = "First_Name")
+    @Column(name = "First_Name", nullable = false, length = 256)
     private String firstName;
     @Basic(optional = false)
-    @Column(name = "Last_Name")
+    @Column(name = "Last_Name", nullable = false, length = 256)
     private String lastName;
     @Basic(optional = false)
-    @Column(name = "Gender")
+    @Column(name = "Gender", nullable = false, length = 50)
     private String gender;
-    @Column(name = "Marital_Status")
+    @Column(name = "Marital_Status", length = 50)
     private String maritalStatus;
-    @Column(name = "Identity_Card")
+    @Column(name = "Identity_Card", length = 50)
     private String identityCard;
     @Basic(optional = false)
-    @Column(name = "Date_Of_Birth")
+    @Column(name = "Date_Of_Birth", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfBirth;
-    @Column(name = "Phone_No")
+    @Column(name = "Phone_No", length = 50)
     private String phoneNo;
     @Lob
-    @Column(name = "Address")
+    @Column(name = "Address", length = 1073741823)
     private String address;
-    @Column(name = "Email")
+    @Column(name = "Email", length = 256)
     private String email;
     @Lob
-    @Column(name = "Avatar")
+    @Column(name = "Avatar", length = 1073741823)
     private String avatar;
-    @Column(name = "Password_Mail")
+    @Column(name = "Password_Mail", length = 50)
     private String passwordMail;
     @ManyToMany(mappedBy = "tbStaffsCollection")
     private Collection<TbAssignTasks> tbAssignTasksCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
-    private Collection<TbTechnicalArticles> tbTechnicalArticlesCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
-    private Collection<TbSolutions> tbSolutionsCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
     private Collection<ComplCurrentAssign> complCurrentAssignCollection;
-    @OneToMany(mappedBy = "tbStaffs")
-    private Collection<TbAccounts> tbAccountsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
     private Collection<TbComplaints> tbComplaintsCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
-    private Collection<Report> reportCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs1")
-    private Collection<Report> reportCollection1;
-    @JoinColumn(name = "Department_Id", referencedColumnName = "Department_Id")
+    @JoinColumn(name = "Department_Id", referencedColumnName = "Department_Id", nullable = false)
     @ManyToOne(optional = false)
     private TbDepartments tbDepartments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbStaffs")
@@ -220,22 +212,6 @@ public class TbStaffs implements Serializable {
         this.tbAssignTasksCollection = tbAssignTasksCollection;
     }
 
-    public Collection<TbTechnicalArticles> getTbTechnicalArticlesCollection() {
-        return tbTechnicalArticlesCollection;
-    }
-
-    public void setTbTechnicalArticlesCollection(Collection<TbTechnicalArticles> tbTechnicalArticlesCollection) {
-        this.tbTechnicalArticlesCollection = tbTechnicalArticlesCollection;
-    }
-
-    public Collection<TbSolutions> getTbSolutionsCollection() {
-        return tbSolutionsCollection;
-    }
-
-    public void setTbSolutionsCollection(Collection<TbSolutions> tbSolutionsCollection) {
-        this.tbSolutionsCollection = tbSolutionsCollection;
-    }
-
     public Collection<ComplCurrentAssign> getComplCurrentAssignCollection() {
         return complCurrentAssignCollection;
     }
@@ -244,36 +220,12 @@ public class TbStaffs implements Serializable {
         this.complCurrentAssignCollection = complCurrentAssignCollection;
     }
 
-    public Collection<TbAccounts> getTbAccountsCollection() {
-        return tbAccountsCollection;
-    }
-
-    public void setTbAccountsCollection(Collection<TbAccounts> tbAccountsCollection) {
-        this.tbAccountsCollection = tbAccountsCollection;
-    }
-
     public Collection<TbComplaints> getTbComplaintsCollection() {
         return tbComplaintsCollection;
     }
 
     public void setTbComplaintsCollection(Collection<TbComplaints> tbComplaintsCollection) {
         this.tbComplaintsCollection = tbComplaintsCollection;
-    }
-
-    public Collection<Report> getReportCollection() {
-        return reportCollection;
-    }
-
-    public void setReportCollection(Collection<Report> reportCollection) {
-        this.reportCollection = reportCollection;
-    }
-
-    public Collection<Report> getReportCollection1() {
-        return reportCollection1;
-    }
-
-    public void setReportCollection1(Collection<Report> reportCollection1) {
-        this.reportCollection1 = reportCollection1;
     }
 
     public TbDepartments getTbDepartments() {

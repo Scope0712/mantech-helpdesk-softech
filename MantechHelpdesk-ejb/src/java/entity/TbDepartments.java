@@ -19,10 +19,10 @@ import javax.persistence.Table;
 
 /**
  *
- * @author tuyenbui
+ * @author DELL
  */
 @Entity
-@Table(name = "tbDepartments")
+@Table(name = "tbDepartments", catalog = "MantechHelpdesk", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "TbDepartments.findAll", query = "SELECT t FROM TbDepartments t"),
     @NamedQuery(name = "TbDepartments.findByDepartmentId", query = "SELECT t FROM TbDepartments t WHERE t.departmentId = :departmentId"),
@@ -32,16 +32,14 @@ public class TbDepartments implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "Department_Id")
+    @Column(name = "Department_Id", nullable = false, length = 10)
     private String departmentId;
     @Basic(optional = false)
-    @Column(name = "Department_Name")
+    @Column(name = "Department_Name", nullable = false, length = 256)
     private String departmentName;
     @Basic(optional = false)
-    @Column(name = "Priority")
+    @Column(name = "Priority", nullable = false)
     private int priority;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbDepartments")
-    private Collection<Report> reportCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbDepartments")
     private Collection<TbStaffs> tbStaffsCollection;
 
@@ -80,14 +78,6 @@ public class TbDepartments implements Serializable {
 
     public void setPriority(int priority) {
         this.priority = priority;
-    }
-
-    public Collection<Report> getReportCollection() {
-        return reportCollection;
-    }
-
-    public void setReportCollection(Collection<Report> reportCollection) {
-        this.reportCollection = reportCollection;
     }
 
     public Collection<TbStaffs> getTbStaffsCollection() {

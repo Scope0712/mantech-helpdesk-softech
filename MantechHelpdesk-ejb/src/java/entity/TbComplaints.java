@@ -22,10 +22,10 @@ import javax.persistence.Table;
 
 /**
  *
- * @author tuyenbui
+ * @author DELL
  */
 @Entity
-@Table(name = "tbComplaints")
+@Table(name = "tbComplaints", catalog = "MantechHelpdesk", schema = "dbo")
 @NamedQueries({
     @NamedQuery(name = "TbComplaints.findAll", query = "SELECT t FROM TbComplaints t"),
     @NamedQuery(name = "TbComplaints.findByComplaintId", query = "SELECT t FROM TbComplaints t WHERE t.complaintId = :complaintId"),
@@ -34,24 +34,22 @@ public class TbComplaints implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "Complaint_Id")
+    @Column(name = "Complaint_Id", nullable = false, length = 10)
     private String complaintId;
     @Basic(optional = false)
     @Lob
-    @Column(name = "Problem_Content")
+    @Column(name = "Problem_Content", nullable = false, length = 1073741823)
     private String problemContent;
     @Lob
-    @Column(name = "Image")
+    @Column(name = "Image", length = 1073741823)
     private String image;
     @Basic(optional = false)
-    @Column(name = "Priority_Value")
+    @Column(name = "Priority_Value", nullable = false)
     private int priorityValue;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbComplaints")
-    private Collection<TbComplaintLogs> tbComplaintLogsCollection;
-    @JoinColumn(name = "Employee_Id", referencedColumnName = "Staff_Id")
+    @JoinColumn(name = "Employee_Id", referencedColumnName = "Staff_Id", nullable = false)
     @ManyToOne(optional = false)
     private TbStaffs tbStaffs;
-    @JoinColumn(name = "Category_Id", referencedColumnName = "Category_Id")
+    @JoinColumn(name = "Category_Id", referencedColumnName = "Category_Id", nullable = false)
     @ManyToOne(optional = false)
     private TbCategories tbCategories;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tbComplaints")
@@ -102,14 +100,6 @@ public class TbComplaints implements Serializable {
 
     public void setPriorityValue(int priorityValue) {
         this.priorityValue = priorityValue;
-    }
-
-    public Collection<TbComplaintLogs> getTbComplaintLogsCollection() {
-        return tbComplaintLogsCollection;
-    }
-
-    public void setTbComplaintLogsCollection(Collection<TbComplaintLogs> tbComplaintLogsCollection) {
-        this.tbComplaintLogsCollection = tbComplaintLogsCollection;
     }
 
     public TbStaffs getTbStaffs() {
