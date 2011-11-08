@@ -8,7 +8,7 @@
     <body>
         <ui:composition template="./templateAdmin.xhtml">
             <ui:define name="content">
-                <h:form>
+                <form action="/MantechHelpdesk-war/EditFAQServlet" method="POST" >
                     <table border="0" style="margin: 10px;">
                         <tbody>
                             <tr>
@@ -16,7 +16,7 @@
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="FAQ Id:" for="faqId" /></td>
-                                <td><h:inputText disabled="true" id="faqId_add" value="#{FAQBean.myFAQ.faqId}" title="FAQId" style="width: 195px;"/></td>
+                                <td><h:inputText readonly="true" id="faqId" value="#{FAQBean.myFAQ.faqId}" title="FAQId" style="width: 195px;"/></td>
                                 <td><h:message style="color: red" for="faqId"/></td>
                             </tr>
                             <tr>
@@ -29,12 +29,36 @@
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Question" for="question"/></td>
-                                <td><h:inputTextarea id="question" value="#{FAQBean.myFAQ.contentQuestion}" style="height: 100px; width: 520px;" title="Question" required="true" requiredMessage="*"/></td>
+                                <td><h:inputTextarea id="question" value="#{FAQBean.myFAQ.contentQuestion}" style="height: 50px; width: 550px;" title="Question" required="true" requiredMessage="*"/></td>
                                 <td><h:message  style="color: red" for="question"/></td>
                             </tr>
                             <tr>
-                                <td><h:outputLabel value="Answer" for="shortAnswer"/></td>
-                                <td><h:inputTextarea id="shortAnswer" value="#{FAQBean.myFAQ.detailAnswer}" style="height: 200px; width: 520px;" title="Answer" required="true" requiredMessage="*"/></td>
+                                <td><h:outputLabel value="Anwswer" for="shortAnswer"/></td>
+                                <td><h:inputTextarea id="anwswer" value="#{FAQBean.myFAQ.detailAnswer}" style="height: 150px; width: 520px;" title="Answer" required="true" requiredMessage="*"/>
+                                <script type="text/javascript">
+                                        // This is a check for the CKEditor class. If not defined, the paths must be checked.
+                                        if ( typeof CKEDITOR == 'undefined' )
+                                        {
+                                            document.write(
+                                            '<strong><span style="color: #ff0000">Error</span>: CKEditor not found</strong>.' +
+                                                'This sample assumes that CKEditor (not included with CKFinder) is installed in' +
+                                                'the "/ckeditor/" path. If you have it installed in a different place, just edit' +
+                                                'this file, changing the wrong paths in the &lt;head&gt; (line 5) and the "BasePath"' +
+                                                'value (line 32).' ) ;
+                                        }
+                                        else
+                                        {
+                                            var editor = CKEDITOR.replace( 'anwswer' );
+                                            //editor.setData( '#{FAQBean.myFAQ.detailAnswer}' );
+
+                                            // Just call CKFinder.SetupCKEditor and pass the CKEditor instance as the first argument.
+                                            // The second parameter (optional), is the path for the CKFinder installation (default = "/ckfinder/").
+                                            CKFinder.setupCKEditor( editor, '/MantechHelpdesk-war/ckfinder/' ) ;
+                                            //CKFinder.SetupCKEditor( editor, { BasePath : '../../', RememberLastFolder : false } ) ;
+                                            // It is also possible to pass an object with selected CKFinder properties as a second argument.
+                                            // CKFinder.SetupCKEditor( editor, { BasePath : '../../', RememberLastFolder : false } ) ;
+                                        }
+                                    </script></td>
                                 <td><h:message  style="color: red" for="shortAnswer"/></td>
                             </tr>
                             <tr>
@@ -49,7 +73,7 @@
                         </tbody>
                     </table>
                     <h:commandButton  value="Save Information" action="ShowAllFAQs.xhtml" actionListener="#{FAQBean.update}" style="margin-left: 10px"/>
-                </h:form>
+                </form>
             </ui:define>
         </ui:composition>
 
