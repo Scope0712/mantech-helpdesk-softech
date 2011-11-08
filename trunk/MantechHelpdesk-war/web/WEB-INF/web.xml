@@ -18,6 +18,10 @@
         <servlet-name>NewFAQServlet</servlet-name>
         <servlet-class>servlets.NewFAQServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditFAQServlet</servlet-name>
+        <servlet-class>servlets.EditFAQServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -25,6 +29,10 @@
     <servlet-mapping>
         <servlet-name>NewFAQServlet</servlet-name>
         <url-pattern>/NewFAQServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditFAQServlet</servlet-name>
+        <url-pattern>/EditFAQServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -48,7 +56,6 @@
         <servlet-name>RatingServlet</servlet-name>
         <url-pattern>/RatingServlet</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>ConnectorServlet</servlet-name>
         <servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
@@ -62,7 +69,6 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>ConnectorServlet</servlet-name>
         <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
@@ -87,7 +93,7 @@
         <filter-name>FileUploadFilter</filter-name>
         <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
     </filter-mapping>
-	<!--  tuyen 7/11/11: begin config for using primefaces  -->
+    <!--  tuyen 7/11/11: begin config for using primefaces  -->
     <servlet>
         <servlet-name>Resource Servlet</servlet-name>
         <servlet-class>
@@ -102,5 +108,5 @@
         <param-name>com.sun.faces.allowTextChildren</param-name>
         <param-value>true</param-value>
     </context-param>
-	<!--  end config for using primefaces  -->
+    <!--  end config for using primefaces  -->
 </web-app>
