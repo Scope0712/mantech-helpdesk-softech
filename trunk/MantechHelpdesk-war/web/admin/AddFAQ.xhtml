@@ -6,42 +6,31 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <body>
-        <ui:composition template="./../template/newTemplate.xhtml">
-            <ui:define name="left">
-                Them moi FAQ
-            </ui:define>
-            <ui:define name="contenthome">
-                <h1><h:outputText value="FAQ Information"></h:outputText></h1>
+        <ui:composition template="./templateAdmin.xhtml">
+            <ui:define name="content">
                 <h:form>
-                    <table border="0">
-                        <tr>
-                            <td align="left">
-                                <h:panelGrid columns="2">
-
-                                    <tr>
-                                        <td><h:outputLabel value="Category" for="categoryId" /></td>
-                                        <td><h:selectOneMenu id="categoryId" title="CategoryId" value="#{FAQBean.myCategory.categoryId}">
-                                                <f:selectItems value="#{CategoryBean.listCategories}"
-                                                               var="item" itemLabel="#{item.categoryName}" itemValue="#{item.categoryId}"/>
-                                            </h:selectOneMenu>
-                                        </td>
-                                        <td><h:message  style="color: red" for="categoryId"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h:outputLabel value="Question" for="question"/></td>
-                                        <td><h:inputTextarea id="question" value="#{FAQBean.myFAQ.contentQuestion}" title="Question" required="true" requiredMessage="*"/></td>
-                                        <td><h:message  style="color: red" for="question"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h:outputLabel value="Short Answer" for="shortAnswer"/></td>
-                                        <td><h:inputTextarea id="shortAnswer" value="#{FAQBean.myFAQ.shortAnswer}" title="Short Answer" required="true" requiredMessage="*"/></td>
-                                        <td><h:message  style="color: red" for="shortAnswer"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h:outputLabel value="Long Answer" for="longAnswer"/></td>
-                                        <td><h:inputTextarea id="longAnswer" value="#{FAQBean.myFAQ.longAnswer}" title="Long Answer" required="true" requiredMessage="*"/></td>
-                                        <script type="text/javascript">
-                                        CKEDITOR.basePath = "/MantechHelpdesk-war/faces/"
+                    <table border="0" style="margin: 10px;">
+                        <tbody>
+                            <tr>
+                                <h1 align="center"><h:outputText value="New FAQ Information"></h:outputText></h1>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel value="Category" for="categoryId" /></td>
+                                <td><h:selectOneMenu id="categoryId" title="CategoryId" value="#{FAQBean.myCategory.categoryId}" style="width: 200px;">
+                                        <f:selectItems value="#{CategoryBean.listCategories}"
+                                                       var="item" itemLabel="#{item.categoryName}" itemValue="#{item.categoryId}"/>
+                                    </h:selectOneMenu></td>
+                                <td><h:message style="color: red" for="categoryId"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel value="Question" for="question"/></td>
+                                <td><h:inputTextarea id="question" value="#{FAQBean.newFAQ.contentQuestion}" style="height: 100px; width: 520px;" title="Question" required="true" requiredMessage="*"/></td>
+                                <td><h:message  style="color: red" for="question"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel value="Answer" for="shortAnswer"/></td>
+                                <td><h:inputTextarea id="answer" value="#{FAQBean.newFAQ.detailAnswer}" style="height: 200px; width: 520px;" title="Answer" required="true" requiredMessage="*"/></td>
+                                <script type="text/javascript">
         // This is a check for the CKEditor class. If not defined, the paths must be checked.
         if ( typeof CKEDITOR == 'undefined' )
         {
@@ -54,56 +43,31 @@
         }
         else
         {
-            var editor = CKEDITOR.replace( 'shortAnswer' );
+            var editor = CKEDITOR.replace( 'answer' );
             editor.setData( '' );
 
             // Just call CKFinder.SetupCKEditor and pass the CKEditor instance as the first argument.
             // The second parameter (optional), is the path for the CKFinder installation (default = "/ckfinder/").
-            //CKFinder.setupCKEditor( editor, '/MantechHelpdesk-war/ckfinder/' ) ;
-            CKFinder.SetupCKEditor( editor, { BasePath : '../../', RememberLastFolder : false } ) ;
+            CKFinder.setupCKEditor( editor, '/MantechHelpdesk-war/ckfinder/' ) ;
+            //CKFinder.SetupCKEditor( editor, { BasePath : '../../', RememberLastFolder : false } ) ;
             // It is also possible to pass an object with selected CKFinder properties as a second argument.
             // CKFinder.SetupCKEditor( editor, { BasePath : '../../', RememberLastFolder : false } ) ;
         }
-
-                                        </script>
-                                        <td><h:message  style="color: red" for="longAnswer"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h:outputLabel value="Create Date" for="createDate"/></td>
-                                        <td><h:inputText id="createDate" value="#{FAQBean.myFAQ.createDate}" title="Create Date" required="true" requiredMessage="*">
-                                                <f:convertDateTime dateStyle="short" pattern="MM/dd/yyyy" />
-                                            </h:inputText>
-                                        </td>
-                                        <td><h:message  style="color: red" for="createDate"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h:outputLabel value="Update Date" for="updateDate"/></td>
-                                        <td><h:inputText id="updateDate" value="#{FAQBean.myFAQ.updateDate}" title="Update Date" required="true" requiredMessage="*">
-                                                <f:convertDateTime dateStyle="short" pattern="MM/dd/yyyy" />
-                                            </h:inputText>
-                                        </td>
-                                        <td><h:message  style="color: red" for="updateDate"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h:outputLabel value="Status" for="status"/></td>
-                                        <td><h:selectOneMenu id="status" value="#{FAQBean.myFAQ.status}" title="Status" required="true" requiredMessage="*">
-                                                <f:selectItem id="si1" itemLabel="Enable" itemValue="Enable" />
-                                                <f:selectItem id="si2" itemLabel="Disable" itemValue="Disable" />
-                                            </h:selectOneMenu>
-                                        </td>
-                                        <td><h:message  style="color: red" for="status"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h:outputLabel value="Image" for="image"/></td>
-                                        <td><h:inputText id="image" value="#{FAQBean.myFAQ.image}" title="Image" required="true" requiredMessage="*"/></td>
-                                        <td><h:message  style="color: red" for="image"/></td>
-                                    </tr>
-                                    <h:commandButton id="submit_save"  value="Save Information" action="ListAllFAQs.xhtml" actionListener="#{FAQBean.createFAQ}"/>
-                                    <td><h:message  style="color: red" for="submit_save"/></td>
-                                </h:panelGrid>
-                            </td>
-                        </tr>
+                                </script>
+                                <td><h:message  style="color: red" for="shortAnswer"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel value="Status" for="status"/></td>
+                                <td><h:selectOneMenu id="status" value="#{FAQBean.newFAQ.status}" style="width: 200px;" title="Status" required="true" requiredMessage="*">
+                                        <f:selectItem id="si1" itemLabel="Enable" itemValue="Enable" />
+                                        <f:selectItem id="si2" itemLabel="Disable" itemValue="Disable" />
+                                    </h:selectOneMenu>
+                                </td>
+                                <td><h:message  style="color: red" for="status"/></td>
+                            </tr>
+                        </tbody>
                     </table>
+                    <h:commandButton  value="Save Information" action="ShowAllFAQs.xhtml" actionListener="#{FAQBean.create}" style="margin-left: 10px"/>
                 </h:form>
             </ui:define>
         </ui:composition>
