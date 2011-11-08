@@ -65,6 +65,8 @@ public class thAllComplaint {
     }
 
     public ArrayList<Complaint> getListCom() {
+        listCom = null;
+        ListPending = null;
         if (listCom == null) {
             listCom = new ArrayList<Complaint>();
             ListPending = getListPending();
@@ -148,8 +150,6 @@ public class thAllComplaint {
         logs.setTbComplaintLogsPK(LogsPK);
         //create
         tbComplaintLogsFacade.create(logs);
-        ListPending=complaintDetailsFacade.findComplaintStatus(employeeId, "Statu00001");
-        listCom=null;
         
         return "ComplaintPending";
     }
