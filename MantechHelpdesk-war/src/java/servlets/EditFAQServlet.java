@@ -14,20 +14,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sessionbean.TbCategoriesFacadeLocal;
 import sessionbean.TbFAQsFacadeLocal;
 
 /**
  *
  * @author DELL
  */
-public class NewFAQServlet extends HttpServlet {
+public class EditFAQServlet extends HttpServlet {
 
     @EJB
     private TbFAQsFacadeLocal TbFAQs;
     private TbCategories myCategory;
-    private TbFAQs newFAQ;
-    /** 
+    private TbFAQs editFAQ;
+
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -38,31 +38,33 @@ public class NewFAQServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String faqId = request.getParameter("faqId");
         String categoryId = request.getParameter("categoryId");
         String question = request.getParameter("question");
         String anwswer = request.getParameter("anwswer");
         String status = request.getParameter("status");
+        System.out.println("ma id" + faqId);
+        System.out.println("categoryId id" + categoryId);
         myCategory = new TbCategories(categoryId);
-        newFAQ = new TbFAQs();
-        newFAQ.setFaqId("abc"); // Tigger genera automatic
-        newFAQ.setTbCategories(myCategory);
-        newFAQ.setContentQuestion(question);
-        newFAQ.setDetailAnswer(anwswer);
-        newFAQ.setCreateDate(new Date());
-        newFAQ.setUpdateDate(new Date());
-        newFAQ.setStatus(status);
-        TbFAQs.create(newFAQ);
+        editFAQ = TbFAQs.find(faqId);
+        editFAQ.setTbCategories(myCategory);
+        editFAQ.setContentQuestion(question);
+        editFAQ.setDetailAnswer(anwswer);
+        editFAQ.setUpdateDate(new Date());
+        editFAQ.setStatus(status);
+        TbFAQs.edit(editFAQ);
         response.sendRedirect("faces/admin/ShowAllFAQs.xhtml");
 //        try {
+//            /* TODO output your page here
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>Servlet NewFAQServlet</title>");
+//            out.println("<title>Servlet EditFAQServlet</title>");
 //            out.println("</head>");
 //            out.println("<body>");
-//            out.println("<h1>Servlet NewFAQServlet at " + request.getContextPath() + "</h1>");
-//            out.println("<h1>Anwser content : " + categoryId + " " + question + " " + anwswer + " " + status + "</h1>");
+//            out.println("<h1>Servlet EditFAQServlet at " + request.getContextPath () + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
+//            */
 //        } finally {
 //            out.close();
 //        }
