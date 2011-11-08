@@ -6,50 +6,42 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <body>
-        <ui:composition template="./../template/newTemplate.xhtml">
-            <ui:define name="left">
-
-            </ui:define>
-            <ui:define name="contenthome">
+        <ui:composition template="./templateAdmin.xhtml">
+            <ui:define name="content">
                 <f:view>
                     <h:form>
-                        Enter Search :<h:inputText  id="search" onkeyup="show_Data(this.value)"/>
-                        <h:commandButton value="Search Data"></h:commandButton>
-                        <span id="txtValues"></span>
-                    </h:form>
-                    <h:form>
-                        <h1><h:outputText value="List All FAQs"></h:outputText></h1>
-                        <table width="100%">
+                        <h1 align="center"><h:outputText value="Result Search FAQs"></h:outputText></h1>
+                        <table width="100%" style="margin: 10px;">
                             <tr>
                                 <td>
-                                    <h:dataTable value="#{FAQBean.listFAQs}" var="item">
+                                    <h:dataTable value="#{FAQBean.listSearchFAQs}" var="item">
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="View Detail"/>
+                                                <h:outputText value="View"/>
                                             </f:facet>
-                                            <h:commandLink  action="View_FAQ.xhtml"  actionListener="#{FAQBean.selectFAQs}" value="View">
+                                            <h:commandLink  action="ViewFAQ.xhtml"  actionListener="#{FAQBean.selectViewFAQ}" value="View">
                                                 <f:param id="faqId_view" value="#{item.faqId}"/>
                                             </h:commandLink>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="Edit Detail"/>
+                                                <h:outputText value="Edit"/>
                                             </f:facet>
-                                            <h:commandLink  action="Edit_FAQ.xhtml"  actionListener="#{FAQBean.selectFAQs}" value="Edit">
+                                            <h:commandLink  action="EditFAQ.xhtml"  actionListener="#{FAQBean.selectEditFAQ}" value="Edit">
                                                 <f:param id="faqId_edit" value="#{item.faqId}"/>
                                             </h:commandLink>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="Delete FAQ"/>
+                                                <h:outputText value="Delete"/>
                                             </f:facet>
-                                            <h:commandLink  actionListener="#{FAQBean.deleteFAQ}" value="Delete">
+                                            <h:commandLink  actionListener="#{FAQBean.delete}" value="Delete">
                                                 <f:param id="faqId_delete" value="#{item.faqId}"/>
                                             </h:commandLink>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="FAQId"/>
+                                                <h:outputText value="FAQ Id"/>
                                             </f:facet>
                                             <h:outputText value="#{item.faqId}"/>
                                         </h:column>
@@ -57,7 +49,7 @@
                                             <f:facet name="header">
                                                 <h:outputText value="Category"/>
                                             </f:facet>
-                                            <h:outputText value="#{item.tbCategories.categoryId}"/>
+                                            <h:outputText value="#{item.tbCategories.categoryName}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
@@ -65,17 +57,15 @@
                                             </f:facet>
                                             <h:outputText value="#{item.contentQuestion}"/>
                                         </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Answer"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.shortAnswer}"/>
-                                        </h:column>
                                     </h:dataTable>
                                 </td>
                             </tr>
                         </table>
-
+                    </h:form>
+                    <h:form style="margin-left: 20px">
+                        <b><strong>Enter Search :<h:inputText  id="search" value="#{FAQBean.search}"/>
+                                <h:commandButton value="Search FAQ" actionListener="#{FAQBean.searchListFAQs}"></h:commandButton>
+                                <span id="txtValues"></span></strong></b>
                     </h:form>
                 </f:view>
             </ui:define>

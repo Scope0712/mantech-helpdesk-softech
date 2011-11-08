@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/bonstyle.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../resources/jquery-1.6.4.js"></script>
+        <script type="text/javascript" src="../resources/jqFancyTransitions.1.8.min.js"></script>
+        <script type="text/javascript" src="../resources/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript" src="../resources/jquery.readmore.js"></script>
+        <script type="text/javascript" src="../resources/readmore.js"></script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</script>
+        <script type="text/javascript" src="http://www.google.com/coop/cse/t13n?form=cse-search-box&t13n_langs;=vi"></script>
+        <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang;=vi"></script>
+
+
+        <link href="../resources/css/jqueryui/jquery.ui.all.css" rel="stylesheet"></link>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#ft").jqFancyTransitions({
+                    effect: 'curtain', // wave, zipper, curtain
+                    width: 500,// width of panel
+                    height: 150, // height of panel
+                    strips: 20, // number of strips
+                    delay: 5000, // delay between images in ms
+                    stripDelay: 50, // delay beetwen strips in ms
+                    titleOpacity: 0.7, // opacity of title
+                    titleSpeed: 1000, // speed of title appereance in ms
+                    position: 'top', // top, bottom, alternate, curtain
+                    direction: 'random', // left, right, alternate, random, fountain, fountainAlternate
+                    navigation: true, // prev and next navigation buttons
+                    links: true // show images as links
+                });
+                $( "#tabs" ).tabs();
+            });
+        </script>
+        <title>Mantech Helpdesk</title>
+    </h:head>
+
+    <h:body id="body">
+        <div style="width:900px; margin-right: auto; margin-left: auto;">
+
+            <div id="top">
+                <ui:insert name="top">
+                    <ui:include src="../common/Header.xhtml"></ui:include>
+                </ui:insert>
+            </div>
+
+            <div id="main_content" style="background-image: url(../images/bg6.gif); width:900px;">
+                <div>
+                    <div style="border: 5px; margin: 5px;
+                         border-radius: 5px 5px 5px 5px;">
+
+                        <div id="bottomcontent" style="width:880px ;border: 5px solid #CCCCCC;
+                             border-radius: 5px 5px 5px 5px;  clear: left;">
+                            <div>
+                                <div style="height: 1000px; width:250px;">
+                                    <div id="left" style="height: 990px; width:250px; border: 5px solid #CCCCCC;
+                                         border-radius: 5px 5px 5px 5px; float: left">
+                                        <ui:insert name="left"><ui:include src="#{accountMB.login_menu}"/></ui:insert>
+                                    </div>
+
+                                    <div style="height: 1000px; width: 880px; clear: inherit; float: inherit">
+                                        <div id="content" class="content" style="height: 990px; width: 610px; border: 5px solid #CCCCCC;
+                                             border-radius: 5px 5px 5px 5px; float: right">
+                                            <ui:insert name="content">Content</ui:insert>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="bottom">
+                <ui:insert name="bottom">
+                    <ui:include src="../common/Footer.xhtml"/>
+                </ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>
