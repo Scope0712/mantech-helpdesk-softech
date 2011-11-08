@@ -2,59 +2,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <style type="text/css">
-        .roundangle
-        {
-            /*            background-image: url(./../images/bgd4.png);*/
-/*            background-image: url(./../images/menubg1.png);*/
-            width:112px;
-            height:20px;
-/*            background: ;
-            color:#ffffff;
-            border-radius:7px;
-            -moz-border-radius-topleft:7px;
-            -webkit-border-top-left-radius:7px;
-            border-radius:7px;
-            -moz-border-radius-topright:7px;
-            -webkit-border-top-right-radius:7px;*/
-            margin-left: 11px;
-            margin-right: 3px;
-            float:left;
-            font-size: 7.5pt;
-            font-style: oblique;
-        }
-   
+    <!--    <style type="text/css">
+            .roundangle
+            {
+                /*            background-image: url(./../images/bgd4.png);*/
+                /*            background-image: url(./../images/menubg1.png);*/
+                width:100px;
+                height:20px;
+                /*            background: ;
+                            color:#ffffff;
+                            border-radius:7px;
+                            -moz-border-radius-topleft:7px;
+                            -webkit-border-top-left-radius:7px;
+                            border-radius:7px;
+                            -moz-border-radius-topright:7px;
+                            -webkit-border-top-right-radius:7px;*/
+                margin-left: 11px;
+                margin-right: 3px;
+                float:left;
+                font-size: 7.5pt;
+                font-style: oblique;
+            }
 
-    </style>
+
+        </style>-->
+    <link href="./../resources/css/jqueryui/screen.css" rel="stylesheet" type="text/css" />
     <h:body>
         <div style="width: 900px;height: 25px; background-image: url(./../images/logo_banner.png); padding-top: 79px">
-            <!--                <img src="./../images/banner.png" align="left"/>           -->
-            <div style="width: 100%;">
-                <div  class="roundangle"><a href="../public/Home.xhtml">&nbsp;&nbsp;Home&nbsp;&nbsp;</a> </div>
-                <div  class="roundangle"><a href="../public/AboutUS.xhtml">&nbsp;About&nbsp;</a></div>
-                <div  class="roundangle"><a href="../public/ShowAllArticles.xhtml">Articles</a></div>
-                <div  class="roundangle"><a href="../public/ShowAllFAQs.xhtml">&nbsp;&nbsp;FAQs&nbsp;</a></div>
-                <div  class="roundangle"><a href="../public/ShowAllSolutions.xhtml">&nbsp;&nbsp;News&nbsp;&nbsp;</a></div>
-                <div  class="roundangle"><a href="../public/Contacts.xhtml">Contact</a></div>
-<!--                <c:if test="{accountMB.login_label=='Login'}">-->
-                <div  class="roundangle"><a href="../public/Login.xhtml">
-                            <h:outputText value="&nbsp;#{accountMB.login_label}&nbsp;&nbsp;"/>
-                    </a></div>
-<!--                </c:if>
-                <c:otherwise>
-                     <div  class="roundangle"><a href="../Home.xhtml">
-                            <h:outputText value="{accountMB.login_label}"/>
-                    </a></div>
-                </c:otherwise>-->
+            <div class="menu" >
+                <li><a href="#{accountMB.context_path}/faces/Home.xhtml">Home</a> </li>
+                <li><a href="#{accountMB.context_path}/faces/AboutUS.xhtml">About</a> </li>
+                <li><a href="#{accountMB.context_path}/faces/ShowAllArticles.xhtml">Articles</a> </li>
+                <li><a href="#{accountMB.context_path}/faces/ShowAllFAQs.xhtml">FAQs</a> </li>
+                <li><a href="#{accountMB.context_path}/faces/ShowAllSolutions.xhtml">News</a> </li>
+                <li><a href="#{accountMB.context_path}/faces/Contacts.xhtml">Contact</a> </li>
+
+                <li>
+                    <c:if test="#{accountMB.login_label=='Login'}">
+                        <a href="#{accountMB.context_path}/faces/public/Login.xhtml" >
+                            <h:outputText value="#{accountMB.login_label}"/>
+                        </a>
+                    </c:if>
+                    <c:if test="#{accountMB.login_label!='Login'}">
+                        <h:form>
+                            <h:commandLink value="#{accountMB.login_label}" action="#{accountMB.logout}"/>
+                        </h:form>
+                    </c:if>
+                </li>
+                <h:outputText value="#{accountMB.user_online}" style="float: right; color: red; padding-right: 10px"/>
             </div>
-<!--            <div style="float:right; text-align: right" >{accountMB.user_online}</div>-->
         </div>
-        
+
     </h:body>
 </html>
 
