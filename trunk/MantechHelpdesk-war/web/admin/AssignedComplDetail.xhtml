@@ -17,7 +17,7 @@
 
             <ui:define name="content">
                 <f:view>
-                    <h:form  style="border-color: black; width:580px; float: right; text-align: left; padding-left: 50px;padding-right: 10px; border-width: 1px; border-style: outset;">
+                    <h:form  style="border-color: black; width:668px; float: right; text-align: left; padding-left: 50px;padding-right: 10px; border-width: 1px; border-style: outset;">
                         <h1><h:outputText value="Retrieve New Complaint:"/></h1>
                         <h:panelGrid columns="2" >
                             <h:outputLabel value="Complaint Info:" style="color: blue;font-style: oblique;font-weight: bold"/>
@@ -76,11 +76,16 @@
                                 <f:selectItem itemLabel="--Select technician--" itemValue=""/>
                                 <f:selectItems value="#{tAccountMB.technicianList}" var="item" itemLabel="#{item.tbStaffs.staffId}" itemValue="#{item.tbStaffs.staffId}"/>
                             </h:selectOneMenu>
+                            <br style="clear: both"/>
                             
                             <h:commandButton value="Save Assign" action="#{tNewComplaintMB.createTask}" disabled="#{tNewComplaintMB.assignDisable}">
+                                
                                 <f:ajax render="priorityValue categoryId @this" execute="@form"/>
+                                
                             </h:commandButton>
+                          
                             <h:commandButton value="Back To List" action="/admin/AssignComplaint.xhtml"/>
+                             <br style="clear: both"/>
                         </h:panelGrid>
                         <br style="clear: both"/>
                     </h:form>
