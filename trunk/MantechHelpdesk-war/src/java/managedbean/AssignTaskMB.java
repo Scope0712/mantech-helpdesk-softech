@@ -133,8 +133,8 @@ public class AssignTaskMB {
 
     public String saveAction(AssignTask at) {
 
-        //get all existing value but set "editable" to false  
-        
+        //get all existing value but set "editable" to false
+
      //  SimpleDateFormat spl = new SimpleDateFormat("MM/dd/yyyy:hh:mm:ss a");
 
       //  String d = spl.format(new Date());
@@ -147,7 +147,7 @@ public class AssignTaskMB {
         System.out.println("da chon status "+cl.getTbComplaintStatus().getStatusName());
         tbComplaintLogsFacade.create(cl);
         at.at.setStatusName(cl.getTbComplaintStatus().getStatusName());
-        viewAssignTaskDetailsFacade.edit(at.at);
+       // viewAssignTaskDetailsFacade.edit(at.at);
         listATL = null;
         listViewAT=null;
         listATL = getListATL();
