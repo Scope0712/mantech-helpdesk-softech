@@ -6,9 +6,11 @@
 package sessionbean;
 
 import entity.TbSolutions;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,6 +27,12 @@ public class TbSolutionsFacade extends AbstractFacade<TbSolutions> implements Tb
 
     public TbSolutionsFacade() {
         super(TbSolutions.class);
+    }
+
+    @Override
+    public List<TbSolutions> findAllSolutions() {
+        Query q = em.createNativeQuery("SELECT * FROM TbSolutions c where c.Status = 'Enable'", TbSolutions.class);
+        return q.getResultList();
     }
 
 }

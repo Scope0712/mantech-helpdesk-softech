@@ -6,7 +6,7 @@
 package sessionbean;
 
 import entity.TbFAQs;
-import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,9 +30,15 @@ public class TbFAQsFacade extends AbstractFacade<TbFAQs> implements TbFAQsFacade
     }
 
     @Override
-    public Collection<TbFAQs> findFAQById(String id) {
-        Query q = em.createNativeQuery("SELECT * FROM tbFAQs AS a WHERE a.FAQ_Id = ?value", TbFAQs.class);
-        q.setParameter("value","%"+ id +"%");
+    public List<TbFAQs> findAllFAQs() {
+        Query q = em.createNativeQuery("SELECT * FROM TbFAQs c where c.Status = 'Enable'", TbFAQs.class);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<TbFAQs> searchListFAQs(String search) {
+        Query q = em.createNativeQuery("SELECT * FROM TbFAQs c where c.Content_Question LIKE ?value Or c.Detail_Answer LIKE ?value", TbFAQs.class);
+        q.setParameter("value", "%" + search + "%");
         return q.getResultList();
     }
 

@@ -30,4 +30,5 @@ public interface TbSolutionsFacadeLocal {
 
     int count();
 
+    List<TbSolutions> findAllSolutions();
 }
