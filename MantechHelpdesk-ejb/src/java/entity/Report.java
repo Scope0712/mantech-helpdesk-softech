@@ -40,42 +40,32 @@ public class Report implements Serializable {
     @Column(name = "complaint_id")
     @Id
     private String complaintId;
-
     @Basic(optional = false)
     @Column(name = "Category_id")
     private String categoryid;
-
     @Basic(optional = false)
     @Column(name = "Resend_No")
     private int resendNo;
-
     @Column(name = "Lodging_Date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lodgingDate;
-
     @Column(name = "Assigning_Date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date assigningDate;
-
     @Column(name = "Latest_Modify_Date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date latestModifyDate;
-
     @Column(name = "Solving_Time")
     private Integer solvingTime;
-
     @JoinColumn(name = "Technician_Id", referencedColumnName = "Staff_Id")
     @ManyToOne(optional = false)
     private TbStaffs tbStaffs;
-
     @JoinColumn(name = "Status", referencedColumnName = "Status_Id")
     @ManyToOne(optional = false)
     private TbComplaintStatus tbComplaintStatus;
-
     @JoinColumn(name = "Employee_Id", referencedColumnName = "Staff_Id")
     @ManyToOne(optional = false)
     private TbStaffs tbStaffs1;
-
     @JoinColumn(name = "Department_Id", referencedColumnName = "Department_Id")
     @ManyToOne(optional = false)
     private TbDepartments tbDepartments;
