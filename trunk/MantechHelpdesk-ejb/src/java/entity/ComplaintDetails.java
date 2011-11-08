@@ -39,46 +39,35 @@ public class ComplaintDetails implements Serializable {
     @Column(name = "Complaint_Id")
     @Id
     private String complaintId;
-
     @Basic(optional = false)
     @Lob
     @Column(name = "Problem_Content")
     private String problemContent;
-
     @Lob
     @Column(name = "Image")
     private String image;
-
     @Basic(optional = false)
     @Column(name = "Employee_ID")
     private String employeeID;
-
     @Basic(optional = false)
     @Column(name = "First_Name")
     private String firstName;
-
     @Basic(optional = false)
     @Column(name = "Category_Id")
     private String categoryId;
-
     @Basic(optional = false)
     @Column(name = "Category_Name")
     private String categoryName;
-
     @Column(name = "Date")
     private String date;
-
     @Column(name = "Duration")
     private Integer duration;
-
     @Basic(optional = false)
     @Column(name = "Resend_No")
     private int resendNo;
-
     @Basic(optional = false)
     @Column(name = "Status_Id")
     private String statusId;
-
     @Basic(optional = false)
     @Column(name = "Status_Name")
     private String statusName;
