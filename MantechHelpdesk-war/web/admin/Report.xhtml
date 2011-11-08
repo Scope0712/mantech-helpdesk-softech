@@ -3,8 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
-
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Complaint Report</title>
+        <p:resources />
+    </h:head>
     <body>
 
         <ui:composition template="./Admin_Temp.xhtml">
@@ -44,78 +49,129 @@
                             <f:ajax render="dt1" execute="@this"/>
                         </h:selectOneMenu>
                     </div>
-                    <h:dataTable id="dt1" value="#{tReportMB.detailreport}" var="item" border="1" style="float: left">
-                        <h:column id="col1">
+                    <p:dataTable id="dt1" value="#{tReportMB.detailreport}" var="item"  style="float: left;" paginator="true" rows="10">
+                        <p:column id="col1">
                             <f:facet name="header">
                                 <h:outputText value="Complaint ID"/>
                             </f:facet>
                             <h:outputText value="#{item.complaintId}"/>
-                        </h:column>
+                        </p:column>
 
-                        <h:column id="col2">
+                        <p:column id="col2">
                             <f:facet name="header">
                                 <h:outputText value="Category"/>
                             </f:facet>
                             <h:outputText value="#{tCategoryMB.findCategory(item.categoryid).getCategoryName()}"/>
-                        </h:column>
+                        </p:column>
 
-                        <h:column id="col3">
+                        <p:column id="col3">
                             <f:facet name="header">
                                 <h:outputText value="Employee"/>
                             </f:facet>
                             <h:outputText value="#{item.tbStaffs1.lastName} #{item.tbStaffs1.firstName}"/>
-                        </h:column>
+                        </p:column>
 
-                        <h:column id="col4">
+                        <p:column id="col4">
                             <f:facet name="header">
                                 <h:outputText value="Department"/>
                             </f:facet>
                             <h:outputText value="#{item.tbDepartments.departmentName}"/>
-                        </h:column>
+                        </p:column>
 
-                        <h:column id="col5">
+                        <p:column id="col5">
                             <f:facet name="header">
                                 <h:outputText value="Technician"/>
                             </f:facet>
                             <h:outputText value="#{item.tbStaffs.lastName} #{item.tbStaffs.firstName}"/>
-                        </h:column>
+                        </p:column>
 
-                        <h:column id="col6">
+                        <p:column id="col6">
                             <f:facet name="header">
                                 <h:outputText value="Lodging Time"/>
                             </f:facet>
                             <h:outputText value="#{item.lodgingDate}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
-                        </h:column>
+                        </p:column>
 
-                        <h:column id="col7">
+                        <p:column id="col7">
                             <f:facet name="header">
                                 <h:outputText value="Assigning Time"/>
                             </f:facet>
                             <h:outputText value="#{item.assigningDate}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
-                        </h:column>
-                        <h:column id="col8">
+                        </p:column>
+                        <p:column id="col8">
                             <f:facet name="header">
                                 <h:outputText value="Closing Time"/>
                             </f:facet>
                             <h:outputText value="#{item.latestModifyDate}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
-                        </h:column>
+                        </p:column>
 
-                        <h:column id="col9">
+                        <p:column id="col9">
                             <f:facet name="header">
                                 <h:outputText value="Actual Time (days)"/>
                             </f:facet>
                             <h:outputText value="#{item.solvingTime}"/>
 
-                        </h:column>
+                        </p:column>
 
-                    </h:dataTable>
+                    </p:dataTable>
+                    <div style="float: left">
+                        <!--export datatable                -->
+                        <h:panelGrid columns="2">
+                            <p:panel header="Export All Data">
+                                <h:commandLink>
+                                    <p:graphicImage value="../images/excel.png" />
+                                    <p:dataExporter type="xls" target="dt1" fileName="report" />
+                                </h:commandLink>
 
+                                <h:commandLink>
+                                    <p:graphicImage value="../images/pdf.png" />
+                                    <p:dataExporter type="pdf" target="dt1" fileName="report"/>
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage value="../images/csv.png" />
+                                    <p:dataExporter type="csv" target="dt1" fileName="report" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage value="../images/xml.png" />
+                                    <p:dataExporter type="xml" target="dt1" fileName="report" />
+                                </h:commandLink>
+                            </p:panel>
+
+                            <p:panel header="Export Page Data">
+                                <h:commandLink>
+                                    <!--                                <p:graphicImage value="/images/excel.png" />  -->
+                                    <h:outputText value="XSL"/>
+                                    <p:dataExporter type="xls" target="dt1" fileName="report" pageOnly="true"/>
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <!--                                <p:graphicImage value="/images/pdf.png" />  -->
+                                    <h:outputText value="PDF"/>
+                                    <p:dataExporter type="pdf" target="dt1" fileName="report" pageOnly="true"/>
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <!--                                <p:graphicImage value="/images/csv.png" />  -->
+                                    <h:outputText value="CSV"/>
+                                    <p:dataExporter type="csv" target="dt1" fileName="report" pageOnly="true"/>
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <!--                                <p:graphicImage value="/images/xml.png" />  -->
+                                    <h:outputText value="XML"/>
+                                    <p:dataExporter type="xml" target="dt1" fileName="report" pageOnly="true"/>
+                                </h:commandLink>
+                            </p:panel>
+                        </h:panelGrid>
+                    </div>
                 </h:form>
             </ui:define>
 
