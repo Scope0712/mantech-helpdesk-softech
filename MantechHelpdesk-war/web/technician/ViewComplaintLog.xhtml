@@ -7,10 +7,9 @@
 
     <body>
 
-        <ui:composition template="./../admin/Admin_Temp.xhtml">                    
+        <ui:composition template="./../admin/templateAdmin.xhtml">         
             <ui:define name="content">
-                <h:form style="border-color: black; width:630px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
-
+                <h:form>
                     <h:dataTable value="#{assignTaskMB.listATL}" var="o"
                                  styleClass="order-table"
                                  headerClass="order-table-header"
