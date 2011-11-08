@@ -51,4 +51,9 @@
         <managed-bean-class>managedbean.TDepartmentMB</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>tSummaryReportMB</managed-bean-name>
+        <managed-bean-class>managedbean.TSummaryReportMB</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>
