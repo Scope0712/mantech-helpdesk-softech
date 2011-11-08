@@ -29,6 +29,8 @@ public interface TbFAQsFacadeLocal {
     List<TbFAQs> findRange(int[] range);
 
     int count();
+    
+    List<TbFAQs> findAllFAQs();
 
-    java.util.Collection<TbFAQs> findFAQById(String id);
+    List<TbFAQs> searchListFAQs(String search);
 }
