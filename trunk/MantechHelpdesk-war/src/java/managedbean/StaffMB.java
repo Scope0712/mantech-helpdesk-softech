@@ -15,6 +15,7 @@ import entity.*;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import util.MD5;
 
 /**
  *
@@ -118,13 +119,13 @@ public class StaffMB {
     }
 
     public String CreateStaff() {
-        
+        MD5 md5=new MD5();
         staff.setStaffId("a");
         staff.setTbDepartments(depart);
         tbStaffsFacade.create(staff);
-        
+        System.out.println("da tao staff");
         acc.setAccountId("a");
-        acc.setPassword("123456");
+        acc.setPassword(md5.getMd5Digest("123456"));
         acc.setStatus("Enable");
         acc.setTbRoles(role);
         acc.setTbStaffs(staff);
