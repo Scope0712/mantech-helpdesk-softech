@@ -87,4 +87,20 @@
         <filter-name>FileUploadFilter</filter-name>
         <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
     </filter-mapping>
+	<!--  tuyen 7/11/11: begin config for using primefaces  -->
+    <servlet>
+        <servlet-name>Resource Servlet</servlet-name>
+        <servlet-class>
+            org.primefaces.resource.ResourceServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Resource Servlet</servlet-name>
+        <url-pattern>/primefaces_resource/*</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>com.sun.faces.allowTextChildren</param-name>
+        <param-value>true</param-value>
+    </context-param>
+	<!--  end config for using primefaces  -->
 </web-app>
