@@ -27,6 +27,7 @@ public class CategoryBean {
     private Collection<TbCategories> listCategories;
     private TbCategories myCategory;
 
+    public TbCategories shareCategory = new TbCategories();
     /** Creates a new instance of CategoryMB */
     public CategoryBean() {
         myCategory = getInstanseCategory();
@@ -62,6 +63,10 @@ public class CategoryBean {
     public void select(ActionEvent event) {
         UIParameter para = (UIParameter) event.getComponent().findComponent("categoryId_view");
         setMyCategory(getInstanse().find(para.getValue().toString()));
+    }
+
+    public TbCategories callCatetory(String categoryid) {
+        return getInstanse().find(categoryid);
     }
 
     /**
