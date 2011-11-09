@@ -1,17 +1,77 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>TODO supply a title</title>
-    </head>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
     <body>
-        <p>
-            TODO write content
-        </p>
+        <ui:composition template="./templateAdmin.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h1 align="center"><h:outputText value="List All Solutions"></h:outputText></h1>
+                    <table width="100%" style="margin: 10px;">
+                        <tr>
+                            <td align="left">
+                                <h:commandLink action="AddSolution.xhtml" value="New Solution"></h:commandLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">
+                                <h:commandLink action="SearchSolutions.xhtml" value="Search Solution"></h:commandLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:dataTable value="#{SolutionMB.listAllSolutions}" var="item"  paginator="true" rows="5">
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="View"/>
+                                        </f:facet>
+                                        <h:commandLink  action="ViewSolution.xhtml"  actionListener="#{SolutionMB.select}" value="View">
+                                            <f:param id="solutionId_view" value="#{item.solutionId}"/>
+                                        </h:commandLink>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Edit"/>
+                                        </f:facet>
+                                        <h:commandLink  action="EditSolution.xhtml"  actionListener="#{SolutionMB.editSolution}" value="Edit">
+                                            <f:param id="solutionId_edit" value="#{item.solutionId}"/>
+                                        </h:commandLink>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Delete"/>
+                                        </f:facet>
+                                        <h:commandLink  actionListener="#{SolutionMB.delete}" value="Delete">
+                                            <f:param id="solutionId_delete" value="#{item.solutionId}"/>
+                                        </h:commandLink>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Solution Id"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.solutionId}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Category"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tbCategories.categoryName}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Problem"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.problemContent}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </body>
 </html>

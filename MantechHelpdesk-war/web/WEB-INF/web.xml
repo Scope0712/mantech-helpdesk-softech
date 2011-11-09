@@ -22,6 +22,14 @@
         <servlet-name>EditFAQServlet</servlet-name>
         <servlet-class>servlets.EditFAQServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewSolutionServlet</servlet-name>
+        <servlet-class>servlets.NewSolutionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditSolutionServlet</servlet-name>
+        <servlet-class>servlets.EditSolutionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -33,6 +41,14 @@
     <servlet-mapping>
         <servlet-name>EditFAQServlet</servlet-name>
         <url-pattern>/EditFAQServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewSolutionServlet</servlet-name>
+        <url-pattern>/NewSolutionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditSolutionServlet</servlet-name>
+        <url-pattern>/EditSolutionServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

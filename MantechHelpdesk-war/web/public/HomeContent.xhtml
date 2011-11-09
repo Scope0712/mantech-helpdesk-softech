@@ -7,15 +7,15 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
     <body>
         <f:view>
             <h:form>
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                    <h:dataTable value="#{ArticleMB.listArticle}" var="item" style="margin-left: 15px;">
+                    <p:dataTable value="#{ArticleMB.listArticle}" var="item" paginator="true" rows="10">
                         <tr>
-                            <h:column>
-                                <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
+                            <p:column>
                                     <tr>
                                         <td><b><strong style="font-size: 13pt">
                                                     <h:commandLink action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}" value="#{item.title}">
@@ -90,10 +90,9 @@ and open the template in the editor.
                                     <tr>
                                         <td background="../images/18.gif"><img width="10" height="13" src="../images/spacer.gif"/></td>
                                     </tr>
-                                </table>
-                            </h:column>
+                            </p:column>
                         </tr>
-                    </h:dataTable>
+                    </p:dataTable>
                 </table>
 
             </h:form>
