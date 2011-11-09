@@ -5,6 +5,7 @@
 
 package servlets;
 
+import entity.TbAccounts;
 import entity.TbCategories;
 import entity.TbStaffs;
 import entity.TbTechnicalArticles;
@@ -16,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sessionbean.TbAccountsFacadeLocal;
 import sessionbean.TbTechnicalArticlesFacadeLocal;
 
 /**
@@ -23,11 +25,13 @@ import sessionbean.TbTechnicalArticlesFacadeLocal;
  * @author DELL
  */
 public class NewArticleServlet extends HttpServlet {
+    @EJB
+    private TbAccountsFacadeLocal tbAccountsFacade;
 
     @EJB
     private TbTechnicalArticlesFacadeLocal TbArticles;
+    
     private TbCategories myCategory;
-    private TbStaffs myStaff;
     private TbTechnicalArticles newArticle;
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,19 +44,21 @@ public class NewArticleServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String staffId = request.getParameter("staffId");
+        //String staffId = request.getParameter("staffId");
         String categoryId = request.getParameter("categoryId");
         String title = request.getParameter("title");
         String content = request.getParameter("content2");
         String status = request.getParameter("status");
         // Cut String staffId
-        String staff_Id = staffId.substring(0, 10);
-        System.out.println(staff_Id);
-        myStaff = new TbStaffs(staff_Id);
+        String id = (String) request.getSession().getAttribute("username_online");
+        //String staff_Id = staffId.substring(0, 10);
+        //System.out.println(id);
+        //myStaff = new TbStaffs();
+        TbStaffs a = tbAccountsFacade.find(id).getTbStaffs();
         myCategory = new TbCategories(categoryId);
         newArticle = new TbTechnicalArticles();
         newArticle.setArticleId("abc"); // Tigger genera automatic
-        newArticle.setTbStaffs(myStaff);
+        newArticle.setTbStaffs(a);
         newArticle.setTbCategories(myCategory);
         newArticle.setTitle(title);
         newArticle.setDetailContent(content);

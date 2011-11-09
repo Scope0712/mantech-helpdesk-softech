@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sessionbean.TbAccountsFacadeLocal;
 import sessionbean.TbSolutionsFacadeLocal;
 
 /**
@@ -22,7 +23,7 @@ import sessionbean.TbSolutionsFacadeLocal;
  * @author DELL
  */
 public class EditSolutionServlet extends HttpServlet {
-
+    
     @EJB
     private TbSolutionsFacadeLocal TbSolutions;
     private TbCategories myCategory;
