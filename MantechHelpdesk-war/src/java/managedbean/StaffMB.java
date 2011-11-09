@@ -119,10 +119,15 @@ public class StaffMB {
     }
 
     public String CreateStaff() {
+       // staff=new TbStaffs();
         MD5 md5=new MD5();
         staff.setStaffId("a");
         staff.setTbDepartments(depart);
+        try{
         tbStaffsFacade.create(staff);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
         System.out.println("da tao staff");
         acc.setAccountId("a");
         acc.setPassword(md5.getMd5Digest("123456"));
