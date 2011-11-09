@@ -90,6 +90,7 @@ public class SolutionMB {
     public void searchListSolutions(ActionEvent event) {
         listSearchSolutions.clear();
         setListSearchSolutions(getInstanseSolutionFacadeLocal().searchListSolutions(getSearch()));
+        setSearch("");
     }
 
     /**

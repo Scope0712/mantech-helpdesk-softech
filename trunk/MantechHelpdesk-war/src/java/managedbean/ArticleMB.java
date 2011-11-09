@@ -27,17 +27,6 @@ import sessionbean.TbTechnicalArticlesFacadeLocal;
 @SessionScoped
 public class ArticleMB {
 
-    public static ArticleMB instanceArticle;
-
-    /**
-     * @return the instanceArticle
-     */
-    public static ArticleMB getInstanceArticle() {
-        if(null == instanceArticle){
-            instanceArticle = new ArticleMB();
-        }
-        return instanceArticle;
-    }
     @EJB
     private TbTechnicalArticlesFacadeLocal TbTechnicalArticles;
     private TbCategoriesFacadeLocal TbCategories;
@@ -47,15 +36,28 @@ public class ArticleMB {
     private Collection<TbTechnicalArticles> listTopArticle = new ArrayList<TbTechnicalArticles>();
     private Collection<TbTechnicalArticles> listSortArticleByCategory = new ArrayList<TbTechnicalArticles>();
     private TbTechnicalArticles myTbTechnicalArticle;
+    private TbTechnicalArticles newArticle;
     private TbCategories myCategory;
 
     private String strSearch = "";
     private String category = "";
-    
+    public static ArticleMB instanceArticle;
+
     /** Creates a new instance of ArticleMB */
     public ArticleMB() {
         myTbTechnicalArticle = new TbTechnicalArticles();
         myCategory = new TbCategories();
+        newArticle = new TbTechnicalArticles();
+    }
+
+    /**
+     * @return the instanceArticle
+     */
+    public static ArticleMB getInstanceArticle() {
+        if(null == instanceArticle){
+            instanceArticle = new ArticleMB();
+        }
+        return instanceArticle;
     }
 
     public TbTechnicalArticlesFacadeLocal getInstanseArticlesFacadeLocal() {
@@ -147,6 +149,7 @@ public class ArticleMB {
     public void searchArticle(ActionEvent event){
         listArticleSearch.clear();
         setListArticleSearch(getInstanseArticlesFacadeLocal().findAllBySearch(strSearch));
+        strSearch = "";
     }
 
     public void selectTopArticle(){
@@ -247,5 +250,19 @@ public class ArticleMB {
      */
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    /**
+     * @return the newArticle
+     */
+    public TbTechnicalArticles getNewArticle() {
+        return newArticle;
+    }
+
+    /**
+     * @param newArticle the newArticle to set
+     */
+    public void setNewArticle(TbTechnicalArticles newArticle) {
+        this.newArticle = newArticle;
     }
 }
