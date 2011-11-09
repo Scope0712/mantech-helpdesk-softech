@@ -103,6 +103,7 @@ public class FAQBean {
     public void searchListFAQs(ActionEvent event) {
         listSearchFAQs.clear();
         setListSearchFAQs(getInstanseFAQsFacadeLocal().searchListFAQs(search));
+        search = "";
     }
 
     /**

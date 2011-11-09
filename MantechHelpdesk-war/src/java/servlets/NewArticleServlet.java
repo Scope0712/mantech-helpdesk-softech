@@ -6,8 +6,8 @@
 package servlets;
 
 import entity.TbCategories;
-import entity.TbSolutions;
 import entity.TbStaffs;
+import entity.TbTechnicalArticles;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -16,19 +16,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sessionbean.TbSolutionsFacadeLocal;
+import sessionbean.TbTechnicalArticlesFacadeLocal;
 
 /**
  *
  * @author DELL
  */
-public class NewSolutionServlet extends HttpServlet {
+public class NewArticleServlet extends HttpServlet {
 
     @EJB
-    private TbSolutionsFacadeLocal TbSolutions;
+    private TbTechnicalArticlesFacadeLocal TbArticles;
     private TbCategories myCategory;
     private TbStaffs myStaff;
-    private TbSolutions newSolution;
+    private TbTechnicalArticles newArticle;
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -42,33 +42,47 @@ public class NewSolutionServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String staffId = request.getParameter("staffId");
         String categoryId = request.getParameter("categoryId");
-        String problem = request.getParameter("problem");
-        String resolve = request.getParameter("resolve");
+        String title = request.getParameter("title");
+        String content = request.getParameter("content2");
         String status = request.getParameter("status");
         // Cut String staffId
         String staff_Id = staffId.substring(0, 10);
         System.out.println(staff_Id);
         myStaff = new TbStaffs(staff_Id);
         myCategory = new TbCategories(categoryId);
-        newSolution = new TbSolutions();
-        newSolution.setSolutionId("abc"); // Tigger genera automatic
-        newSolution.setTbStaffs(myStaff);
-        newSolution.setTbCategories(myCategory);
-        newSolution.setProblemContent(problem);
-        newSolution.setDetailResolve(resolve);
-        newSolution.setCreateDate(new Date());
-        newSolution.setUpdateDate(new Date());
-        newSolution.setStatus(status);
-        TbSolutions.create(newSolution);
-        response.sendRedirect("faces/admin/ShowAllSolutions.xhtml");
+        newArticle = new TbTechnicalArticles();
+        newArticle.setArticleId("abc"); // Tigger genera automatic
+        newArticle.setTbStaffs(myStaff);
+        newArticle.setTbCategories(myCategory);
+        newArticle.setTitle(title);
+        newArticle.setDetailContent(content);
+        newArticle.setCreateDate(new Date());
+        newArticle.setUpdateDate(new Date());
+        newArticle.setViewNo(0);
+        newArticle.setRate(0);
+        newArticle.setRateTotal(0);
+        newArticle.setRating(0);
+        newArticle.setStarOne(0);
+        newArticle.setStarTwo(0);
+        newArticle.setStarThree(0);
+        newArticle.setStarFour(0);
+        newArticle.setStarFive(0);
+        newArticle.setStarSix(0);
+        newArticle.setStarSeven(0);
+        newArticle.setStarEight(0);
+        newArticle.setStarNine(0);
+        newArticle.setStarTen(0);
+        newArticle.setStatus(status);
+        TbArticles.create(newArticle);
+        response.sendRedirect("faces/admin/ShowAllArticles.xhtml");
 //        try {
 //            /* TODO output your page here
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>Servlet NewSolutionServlet</title>");
+//            out.println("<title>Servlet NewArticleServlet</title>");
 //            out.println("</head>");
 //            out.println("<body>");
-//            out.println("<h1>Servlet NewSolutionServlet at " + request.getContextPath () + "</h1>");
+//            out.println("<h1>Servlet NewArticleServlet at " + request.getContextPath () + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
 //            */
