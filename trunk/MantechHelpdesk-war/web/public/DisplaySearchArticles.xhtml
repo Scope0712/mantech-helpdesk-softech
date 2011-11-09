@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
     <body>
         <ui:composition
             template="../template/template.xhtml">
@@ -25,88 +26,86 @@
                     <f:view>
                         <h:form>
                             <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                                <h:dataTable value="#{ArticleMB.listArticleSearch}" var="item" style="margin-left: 15px;">
+                                <p:dataTable value="#{ArticleMB.listArticleSearch}" var="item" paginator="true" rows="5">
                                     <tr>
-                                        <h:column>
-                                            <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
-                                                <tr>
-                                                    <td><b><strong style="font-size: 13pt">
-                                                                <h:commandLink action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}" value="#{item.title}">
-                                                                    <f:param id="articleId_view" value="#{item.articleId}"/>
-                                                                </h:commandLink>
-                                                            </strong></b>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <i><strong style="font-size: 10pt">Create on : <h:outputText value="#{item.createDate}"/></strong></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <i><strong style="font-size: 8pt">View Number : <h:outputText value="#{item.viewNo}"/></strong></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="answer"><h:outputText value="#{item.detailContent}"/></div>
-                                                        <script type="text/javascript">
-                                                            $(document).ready(function(){
-                                                                $(".answer").readmore();
-                                                            });
-                                                        </script>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="right"><i><strong style="font-size: 11pt;">
-                                                                <h:commandLink action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}">
-                                                                    <h:graphicImage alt="image" id="imagedetail" name="../images/chitiet.jpg" height="18px"/>
-                                                                    <f:param id="articleId_view2" value="#{item.articleId}"/>
-                                                                </h:commandLink>
-                                                            </strong></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="left" style="height: 8px"><i><strong style="font-size: 9pt;">Rating Number :
-                                                                <h:graphicImage alt="image" id="image1" name="../images/full.gif" rendered="#{item.starOne==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image2" name="../images/none.gif" rendered="#{item.starOne==0}" height="15px" width="15px"/>
+                                        <p:column>
+                                            <tr>
+                                                <td><b><strong style="font-size: 13pt">
+                                                            <h:commandLink action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}" value="#{item.title}">
+                                                                <f:param id="articleId_view" value="#{item.articleId}"/>
+                                                            </h:commandLink>
+                                                        </strong></b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <i><strong style="font-size: 10pt">Create on : <h:outputText value="#{item.createDate}"/></strong></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <i><strong style="font-size: 8pt">View Number : <h:outputText value="#{item.viewNo}"/></strong></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="answer"><h:outputText value="#{item.detailContent}"/></div>
+                                                    <script type="text/javascript">
+                                                        $(document).ready(function(){
+                                                            $(".answer").readmore();
+                                                        });
+                                                    </script>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><i><strong style="font-size: 11pt;">
+                                                            <h:commandLink action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}">
+                                                                <h:graphicImage alt="image" id="imagedetail" name="../images/chitiet.jpg" height="18px"/>
+                                                                <f:param id="articleId_view2" value="#{item.articleId}"/>
+                                                            </h:commandLink>
+                                                        </strong></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" style="height: 8px"><i><strong style="font-size: 9pt;">Rating Number :
+                                                            <h:graphicImage alt="image" id="image1" name="../images/full.gif" rendered="#{item.starOne==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image2" name="../images/none.gif" rendered="#{item.starOne==0}" height="15px" width="15px"/>
 
-                                                                <h:graphicImage alt="image" id="image3" name="../images/full.gif" rendered="#{item.starTwo==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image4" name="../images/none.gif" rendered="#{item.starTwo==0}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image3" name="../images/full.gif" rendered="#{item.starTwo==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image4" name="../images/none.gif" rendered="#{item.starTwo==0}" height="15px" width="15px"/>
 
-                                                                <h:graphicImage alt="image" id="image5" name="../images/full.gif" rendered="#{item.starThree==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image6" name="../images/none.gif" rendered="#{item.starThree==0}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image5" name="../images/full.gif" rendered="#{item.starThree==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image6" name="../images/none.gif" rendered="#{item.starThree==0}" height="15px" width="15px"/>
 
-                                                                <h:graphicImage alt="image" id="image7" name="../images/full.gif" rendered="#{item.starFour==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image8" name="../images/none.gif" rendered="#{item.starFour==0}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image7" name="../images/full.gif" rendered="#{item.starFour==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image8" name="../images/none.gif" rendered="#{item.starFour==0}" height="15px" width="15px"/>
 
-                                                                <h:graphicImage alt="image" id="image9" name="../images/full.gif" rendered="#{item.starFive==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image10" name="../images/none.gif" rendered="#{item.starFive==0}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image9" name="../images/full.gif" rendered="#{item.starFive==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image10" name="../images/none.gif" rendered="#{item.starFive==0}" height="15px" width="15px"/>
 
-                                                                <h:graphicImage alt="image" id="image11" name="../images/full.gif" rendered="#{item.starSix==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image12" name="../images/none.gif" rendered="#{item.starSix==0}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image11" name="../images/full.gif" rendered="#{item.starSix==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image12" name="../images/none.gif" rendered="#{item.starSix==0}" height="15px" width="15px"/>
 
-                                                                <h:graphicImage alt="image" id="image13" name="../images/full.gif" rendered="#{item.starSeven==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image14" name="../images/none.gif" rendered="#{item.starSeven==0}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image13" name="../images/full.gif" rendered="#{item.starSeven==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image14" name="../images/none.gif" rendered="#{item.starSeven==0}" height="15px" width="15px"/>
 
-                                                                <h:graphicImage alt="image" id="image15" name="../images/full.gif" rendered="#{item.starEight==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image16" name="../images/none.gif" rendered="#{item.starEight==0}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image15" name="../images/full.gif" rendered="#{item.starEight==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image16" name="../images/none.gif" rendered="#{item.starEight==0}" height="15px" width="15px"/>
 
-                                                                <h:graphicImage alt="image" id="image17" name="../images/full.gif" rendered="#{item.starNine==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image18" name="../images/none.gif" rendered="#{item.starNine==0}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image17" name="../images/full.gif" rendered="#{item.starNine==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image18" name="../images/none.gif" rendered="#{item.starNine==0}" height="15px" width="15px"/>
 
-                                                                <h:graphicImage alt="image" id="image19" name="../images/full.gif" rendered="#{item.starTen==1}" height="15px" width="15px"/>
-                                                                <h:graphicImage alt="image" id="image20" name="../images/none.gif" rendered="#{item.starTen==0}" height="15px" width="15px"/>
-                                                            </strong></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td background="../images/18.gif"><img width="10" height="13" src="../images/spacer.gif"/></td>
-                                                </tr>
-                                            </table>
-                                        </h:column>
+                                                            <h:graphicImage alt="image" id="image19" name="../images/full.gif" rendered="#{item.starTen==1}" height="15px" width="15px"/>
+                                                            <h:graphicImage alt="image" id="image20" name="../images/none.gif" rendered="#{item.starTen==0}" height="15px" width="15px"/>
+                                                        </strong></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td background="../images/18.gif"><img width="10" height="13" src="../images/spacer.gif"/></td>
+                                            </tr>
+                                        </p:column>
                                     </tr>
-                                </h:dataTable>
+                                </p:dataTable>
                             </table>
 
                         </h:form>

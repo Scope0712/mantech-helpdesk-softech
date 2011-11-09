@@ -1,17 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>TODO supply a title</title>
-    </head>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
     <body>
-        <p>
-            TODO write content
-        </p>
+        <ui:composition template="./templateAdmin.xhtml">
+            <ui:define name="content">
+                <table border="0" style="margin: 10px;">
+                    <tbody>
+                        <tr>
+                            <h1 align="center"><h:outputText value="Solution Information"></h:outputText></h1>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Solution Id" ></h:outputLabel></td>
+                            <td><h:outputText value="#{SolutionMB.myTbSolutions.solutionId}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Category" ></h:outputLabel></td>
+                            <td><h:outputText value="#{SolutionMB.myTbSolutions.tbCategories.categoryName}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Problem Content" ></h:outputLabel></td>
+                            <td><h:outputText value="#{SolutionMB.myTbSolutions.problemContent}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Resolve" ></h:outputLabel></td>
+                            <td>
+                                <div class="resolve"><h:outputText value="#{SolutionMB.myTbSolutions.detailResolve}"></h:outputText></div>
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $(".resolve").readmore();
+                                    });
+                                </script></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Create Date Solution" ></h:outputLabel></td>
+                            <td><h:outputText value="#{SolutionMB.myTbSolutions.createDate}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Update Date Solution" ></h:outputLabel></td>
+                            <td><h:outputText value="#{SolutionMB.myTbSolutions.updateDate}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Status Solution" ></h:outputLabel></td>
+                            <td><h:outputText value="#{SolutionMB.myTbSolutions.status}"></h:outputText></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ui:define>
+        </ui:composition>
+
     </body>
 </html>
