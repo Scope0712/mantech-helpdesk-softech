@@ -4,137 +4,115 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
 
     <body>
         <ui:composition template="./templateAdmin.xhtml">
             <ui:define name="content">
-                <f:view>
-                    <h:form>
-                        <h1><h:outputText value="List All Articles"></h:outputText></h1>
-                        <table width="100%">
-                            <h:dataTable value="#{ArticleMB.listArticle}" var="item">
-                                <tr>
-                                    <td>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="View Detail"/>
-                                            </f:facet>
-                                            <h:commandLink  action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}" value="View">
-                                                <f:param id="articleId_view" value="#{item.articleId}"/>
-                                            </h:commandLink>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Edit Detail"/>
-                                            </f:facet>
-                                            <h:commandLink  action="EditArticle.xhtml"  actionListener="#{ArticleMB.editArticle}" value="Edit">
-                                                <f:param id="articleId_edit" value="#{item.articleId}"/>
-                                            </h:commandLink>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Delete"/>
-                                            </f:facet>
-                                            <h:commandLink  actionListener="#{ArticleMB.delete}" value="Delete">
-                                                <f:param id="articleId_delete" value="#{item.articleId}"/>
-                                            </h:commandLink>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Article Id"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.articleId}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Category"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.tbCategories.categoryId}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Title"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.title}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="View Number"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.viewNo}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Rating Number"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.rating}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Rate Total"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.rateTotal}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Rate Number"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.rate}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Vote Image"/>
-                                            </f:facet>
-                                            <h:graphicImage alt="image" id="image1" name="../images/full.gif" rendered="#{item.starOne==1}"/>
-                                            <h:graphicImage alt="image" id="image2" name="../images/none.gif" rendered="#{item.starOne==0}"/>
+                <h:form>
+                    <h1 align="center"><h:outputText value="List All Articles"></h:outputText></h1>
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <h:commandLink action="AddArticle.xhtml" value="New Article"></h:commandLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:commandLink action="SearchArticles.xhtml" value="Search Article"></h:commandLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:dataTable value="#{ArticleMB.listArticle}" var="item" paginator="true" rows="10">
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="View"/>
+                                        </f:facet>
+                                        <h:commandLink  action="ViewArticle.xhtml"  actionListener="#{ArticleMB.select}" value="View">
+                                            <f:param id="articleId_view" value="#{item.articleId}"/>
+                                        </h:commandLink>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Edit"/>
+                                        </f:facet>
+                                        <h:commandLink  action="EditArticle.xhtml"  actionListener="#{ArticleMB.editArticle}" value="Edit">
+                                            <f:param id="articleId_edit" value="#{item.articleId}"/>
+                                        </h:commandLink>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Delete"/>
+                                        </f:facet>
+                                        <h:commandLink  actionListener="#{ArticleMB.delete}" value="Delete">
+                                            <f:param id="articleId_delete" value="#{item.articleId}"/>
+                                        </h:commandLink>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Article Id"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.articleId}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Category"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tbCategories.categoryName}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Title"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.title}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="View"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.viewNo}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Vote"/>
+                                        </f:facet>
+                                        <h:graphicImage alt="image" id="image1" name="../images/full.gif" rendered="#{item.starOne==1}"/>
+                                        <h:graphicImage alt="image" id="image2" name="../images/none.gif" rendered="#{item.starOne==0}"/>
 
-                                            <h:graphicImage alt="image" id="image3" name="../images/full.gif" rendered="#{item.starTwo==1}"/>
-                                            <h:graphicImage alt="image" id="image4" name="../images/none.gif" rendered="#{item.starTwo==0}"/>
+                                        <h:graphicImage alt="image" id="image3" name="../images/full.gif" rendered="#{item.starTwo==1}"/>
+                                        <h:graphicImage alt="image" id="image4" name="../images/none.gif" rendered="#{item.starTwo==0}"/>
 
-                                            <h:graphicImage alt="image" id="image5" name="../images/full.gif" rendered="#{item.starThree==1}"/>
-                                            <h:graphicImage alt="image" id="image6" name="../images/none.gif" rendered="#{item.starThree==0}"/>
+                                        <h:graphicImage alt="image" id="image5" name="../images/full.gif" rendered="#{item.starThree==1}"/>
+                                        <h:graphicImage alt="image" id="image6" name="../images/none.gif" rendered="#{item.starThree==0}"/>
 
-                                            <h:graphicImage alt="image" id="image7" name="../images/full.gif" rendered="#{item.starFour==1}"/>
-                                            <h:graphicImage alt="image" id="image8" name="../images/none.gif" rendered="#{item.starFour==0}"/>
+                                        <h:graphicImage alt="image" id="image7" name="../images/full.gif" rendered="#{item.starFour==1}"/>
+                                        <h:graphicImage alt="image" id="image8" name="../images/none.gif" rendered="#{item.starFour==0}"/>
 
-                                            <h:graphicImage alt="image" id="image9" name="../images/full.gif" rendered="#{item.starFive==1}"/>
-                                            <h:graphicImage alt="image" id="image10" name="../images/none.gif" rendered="#{item.starFive==0}"/>
+                                        <h:graphicImage alt="image" id="image9" name="../images/full.gif" rendered="#{item.starFive==1}"/>
+                                        <h:graphicImage alt="image" id="image10" name="../images/none.gif" rendered="#{item.starFive==0}"/>
 
-                                            <h:graphicImage alt="image" id="image11" name="../images/full.gif" rendered="#{item.starSix==1}"/>
-                                            <h:graphicImage alt="image" id="image12" name="../images/none.gif" rendered="#{item.starSix==0}"/>
+                                        <h:graphicImage alt="image" id="image11" name="../images/full.gif" rendered="#{item.starSix==1}"/>
+                                        <h:graphicImage alt="image" id="image12" name="../images/none.gif" rendered="#{item.starSix==0}"/>
 
-                                            <h:graphicImage alt="image" id="image13" name="../images/full.gif" rendered="#{item.starSeven==1}"/>
-                                            <h:graphicImage alt="image" id="image14" name="../images/none.gif" rendered="#{item.starSeven==0}"/>
+                                        <h:graphicImage alt="image" id="image13" name="../images/full.gif" rendered="#{item.starSeven==1}"/>
+                                        <h:graphicImage alt="image" id="image14" name="../images/none.gif" rendered="#{item.starSeven==0}"/>
 
-                                            <h:graphicImage alt="image" id="image15" name="../images/full.gif" rendered="#{item.starEight==1}"/>
-                                            <h:graphicImage alt="image" id="image16" name="../images/none.gif" rendered="#{item.starEight==0}"/>
+                                        <h:graphicImage alt="image" id="image15" name="../images/full.gif" rendered="#{item.starEight==1}"/>
+                                        <h:graphicImage alt="image" id="image16" name="../images/none.gif" rendered="#{item.starEight==0}"/>
 
-                                            <h:graphicImage alt="image" id="image17" name="../images/full.gif" rendered="#{item.starNine==1}"/>
-                                            <h:graphicImage alt="image" id="image18" name="../images/none.gif" rendered="#{item.starNine==0}"/>
+                                        <h:graphicImage alt="image" id="image17" name="../images/full.gif" rendered="#{item.starNine==1}"/>
+                                        <h:graphicImage alt="image" id="image18" name="../images/none.gif" rendered="#{item.starNine==0}"/>
 
-                                            <h:graphicImage alt="image" id="image19" name="../images/full.gif" rendered="#{item.starTen==1}"/>
-                                            <h:graphicImage alt="image" id="image20" name="../images/none.gif" rendered="#{item.starTen==0}"/>
-                                        </h:column>
-
-                                    </td>
-
-                                </tr>
-                            </h:dataTable>
-                            <tr>
-                                <td>
-                                    <h:commandLink action="AddArticle.xhtml" value="New Article"></h:commandLink>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:commandLink action="SearchArticles.xhtml" value="Search Article"></h:commandLink>
-                                </td>
-                            </tr>
-                        </table>
-
-                    </h:form>
-                </f:view>
+                                        <h:graphicImage alt="image" id="image19" name="../images/full.gif" rendered="#{item.starTen==1}"/>
+                                        <h:graphicImage alt="image" id="image20" name="../images/none.gif" rendered="#{item.starTen==0}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
             </ui:define>
         </ui:composition>
     </body>
