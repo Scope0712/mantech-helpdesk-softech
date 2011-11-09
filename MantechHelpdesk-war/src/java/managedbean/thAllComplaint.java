@@ -14,7 +14,10 @@ import java.util.Collection;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import sessionbean.ComplaintDetailsFacadeLocal;
+import sessionbean.TbAccountsFacadeLocal;
 import sessionbean.TbCategoriesFacadeLocal;
 import sessionbean.TbComplaintLogsFacadeLocal;
 import sessionbean.TbComplaintStatusFacadeLocal;
@@ -28,6 +31,8 @@ import sessionbean.TbComplaintsFacadeLocal;
 @RequestScoped
 public class thAllComplaint {
 
+    @EJB
+    private TbAccountsFacadeLocal tbAccountsFacade;
     @EJB
     private TbComplaintLogsFacadeLocal tbComplaintLogsFacade;
     @EJB
@@ -47,6 +52,18 @@ public class thAllComplaint {
     String employeeId;
     TbComplaintLogs log;
 
+    public String getEmployeeId() {
+        HttpSession sessionuser = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        String id = (String) sessionuser.getAttribute("username_online");
+        employeeId=tbAccountsFacade.find(id).getTbStaffs().getStaffId();
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
+
     public TbComplaintLogs getLog() {
         return log;
     }
@@ -55,8 +72,8 @@ public class thAllComplaint {
         this.log = log;
     }
 
-
     public Collection<ComplaintDetails> getListComplaint() {
+        employeeId=getEmployeeId();
         return complaintDetailsFacade.findByEmployeeID(employeeId);
     }
 
@@ -91,6 +108,7 @@ public class thAllComplaint {
     }
 
     public Collection<ComplaintDetails> getListNotSolved() {
+        employeeId=getEmployeeId();
         return complaintDetailsFacade.findComplaintStatus(employeeId, "Statu00004");
     }
 
@@ -99,6 +117,7 @@ public class thAllComplaint {
     }
 
     public Collection<ComplaintDetails> getListSolved() {
+        employeeId=getEmployeeId();
         return complaintDetailsFacade.findComplaintStatus(employeeId, "Statu00003");
     }
 
@@ -107,6 +126,7 @@ public class thAllComplaint {
     }
 
     public Collection<ComplaintDetails> getListSolving() {
+        employeeId=getEmployeeId();
         return complaintDetailsFacade.findComplaintStatus(employeeId, "Statu00002");
     }
 
@@ -115,6 +135,7 @@ public class thAllComplaint {
     }
 
     public Collection<ComplaintDetails> getListPending() {
+        employeeId=getEmployeeId();
         return complaintDetailsFacade.findComplaintStatus(employeeId, "Statu00001");
     }
 
@@ -124,8 +145,7 @@ public class thAllComplaint {
 
     /** Creates a new instance of thAllComplaint */
     public thAllComplaint() {
-        employeeId = "Staff00001";
-        log=new TbComplaintLogs();
+        log = new TbComplaintLogs();
     }
 
     public String Resend(Complaint com) {
@@ -150,7 +170,7 @@ public class thAllComplaint {
         logs.setTbComplaintLogsPK(LogsPK);
         //create
         tbComplaintLogsFacade.create(logs);
-        
+
         return "ComplaintPending";
     }
 
