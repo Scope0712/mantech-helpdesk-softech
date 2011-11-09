@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sessionbean.TbAccountsFacadeLocal;
 import sessionbean.TbSolutionsFacadeLocal;
 
 /**
@@ -23,7 +24,8 @@ import sessionbean.TbSolutionsFacadeLocal;
  * @author DELL
  */
 public class NewSolutionServlet extends HttpServlet {
-
+    @EJB
+    private TbAccountsFacadeLocal tbAccountsFacade;
     @EJB
     private TbSolutionsFacadeLocal TbSolutions;
     private TbCategories myCategory;
@@ -40,19 +42,19 @@ public class NewSolutionServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String staffId = request.getParameter("staffId");
+        //String staffId = request.getParameter("staffId");
         String categoryId = request.getParameter("categoryId");
         String problem = request.getParameter("problem");
         String resolve = request.getParameter("resolve");
         String status = request.getParameter("status");
-        // Cut String staffId
-        String staff_Id = staffId.substring(0, 10);
-        System.out.println(staff_Id);
-        myStaff = new TbStaffs(staff_Id);
+        //String staff_Id = staffId.substring(0, 10);
+        System.out.println("Noi dung :" + problem);
+        String id = (String) request.getSession().getAttribute("username_online");
+        TbStaffs a = tbAccountsFacade.find(id).getTbStaffs();
         myCategory = new TbCategories(categoryId);
         newSolution = new TbSolutions();
         newSolution.setSolutionId("abc"); // Tigger genera automatic
-        newSolution.setTbStaffs(myStaff);
+        newSolution.setTbStaffs(a);
         newSolution.setTbCategories(myCategory);
         newSolution.setProblemContent(problem);
         newSolution.setDetailResolve(resolve);
