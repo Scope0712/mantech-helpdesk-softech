@@ -41,7 +41,7 @@ public class EditArticleServlet extends HttpServlet {
         String articleId = request.getParameter("articleId");
         String categoryId = request.getParameter("categoryId");
         String title = request.getParameter("title");
-        String content = request.getParameter("content");
+        String content = request.getParameter("content2");
         String status = request.getParameter("status");
 
         myCategory = new TbCategories(categoryId);
