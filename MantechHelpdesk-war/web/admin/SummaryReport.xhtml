@@ -3,26 +3,112 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.prime.com.tr/ui">
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <!--    <script type="text/javascript">
+            var piechartStyle = {
+                    padding:20,
+                    legend: {
+                            display:"right",spacing:10
+                    }
+            };
+        </script>-->
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
         <title>Complaint Report</title>
         <p:resources />
+
     </h:head>
 
     <body>
 
-        <ui:composition template="./Admin_Temp.xhtml">
-
-
-
-            <ui:define name="left">
-                left
-            </ui:define>
+        <ui:composition template="./templateAdmin.xhtml">
 
             <ui:define name="content">
+                <!--                <h:form>
+                                    <p:pieChart value="#{tSummaryReportMB.sumListByDept}" var="item" categoryField="#{item.tbDepartments.departmentName}" dataField="#{item.numberOfComplaint}"  height="250px" width="250px"/>
+                                    style=" padding:20,legend:{ display:right,spacing:10}" />
+
+                                     <p:pieChart value="#{tSummaryReportMB.sumListByDept}" legendPosition="w" title="Sample Pie Chart" style="width:400px;height:300px" />
+
+                                </h:form>-->
                 <h:form>
-                    <p:pieChart value="#{tSummaryReportMB.sumListByDept}" var="item" categoryField="#{item.tbDepartments.departmentName}" dataField="#{item.numberOfComplaint}"/>
+                    <p:accordionPanel effect="bounceslide" autoHeight="true" collapsible="true">
+                        <p:tab title="Summary Report By Department">
+                            <p:layout style="width:500px;height:255px;">
+                                <p:layoutUnit position="left" width="255">
+                                    <p:pieChart value="#{tSummaryReportMB.sumListByDept}" var="item" categoryField="#{tSummaryReportMB.findDept(item.departmentId).getDepartmentName()}" dataField="#{item.numberOfComplaint}"  height="250px" width="250px" />
+                                </p:layoutUnit>
+                                <p:layoutUnit position="center" width="220">
+                                    <p:dataTable value="#{tSummaryReportMB.sumListByDept}" var="item">
+                                        <p:column>  
+                                            <f:facet name="header">  
+                                                Dept
+                                            </f:facet>  
+                                            <h:outputText value="#{tSummaryReportMB.findDept(item.departmentId).getDepartmentName()}" />
+                                        </p:column>  
+                                        <p:column>
+                                            <f:facet name="header">  
+                                                Complaint
+                                            </f:facet>  
+                                            <h:outputText value="#{item.numberOfComplaint}" />  
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:layoutUnit>
+                            </p:layout>
+
+                        </p:tab>
+                        <p:tab title="Summary Report By Category">
+                            <p:layout style="width:500px;height:255px;">
+                                <p:layoutUnit position="left" width="255">
+                                    <p:pieChart value="#{tSummaryReportMB.sumListByCate}" var="item" categoryField="#{tCategoryMB.findCategory(item.categoryId).getCategoryName()}" dataField="#{item.numberOfComplaint}"  height="250px" width="250px" />
+                                </p:layoutUnit>
+                                <p:layoutUnit position="center" width="220">
+                                    <p:dataTable value="#{tSummaryReportMB.sumListByCate}" var="item">
+                                        <p:column>
+                                            <f:facet name="header">
+                                                Category
+                                            </f:facet>
+                                            <h:outputText value="#{tCategoryMB.findCategory(item.categoryId).getCategoryName()}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                Complaint
+                                            </f:facet>
+                                            <h:outputText value="#{item.numberOfComplaint}" />
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:layoutUnit>
+                            </p:layout>
+                        </p:tab>
+                        <p:tab title="Summary Report By Technician">
+                            <p:layout style="width:500px;height:255px;">
+                                <p:layoutUnit position="left" width="255">
+
+                                    <p:pieChart value="#{tSummaryReportMB.sumListByTech}" var="item" categoryField="#{tSummaryReportMB.findStaff(item.technicianId).getLastName()} #{tSummaryReportMB.findStaff(item.technicianId).getFirstName()}" dataField="#{item.numberOfComplaint}"  height="250px" width="250px" />
+
+                                </p:layoutUnit>
+                                <p:layoutUnit position="center" width="220">
+                                    <p:dataTable value="#{tSummaryReportMB.sumListByTech}" var="item">
+                                        <p:column>
+                                            <f:facet name="header">
+                                                Technician
+                                            </f:facet>
+                                            <h:outputText value="#{tSummaryReportMB.findStaff(item.technicianId).getLastName()} #{tSummaryReportMB.findStaff(item.technicianId).getFirstName()}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                Complaint
+                                            </f:facet>
+                                            <h:outputText value="#{item.numberOfComplaint}" />
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:layoutUnit>
+                            </p:layout>
+                        </p:tab>
+                    </p:accordionPanel>
                 </h:form>
             </ui:define>
 
