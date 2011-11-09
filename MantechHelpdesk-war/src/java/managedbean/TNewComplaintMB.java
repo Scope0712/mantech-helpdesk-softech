@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.servlet.http.HttpSession;
 import sessionbean.ComplDetailAndCurrentStatusFacadeLocal;
+import sessionbean.TbAccountsFacadeLocal;
 import sessionbean.TbAssignTasksFacadeLocal;
 import sessionbean.TbCategoriesFacadeLocal;
 import sessionbean.TbComplaintLogsFacadeLocal;
@@ -30,6 +31,8 @@ import sessionbean.TbStaffsFacadeLocal;
  * @author tuyenbui
  */
 public class TNewComplaintMB {
+    @EJB
+    private TbAccountsFacadeLocal tbAccountsFacade;
 
     @EJB
     private ComplDetailAndCurrentStatusFacadeLocal complDetailAndCurrentStatusFacade;
@@ -98,6 +101,9 @@ public class TNewComplaintMB {
     private TbAssignTasksFacadeLocal tbAssignTasksFacade;
     @EJB
     private TbCategoriesFacadeLocal tbCategoriesFacade;
+
+
+
     private TbAssignTasks task;
     private TbComplaints comp;
     private TbStaffs admin;
@@ -127,7 +133,10 @@ public class TNewComplaintMB {
         task = new TbAssignTasks("");//task id
 
         //tim admin dang login, o day gan luon, de sua sau
-        admin = tbStaffsFacade.find("Staff00001");
+        String accountId = (String)((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).getAttribute("username_online");
+        admin = tbAccountsFacade.find(accountId).getTbStaffs();
+//        String staffId = tbStaffsFacade.find(accountId).getStaffId();
+//        admin = tbStaffsFacade.find(staffId);//"Staff00001"
         task.setTbStaffs1(admin);
         System.out.println("set admin ok");
 
