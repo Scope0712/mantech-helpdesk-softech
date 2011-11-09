@@ -4,13 +4,14 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui" >
 
     <body>
-       <ui:composition template="./templateAdmin.xhtml">
+        <ui:composition template="./templateAdmin.xhtml">
             <ui:define name="content">
                 <h:form>
-<!--                <h:form style="border-color: black; width:698px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">-->
+                    <!--                <h:form style="border-color: black; width:698px; float: right; text-align: left; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">-->
                     <!--                <div style="border-color: black; width: 700px; float: right; border-width: 1; text-align: left">-->
                     <span style="font-size: x-large;"> <b>#{accountMB.title}</b></span>
                     <hr/>
@@ -38,20 +39,23 @@
                     <br style="clear: both"/>
                     <div style="padding: 5px">
                         <div style="float: left;width: 25%; text-align: right"><h:outputLabel value="Gender" for="gender"/></div>
-                        <div style="float:right;width:73%;text-align: left">
+                        <div style="float:left;width:25%;text-align: left; padding-left: 15px">
                             <h:selectOneRadio style="border:2px; border-color: black; border-style: inset; background: activeborder" id="gender" value="#{staffMB.staff.gender}">
                                 <f:selectItem itemValue="Male" itemLabel="Male" />
                                 <f:selectItem itemValue="Female" itemLabel="Female" />
                             </h:selectOneRadio></div>
+                        
                     </div>
                     <br style="clear: both"/>
 
                     <div style="padding: 5px">
                         <div style="float: left;width: 25%; text-align: right"><h:outputText value="Birthday "/></div>
                         <div style="float:right;width:73%;text-align: left">
-                            <h:inputText style="border:2px; border-color: black; border-style: inset; background: activeborder" value="#{staffMB.staff.dateOfBirth}">
-                                <f:convertDateTime dateStyle="short" pattern="MM/dd/yyyy"/>
-                            </h:inputText></div>
+                            <!--                            <h:inputText style="border:2px; border-color: black; border-style: inset; background: activeborder" value="{staffMB.staff.dateOfBirth}">
+                                                            <f:convertDateTime dateStyle="short" pattern="MM/dd/yyyy"/>
+                                                        </h:inputText>-->
+                            <p:calendar value="#{staffMB.staff.dateOfBirth}" showOn="button"/>
+                        </div>
                     </div>
 
                     <br style="clear: both"/>
@@ -82,12 +86,12 @@
                             </h:selectOneMenu></div>
                     </div>
                     <br style="clear: both"/>
-                    <div style="padding: 5px; text-align: center"><h:commandButton value="Add" action="#{staffMB.CreateStaff}"/></div>
+                    <div style="padding: 5px; text-align: center"><h:commandButton value="Add" action="#{staffMB.CreateStaff}"/> <h:commandButton value="Reset" onclick="reset()"/></div>
                     <!--                </div>-->
                     <!--                    display list of employee's account-->
 
-                 
-                  
+
+
                     <table border="1px" style="text-align: center" align="center">
                         <tr style="background: #EC9B9B">
                             <td>
@@ -128,9 +132,9 @@
                             </td>
                         </tr>
                     </table>
-                   <br style="clear: both"/>
-                   <br style="clear: both"/>
-                   <br style="clear: both"/>
+                    <br style="clear: both"/>
+                    <br style="clear: both"/>
+                    <br style="clear: both"/>
                 </h:form>
             </ui:define>
         </ui:composition>
