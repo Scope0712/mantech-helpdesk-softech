@@ -16,7 +16,7 @@
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Solution Id:" for="solutionId" /></td>
-                                <td><h:inputText readonly="true" id="solutionId" value="#{SolutionMB.myTbSolutions.SolutionId}" title="Solution Id" style="width: 195px;"/></td>
+                                <td><h:inputText readonly="true" id="solutionId" value="#{SolutionMB.myTbSolutions.solutionId}" title="Solution Id" style="width: 195px;"/></td>
                                 <td><h:message style="color: red" for="solutionId"/></td>
                             </tr>
                             <tr>
@@ -34,7 +34,7 @@
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Resolve" for="resolve"/></td>
-                                <td><h:inputTextarea id="resolve" value="#{SolutionMB.myTbSolutions.detailAnswer}" style="height: 150px; width: 520px;" title="Resolve" required="true" requiredMessage="*"/>
+                                <td><h:inputTextarea id="resolve" value="#{SolutionMB.myTbSolutions.detailResolve}" style="height: 150px; width: 520px;" title="Resolve" required="true" requiredMessage="*"/>
                                 <script type="text/javascript">
                                         // This is a check for the CKEditor class. If not defined, the paths must be checked.
                                         if ( typeof CKEDITOR == 'undefined' )
@@ -49,7 +49,7 @@
                                         else
                                         {
                                             var editor = CKEDITOR.replace( 'resolve' );
-                                            //editor.setData( '#{SolutionMB.myTbSolutions.detailAnswer}' );
+                                            editor.setData( '' );
 
                                             // Just call CKFinder.SetupCKEditor and pass the CKEditor instance as the first argument.
                                             // The second parameter (optional), is the path for the CKFinder installation (default = "/ckfinder/").

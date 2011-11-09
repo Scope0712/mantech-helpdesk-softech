@@ -8,98 +8,102 @@
     <body>
         <ui:composition template="./templateAdmin.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <h1><h:outputText value="Detail Article Information"></h:outputText></h1>
-                    <table border="0">
-                        <td align="left">
-                            <tr>
-                                <td><h:outputLabel value="Article Id" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.articleId}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Staff" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.tbStaffs.staffId}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Category" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.tbCategories.categoryName}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Title" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.title}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Content" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.detailContent}"></h:outputText></td>
-                            </tr>
+                <table border="0" style="margin: 10px;">
+                    <tbody>
+                        <tr>
+                            <h1 align="center"><h:outputText value="Detail Article Information"></h:outputText></h1>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Article Id" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.articleId}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Staff" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.tbStaffs.staffId}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Category" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.tbCategories.categoryName}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Title" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.title}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Content" ></h:outputLabel></td>
+                            <td><div class="anwser"><h:outputText value="#{ArticleMB.myTbTechnicalArticle.detailContent}"></h:outputText></div>
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $(".answer").readmore();
+                                    });
+                                </script></td>
+                        </tr>
 
-                            <tr>
-                                <td><h:outputLabel value="View Number" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.viewNo}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Rating" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.rating}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Rate Total" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.rateTotal}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Rate" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.rate}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Rate Image" ></h:outputLabel></td>
-                                <td>
-                                    <h:graphicImage alt="image" id="image1" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starOne==1}"/>
-                                    <h:graphicImage alt="image" id="image2" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starOne==0}"/>
+                        <tr>
+                            <td><h:outputLabel value="View Number" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.viewNo}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Rating" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.rating}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Rate Total" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.rateTotal}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Rate" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.rate}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Rate Image" ></h:outputLabel></td>
+                            <td>
+                                <h:graphicImage alt="image" id="image1" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starOne==1}"/>
+                                <h:graphicImage alt="image" id="image2" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starOne==0}"/>
 
-                                    <h:graphicImage alt="image" id="image3" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTwo==1}"/>
-                                    <h:graphicImage alt="image" id="image4" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTwo==0}"/>
+                                <h:graphicImage alt="image" id="image3" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTwo==1}"/>
+                                <h:graphicImage alt="image" id="image4" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTwo==0}"/>
 
-                                    <h:graphicImage alt="image" id="image5" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starThree==1}"/>
-                                    <h:graphicImage alt="image" id="image6" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starThree==0}"/>
+                                <h:graphicImage alt="image" id="image5" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starThree==1}"/>
+                                <h:graphicImage alt="image" id="image6" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starThree==0}"/>
 
-                                    <h:graphicImage alt="image" id="image7" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFour==1}"/>
-                                    <h:graphicImage alt="image" id="image8" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFour==0}"/>
+                                <h:graphicImage alt="image" id="image7" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFour==1}"/>
+                                <h:graphicImage alt="image" id="image8" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFour==0}"/>
 
-                                    <h:graphicImage alt="image" id="image9" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFive==1}"/>
-                                    <h:graphicImage alt="image" id="image10" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFive==0}"/>
+                                <h:graphicImage alt="image" id="image9" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFive==1}"/>
+                                <h:graphicImage alt="image" id="image10" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starFive==0}"/>
 
-                                    <h:graphicImage alt="image" id="image11" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSix==1}"/>
-                                    <h:graphicImage alt="image" id="image12" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSix==0}"/>
+                                <h:graphicImage alt="image" id="image11" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSix==1}"/>
+                                <h:graphicImage alt="image" id="image12" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSix==0}"/>
 
-                                    <h:graphicImage alt="image" id="image13" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSeven==1}"/>
-                                    <h:graphicImage alt="image" id="image14" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSeven==0}"/>
+                                <h:graphicImage alt="image" id="image13" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSeven==1}"/>
+                                <h:graphicImage alt="image" id="image14" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starSeven==0}"/>
 
-                                    <h:graphicImage alt="image" id="image15" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starEight==1}"/>
-                                    <h:graphicImage alt="image" id="image16" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starEight==0}"/>
+                                <h:graphicImage alt="image" id="image15" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starEight==1}"/>
+                                <h:graphicImage alt="image" id="image16" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starEight==0}"/>
 
-                                    <h:graphicImage alt="image" id="image17" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starNine==1}"/>
-                                    <h:graphicImage alt="image" id="image18" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starNine==0}"/>
+                                <h:graphicImage alt="image" id="image17" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starNine==1}"/>
+                                <h:graphicImage alt="image" id="image18" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starNine==0}"/>
 
-                                    <h:graphicImage alt="image" id="image19" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTen==1}"/>
-                                    <h:graphicImage alt="image" id="image20" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTen==0}"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Create Date" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.createDate}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Update Date" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.updateDate}"></h:outputText></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel value="Status" ></h:outputLabel></td>
-                                <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.status}"></h:outputText></td>
-                            </tr>
-                        </td>
-                    </table>
-                </h:form>
+                                <h:graphicImage alt="image" id="image19" name="../images/full.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTen==1}"/>
+                                <h:graphicImage alt="image" id="image20" name="../images/none.gif" rendered="#{ArticleMB.myTbTechnicalArticle.starTen==0}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Create Date" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.createDate}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Update Date" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.updateDate}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Status" ></h:outputLabel></td>
+                            <td><h:outputText value="#{ArticleMB.myTbTechnicalArticle.status}"></h:outputText></td>
+                        </tr>
+                    </tbody>
+                </table>
             </ui:define>
         </ui:composition>
-
     </body>
 </html>
