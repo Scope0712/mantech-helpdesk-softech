@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../admin/templateAdmin.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <ui:define name="content">
+        <h:form id="form1" style="border-color: burlywood; width: 680px; float: left; text-align: center; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
+            <span style="font-size: x-large">
+                <b>Profile</b>
+            </span>
+            <hr/>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Department: "/>
+                </div>
+                <div style="float:right;width:55%;text-align: left">
+                    <h:outputLabel value="#{profile.department.departmentName}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="First Name: "/>
+                </div>
+                <div style="float:right;width:55%;text-align: left">
+                    <h:outputLabel value="#{profile.staff.firstName}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Last Name: "/>
+                </div>
+                <div style="float:right;width:55%;text-align: left">
+                    <h:outputLabel value="#{profile.staff.lastName}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Gender: "/>
+                </div>
+                <div style="float:right;width: 55%;text-align: left">
+                    <h:outputLabel value="#{profile.staff.gender}"/>
+                </div>
+            </div>
+
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Identity Card: "/>
+                </div>
+                <div style="float:right;width:55%;text-align: left">
+                    <h:outputLabel value="#{profile.staff.identityCard}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Birthday: "/>
+                </div>
+                <div style="float:right;width: 55%;text-align: left">
+                    <h:inputText value="#{profile.birthday}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Marry Status: "/>
+                </div>
+                <div style="float:right;width: 55%;text-align: left">
+                    <h:inputText value="#{profile.marry}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Phone No: "/>
+                </div>
+                <div style="float:right;width: 55%;text-align: left">
+                    <h:inputText value="#{profile.phone}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Address: "/>
+                </div>
+                <div style="float:right;width:55%;text-align: left">
+                    <h:inputText value="#{profile.address}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Email: "/>
+                </div>
+                <div style="float:right;width:55%;text-align: left">
+                    <h:inputText value="#{profile.email}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Do yopu change password email: "/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Old password: "/>
+                </div>
+                <div style="float:right;width:55%;text-align: left">
+                    <h:inputSecret value="#{profile.oldpass}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="New password: "/>
+                </div>
+                <div style="float:right;width:55%;text-align: left">
+                    <h:inputSecret value="#{profile.newpass}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px">
+                <div style="float: left;width: 40%; text-align: right">
+                    <h:outputText value="Confirm password: "/>
+                </div>
+                <div style="float:right;width:55%;text-align: left">
+                    <h:inputSecret value="#{profile.confirmpass}"/>
+                </div>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px; text-align: center">
+                <h:outputLabel value="#{profile.status}"/>
+            </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px; text-align: center">
+                <h:commandButton value="Submit" action="#{profile.EditProfile}"/>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

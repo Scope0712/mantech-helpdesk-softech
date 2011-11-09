@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./Employee_template.xhtml"
+                template="../admin/templateAdmin.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core">
@@ -14,17 +14,6 @@
                 <b>Lodge new complaint</b>
             </span>
             <hr/>
-            <br style="clear: both"/>
-            <div style="padding: 5px">
-                <div style="float: left;width: 25%; text-align: right">
-                    <h:outputText value="Department: "/>
-                </div>
-                <div style="float:right;width:73%;text-align: left">
-                    <h:selectOneMenu style="border:2px; border-color: burlywood; border-style: double; background: activeborder" id="departmentId"  value="#{newComplaintBean.department.departmentId}">
-                        <f:selectItems value="#{newComplaintBean.listDepartment}"
-                                       var="item"  itemLabel="#{item.departmentName}" itemValue="#{item.departmentId}"/>
-                    </h:selectOneMenu></div>
-            </div>
             <br style="clear: both"/>
             <div style="padding: 5px">
                 <div style="float: left;width: 25%; text-align: right">
@@ -46,13 +35,9 @@
                 </div>
             </div>
 
-            <div style="padding: 5px">
-                <div style="float: left;width: 25%; text-align: right; vertical-align: top">
-                    <h:outputLabel value="Image: "/>
-                </div>
-                <div style="float:right;width:73%;text-align: left">
-                    <input type="file" name="image" id="image" class="file"/>
-                </div>
+            <br style="clear: both"/>
+            <div style="padding: 5px; text-align: center">
+                <h:outputLabel value="#{newComplaintBean.status}"/>
             </div>
             <br style="clear: both"/>
             <div style="padding: 5px; text-align: center">
