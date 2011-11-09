@@ -26,7 +26,7 @@
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Propblem Content" for="propblem"/></td>
-                                <td><h:inputTextarea id="propblem" value="#{SolutionMB.newTbSolution.problemContent}" style="height: 50px; width: 550px;" title="propblem" required="true" requiredMessage="*"/></td>
+                                <td><h:inputTextarea id="problem" value="#{SolutionMB.newTbSolution.problemContent}" style="height: 50px; width: 550px;" title="propblem" required="true" requiredMessage="*"/></td>
                                 <td><h:message  style="color: red" for="propblem"/></td>
                             </tr>
                             <tr>
@@ -46,6 +46,7 @@
                                         else
                                         {
                                             var editor = CKEDITOR.replace( 'resolve' );
+                                            contentsCss : 'assets/output_xhtml.css',
                                             editor.setData( '' );
 
                                             // Just call CKFinder.SetupCKEditor and pass the CKEditor instance as the first argument.
