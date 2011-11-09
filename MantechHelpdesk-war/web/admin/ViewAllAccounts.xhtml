@@ -11,8 +11,8 @@
          <ui:composition template="./templateAdmin.xhtml">
             <ui:define name="content">
                 <h:form>
-
-                    <h:selectOneMenu style="border:2px; border-color: black; border-style: inset; background: activeborder"  value="#{accountMB.departId}"  >
+                    Department
+                    <h:selectOneMenu label="Department " style="border:2px; border-color: black; border-style: inset; background: activeborder"  value="#{accountMB.departId}"  >
                       
                         <f:selectItem itemLabel="-select-" itemValue=""/>
                         <f:selectItems value="#{accountMB.deplist}"
