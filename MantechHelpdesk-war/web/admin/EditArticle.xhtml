@@ -33,7 +33,7 @@
                                 <td><h:message  style="color: red" for="title"/></td>
                             </tr>
                             <tr>
-                                <td><h:outputLabel value="Content" for="content"/></td>
+                                <td><h:outputLabel value="Content" for="content2"/></td>
                                 <td><h:inputTextarea id="content2" value="#{ArticleMB.myTbTechnicalArticle.detailContent}" style="height: 150px; width: 520px;" title="Content" required="true" requiredMessage="*"/>
                                     <script type="text/javascript">
                                         // This is a check for the CKEditor class. If not defined, the paths must be checked.
@@ -144,7 +144,7 @@
                                                                         { name : 'Inline Quotation', element : 'q' }
                                                                 ]
                                                 });
-                                                editor.setData( '#{ArticleMB.myTbTechnicalArticle.detailContent}' );
+                                                editor.setData( #{ArticleMB.myTbTechnicalArticle.detailContent});
 
                                                 // Just call CKFinder.SetupCKEditor and pass the CKEditor instance as the first argument.
                                                 // The second parameter (optional), is the path for the CKFinder installation (default = "/ckfinder/").
