@@ -48,6 +48,20 @@
 
             <div class="menu" >
                 <li><a href="#{accountMB.context_path}/faces/public/Home.xhtml">Home</a> </li>
+                 <c:if test="#{accountMB.login_label!='Login'}">
+                      <li>
+                          <c:if test="#{accountMB.role_online=='Roles00003'}">
+                          <a href="#{accountMB.context_path}/faces/admin/ViewAllAccounts.xhtml">Admin</a>
+                          </c:if>
+                          <c:if test="#{accountMB.role_online=='Roles00002'}">
+                          <a href="#{accountMB.context_path}/faces/technician/ViewComplaintLog.xhtml">Technician</a>
+                          </c:if>
+                           <c:if test="#{accountMB.role_online=='Roles00001'}">
+                          <a href="#{accountMB.context_path}/faces/employee/LodgeNewComplaint.xhtml">Employee</a>
+                          </c:if>
+                      </li>
+
+                </c:if>
                 <li><a href="#{accountMB.context_path}/faces/public/AboutUS.xhtml">About</a> </li>
                 <li><a href="#{accountMB.context_path}/faces/public/ShowAllArticles.xhtml">Articles</a> </li>
                 <li><a href="#{accountMB.context_path}/faces/public/ShowAllFAQs.xhtml">FAQs</a> </li>
