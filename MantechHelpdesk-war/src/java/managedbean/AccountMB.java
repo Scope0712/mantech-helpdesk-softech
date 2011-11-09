@@ -23,6 +23,8 @@ import javax.servlet.http.HttpSession;
 import sessionbean.TbAccountsFacadeLocal;
 import sessionbean.TbDepartmentsFacadeLocal;
 import sessionbean.TbStaffsFacadeLocal;
+import util.MD5;
+
 
 /**
  *
@@ -67,7 +69,7 @@ public class AccountMB {
       //  String user = request.getSession().getAttribute("username_online").toString();
       //  System.out.println(user);
         if (request.getSession().getAttribute("username_online")!=null) {
-            return request.getSession().getAttribute("username_online").toString() + "is online";
+            return request.getSession().getAttribute("username_online").toString() + " is online";
         } else {
             return "anonymous is online";
         }
@@ -310,7 +312,12 @@ public class AccountMB {
     //Function to check username and password are correct
 
     public String checkLogin() {
-        setAcc(tbAccountsFacade.checkUsernamePassword(name, password));
+        MD5 md5=new MD5();
+        String passwordMd5=md5.getMd5Digest(password);
+        System.out.println("password da ma hoa"+passwordMd5);
+        setAcc(tbAccountsFacade.checkUsernamePassword(name, passwordMd5));
+
+
         if (acc != null) {
 
             // request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -323,7 +330,7 @@ public class AccountMB {
                
                 session.setAttribute("login_label", "Logout");
                 session.setAttribute("username_online", name);
-                return  "../admin/CreateAccount.xhtml?title=New Account";
+                return  "../admin/ViewAllAccounts.xhtml?title=View All Accounts";
             }
             if (acc.getTbRoles().getRoleId().equals("Roles00002")) {
                 session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
