@@ -7,13 +7,13 @@
 
     <body>
 
-        <ui:composition template="./Admin_Temp.xhtml">       
+        <ui:composition template="./templateAdmin.xhtml">
 
             <ui:define name="content">
 
                 <h:form >
                     <h1 style="float:none;text-align: left;color: blue">Category List </h1>
-                    <h:dataTable value="#{tCategoryMB.categoryList}" var="item" id="tb2" style="float: none" border="1">
+                    <h:dataTable value="#{tCategoryMB.categoryList}" var="item" id="tb2" style="float: none" border="1" width="400px">
                         <!--                        <h:column>
                                                     <f:facet name="header">
                                                         <h:outputText value="Category Id"/>

@@ -7,13 +7,13 @@
     
     <body>
         
-        <ui:composition template="./Admin_Temp.xhtml">            
+        <ui:composition template="./templateAdmin.xhtml">
        
 
             <ui:define name="content">
                <h:form>
                     <h:outputText value="Change priority"/>
-                    <h:dataTable value="#{tDepartmentMB.deptList}" var="item">
+                    <h:dataTable value="#{tDepartmentMB.deptList}" var="item" width="400px">
                                                 <h:column>
                                                     <f:facet name="header">
                                                         <h:outputText value="Department Id"/>
