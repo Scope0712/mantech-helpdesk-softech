@@ -55,6 +55,22 @@ public class AccountMB {
     TbRoles role;
     String user_online;
     String context_path;
+    String role_online;
+
+    public String getRole_online() {
+         request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+      
+        if (request.getSession().getAttribute("role")!=null) {
+            return request.getSession().getAttribute("role").toString() ;
+        } else {
+            return "none";
+        }
+    }
+
+    public void setRole_online(String role_online) {
+        this.role_online = role_online;
+    }
+
 
     public String getContext_path() {
         return FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
@@ -330,6 +346,7 @@ public class AccountMB {
                
                 session.setAttribute("login_label", "Logout");
                 session.setAttribute("username_online", name);
+                session.setAttribute("role", "Roles00003");
                 return  "../admin/ViewAllAccounts.xhtml?title=View All Accounts";
             }
             if (acc.getTbRoles().getRoleId().equals("Roles00002")) {
@@ -338,6 +355,7 @@ public class AccountMB {
                 // login_label = "Logout";
                 session.setAttribute("login_label", "Logout");
                 session.setAttribute("username_online", name);
+                session.setAttribute("role", "Roles00002");
                 return  "../technician/ViewComplaintLog.xhtml?title=View Complaints";
             }
             if (acc.getTbRoles().getRoleId().equals("Roles00001")) {
@@ -346,6 +364,7 @@ public class AccountMB {
                 // login_label = "Logout";
                 session.setAttribute("login_label", "Logout");
                 session.setAttribute("username_online", name);
+                session.setAttribute("role", "Roles00001");
                 return  "../employee/LodgeNewComplaint.xhtml?title=View My Complaint";
             }
             return  "/Home";
