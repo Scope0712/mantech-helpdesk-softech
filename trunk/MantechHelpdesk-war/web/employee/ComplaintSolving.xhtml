@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./Employee_template.xhtml"
+                template="../admin/templateAdmin.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core">
@@ -9,13 +9,13 @@
 
 
     <ui:define name="content">
-        <h:form id="form1" style="border-color: blue; width: 680px; float: left; text-align: center; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
+        <h:form id="form1" style="border-color: blue; width: 620px; float: left; text-align: center; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
             <span style="font-size: x-large;">
                 <b>View All Complaint Solving</b>
             </span>
             <hr style="width: 680px;text-align: left" align="center"/>
             <div align="center">
-                <h:dataTable value="#{thAllComplaint.listSolving}" var="item" border="1" style="width: 680px;text-align: center"
+                <h:dataTable value="#{thAllComplaint.listSolving}" var="item" border="1" style="width: 620px;text-align: center"
                              styleClass="order-table"
                              headerClass="order-table-header"
                              rowClasses="order-table-odd-row,order-table-even-row"
