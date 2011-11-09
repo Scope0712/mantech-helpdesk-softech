@@ -26,12 +26,14 @@ import javax.persistence.Table;
     @NamedQuery(name = "CountComplaintByDepartment.findByNumberOfComplaint", query = "SELECT c FROM CountComplaintByDepartment c WHERE c.numberOfComplaint = :numberOfComplaint")})
 public class CountComplaintByDepartment implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Column(name = "Number_Of_Complaint")
-    @Id
+    @Column(name = "Number_Of_Complaint")   
     private Integer numberOfComplaint;
-    @JoinColumn(name = "Department_Id", referencedColumnName = "Department_Id")
-    @ManyToOne(optional = false)
-    private TbDepartments tbDepartments;
+
+    @Column(name="Department_Id")
+    @Id
+//    @JoinColumn(name = "Department_Id", referencedColumnName = "Department_Id")
+//    @ManyToOne(optional = false)
+    private String departmentId;
 
     public CountComplaintByDepartment() {
     }
@@ -44,12 +46,21 @@ public class CountComplaintByDepartment implements Serializable {
         this.numberOfComplaint = numberOfComplaint;
     }
 
-    public TbDepartments getTbDepartments() {
-        return tbDepartments;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public void setTbDepartments(TbDepartments tbDepartments) {
-        this.tbDepartments = tbDepartments;
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
     }
+
+
+//    public TbDepartments getTbDepartments() {
+//        return tbDepartments;
+//    }
+//
+//    public void setTbDepartments(TbDepartments tbDepartments) {
+//        this.tbDepartments = tbDepartments;
+//    }
 
 }
