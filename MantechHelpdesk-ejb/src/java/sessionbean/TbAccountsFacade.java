@@ -60,7 +60,7 @@ public class TbAccountsFacade extends AbstractFacade<TbAccounts> implements TbAc
         try {
             return (TbAccounts) em.createQuery("SELECT t FROM TbAccounts t WHERE t.tbStaffs = :staff and t.status='Enable'").setParameter("staff", staff).getSingleResult();
         } catch (Exception ex) {
-              ex.printStackTrace();
+           //   ex.printStackTrace();
             return null;
         }
     }
