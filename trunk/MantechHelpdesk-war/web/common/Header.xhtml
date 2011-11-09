@@ -34,7 +34,18 @@
         </style>-->
     <link href="./../resources/css/jqueryui/screen.css" rel="stylesheet" type="text/css" />
     <h:body>
+        <c:if test="#{accountMB.login_label!='Login'}">
+
+            <div style="float: right; color:#228811; font: bolder; padding-right:  20px; padding-top: 20px " >
+                <h:outputText value="#{accountMB.user_online}" />
+                <h:form>
+                    <h:commandLink value="Change password" action="#{accountMB.logout}" />
+                </h:form>
+            </div>
+
+        </c:if>
         <div style="width: 900px;height: 25px; background-image: url(./../images/logo_banner.png); padding-top: 79px">
+
             <div class="menu" >
                 <li><a href="#{accountMB.context_path}/faces/public/Home.xhtml">Home</a> </li>
                 <li><a href="#{accountMB.context_path}/faces/public/AboutUS.xhtml">About</a> </li>
@@ -43,20 +54,33 @@
                 <li><a href="#{accountMB.context_path}/faces/public/ShowAllSolutions.xhtml">News</a> </li>
                 <li><a href="#{accountMB.context_path}/faces/public/Contacts.xhtml">Contact</a> </li>
 
-                <li>
-                    <c:if test="#{accountMB.login_label=='Login'}">
+
+                <c:if test="#{accountMB.login_label=='Login'}">
+                    <li>
                         <a href="#{accountMB.context_path}/faces/public/Login.xhtml" >
                             <h:outputText value="#{accountMB.login_label}"/>
                         </a>
-                    </c:if>
-                    <c:if test="#{accountMB.login_label!='Login'}">
+                    </li>
+                </c:if>
+                <c:if test="#{accountMB.login_label!='Login'}">
+                    <li>
                         <h:form>
                             <h:commandLink value="#{accountMB.login_label}" action="#{accountMB.logout}"/>
                         </h:form>
-                    </c:if>
-                </li>
-                <h:outputText value="#{accountMB.user_online}" style="float: right; color: red; padding-right: 10px"/>
+                    </li>
+                    <!--
+                                             <h:outputText value="{accountMB.user_online}" style="float: right; color: red; padding-right:  20px;" />
+                                             <h:form>
+                                                <h:commandLink value="Change password" action="{accountMB.logout}" style="float: right; color: red; padding-right:  20px;"/>
+                                            </h:form>-->
+
+
+                </c:if>
+
+
+
             </div>
+
         </div>
 
     </h:body>
