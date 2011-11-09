@@ -31,14 +31,20 @@ public class SolutionMB {
     private TbSolutionsFacadeLocal TbSolutionsFacade;
     private TbCategoriesFacadeLocal TbCategories;
     private Collection<TbSolutions> listSolutions;
+    private Collection<TbSolutions> listAllSolutions;
+    private Collection<TbSolutions> listSearchSolutions;
     private TbSolutions myTbSolutions;
+    private TbSolutions newTbSolution;
     private TbCategories myCategory;
-    
+    private String search = "";
     /** Creates a new instance of SolutionMB */
     public SolutionMB() {
         listSolutions = new ArrayList<TbSolutions>();
+        listAllSolutions = new ArrayList<TbSolutions>();
+        listSearchSolutions = new ArrayList<TbSolutions>();
         myCategory = new TbCategories();
         myTbSolutions = new TbSolutions();
+        newTbSolution = new TbSolutions();
     }
 
     public TbSolutionsFacadeLocal getInstanseSolutionFacadeLocal() {
@@ -73,14 +79,17 @@ public class SolutionMB {
 
     public void select(ActionEvent event) {
         UIParameter para = (UIParameter) event.getComponent().findComponent("solutionId_view");
-        myTbSolutions = getInstanseSolutionFacadeLocal().find(para.getValue().toString());
-        getInstanseSolutionFacadeLocal().edit(myTbSolutions);
-        setMyTbSolutions(myTbSolutions);
+        setMyTbSolutions(getInstanseSolutionFacadeLocal().find(para.getValue().toString()));
     }
 
     public void editSolution(ActionEvent event) {
         UIParameter para = (UIParameter) event.getComponent().findComponent("solutionId_edit");
         setMyTbSolutions(getInstanseSolutionFacadeLocal().find(para.getValue().toString()));
+    }
+
+    public void searchListSolutions(ActionEvent event) {
+        listSearchSolutions.clear();
+        setListSearchSolutions(getInstanseSolutionFacadeLocal().searchListSolutions(getSearch()));
     }
 
     /**
@@ -123,5 +132,61 @@ public class SolutionMB {
      */
     public void setMyCategory(TbCategories myCategory) {
         this.myCategory = myCategory;
+    }
+
+    /**
+     * @return the listAllSolutions
+     */
+    public Collection<TbSolutions> getListAllSolutions() {
+        return listAllSolutions = getInstanseSolutionFacadeLocal().findAll();
+    }
+
+    /**
+     * @param listAllSolutions the listAllSolutions to set
+     */
+    public void setListAllSolutions(Collection<TbSolutions> listAllSolutions) {
+        this.listAllSolutions = listAllSolutions;
+    }
+
+    /**
+     * @return the listSearchSolutions
+     */
+    public Collection<TbSolutions> getListSearchSolutions() {
+        return listSearchSolutions;
+    }
+
+    /**
+     * @param listSearchSolutions the listSearchSolutions to set
+     */
+    public void setListSearchSolutions(Collection<TbSolutions> listSearchSolutions) {
+        this.listSearchSolutions = listSearchSolutions;
+    }
+
+    /**
+     * @return the search
+     */
+    public String getSearch() {
+        return search;
+    }
+
+    /**
+     * @param search the search to set
+     */
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
+    /**
+     * @return the newTbSolution
+     */
+    public TbSolutions getNewTbSolution() {
+        return newTbSolution;
+    }
+
+    /**
+     * @param newTbSolution the newTbSolution to set
+     */
+    public void setNewTbSolution(TbSolutions newTbSolution) {
+        this.newTbSolution = newTbSolution;
     }
 }

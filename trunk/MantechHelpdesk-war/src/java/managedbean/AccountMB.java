@@ -360,7 +360,7 @@ public class AccountMB {
             request.logout();
             request.getSession().invalidate();
 
-            return ("/Home.xhtml");
+            return ("/public/Home.xhtml");
 
         } catch (ServletException ex) {
             Logger.getLogger(AccountMB.class.getName()).log(Level.SEVERE, null, ex);

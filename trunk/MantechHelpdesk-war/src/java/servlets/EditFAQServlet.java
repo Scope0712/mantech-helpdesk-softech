@@ -43,8 +43,8 @@ public class EditFAQServlet extends HttpServlet {
         String question = request.getParameter("question");
         String anwswer = request.getParameter("anwswer");
         String status = request.getParameter("status");
-        System.out.println("ma id" + faqId);
-        System.out.println("categoryId id" + categoryId);
+//        System.out.println("ma id" + faqId);
+//        System.out.println("categoryId id" + categoryId);
         myCategory = new TbCategories(categoryId);
         editFAQ = TbFAQs.find(faqId);
         editFAQ.setTbCategories(myCategory);
