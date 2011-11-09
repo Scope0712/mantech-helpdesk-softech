@@ -31,6 +31,7 @@ public interface TbStaffsFacadeLocal {
 
     int count();
 
-   List<TbStaffs> searchStaffFromDepart(TbDepartments depart);
+    List<TbStaffs> searchStaffFromDepart(TbDepartments depart);
 
+    TbStaffs findStaffById(String staffid);
 }

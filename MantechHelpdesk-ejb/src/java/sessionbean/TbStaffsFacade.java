@@ -11,6 +11,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -38,6 +39,13 @@ public class TbStaffsFacade extends AbstractFacade<TbStaffs> implements TbStaffs
         catch(Exception ex){
             return null;
         }
+    }
+
+    @Override
+    public TbStaffs findStaffById(String staffid) {
+        Query q = em.createNativeQuery("SELECT * FROM TbStaffs c where c.staffId = ?value", TbStaffs.class);
+        q.setParameter("value", staffid);
+        return (TbStaffs) (q.getResultList()).get(0);
     }
  //   @NamedQuery(name = "TbStaffs.searchStaffFromDepart", query = "SELECT t FROM TbStaffs t WHERE t.tbDepartments= :tbDepartments")
 
