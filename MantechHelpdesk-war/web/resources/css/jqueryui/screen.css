@@ -46,8 +46,16 @@ ol.standard.clean-padding	{ padding: 0 0 0 22px !important;}
 .block		{ text-align: justify; }
 img.block	{ display: block; }
 
-a		{ color: #00A5C4; text-decoration: none;}
-a:hover		{ color: #00A5C4; text-decoration: underline;}
+a		{
+    color:forestgreen; text-decoration: none;
+/* display: block; line-height: 16px; padding: 7px 15px 7px 15px; background: url('images/left.png') center center repeat-x #555555; color: #FFFFFF; text-decoration: none; font-weight: bold; text-shadow: 1px 1px 1px #333333;*/
+}
+a:hover		{ color: #00A5C4; text-decoration: underline; 
+/*         background: url('images/button_glas1.png') center center repeat-x #666666;*/
+}
+li a		{ display: block; line-height: 16px; padding: 7px 15px 7px 15px; background: url('images/left.png') center center repeat-x #555555; border-style: inset;border-width: 1px; color: #FFFFFF; text-decoration: none; text-shadow: 1px 1px 1px #333333; -moz-border-radius: 3px 3px 3px 3px; -webkit-border-radius: 3px 3px 3px 3px; border-radius: 3px 3px 3px 3px; }
+li a:hover	{ background: url('images/button_glas1.png') center center repeat-x #666666; }
+/*li a:visited	{ color:#00A5C4 ; border-style: none }*/
 
 .button		{ display: inline-block; line-height: 16px; border-width: 0px; font-size: 11px; font-family: arial; color: #FFFFFF; font-weight: bold; cursor: pointer; background: url('../images/button_glas1.png') center center repeat-x #333333; padding: 3px 13px 3px 13px; -moz-border-radius: 3px 3px 3px 3px; -webkit-border-radius: 3px 3px 3px 3px; border-radius: 3px 3px 3px 3px; text-align: center; }
 input.button	{ display: inline-block; line-height: 13px; /* IE8 hack */ line-height: 16px; border-width: 0px; font-size: 11px; font-family: arial; color: #FFFFFF; font-weight: bold; cursor: pointer; background: url('../images/button_glas1.png') center center repeat-x #333333; padding: 3px 10px 3px 10px; -moz-border-radius: 3px 3px 3px 3px; -webkit-border-radius: 3px 3px 3px 3px; border-radius: 3px 3px 3px 3px;}
@@ -652,3 +660,38 @@ table.mceLayout { width: 100% !important; }
 .add-category .title			{ width: 234px; }
 .add-category .cat-descr		{ width: 234px; }
 .add-category .cat-parent		{ width: 100%; }
+
+
+.order-table{
+	border-collapse: separate;
+
+}
+
+.order-table-header{
+	text-align:center;
+	background: url('images/button_glas1.png') center center repeat-x #666666; 
+	border-bottom:1px solid #BBBBBB;
+/*	padding:5px;*/
+/*        padding-left: 8px;*/
+/*        padding-right: 8px;*/
+        color:#ffffff
+       
+}
+
+.order-table-odd-row{
+	text-align:center;
+	background: none repeat scroll 0 0 #86caff;
+/*	border-top:1px solid #BBBBBB;*/
+         border-style: solid;
+        
+        border-width: 1px;
+        border-color: #000;
+}
+/*
+.order-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+        border-style: solid;
+        border-width: 1px;
+}*/

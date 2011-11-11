@@ -8,23 +8,23 @@
 
     <body>
 
-         <ui:composition template="./templateAdmin.xhtml">
+        <ui:composition template="./templateAdmin.xhtml">
             <ui:define name="content">
                 <h:form>
                     Department
                     <h:selectOneMenu label="Department " style="border:2px; border-color: black; border-style: inset; background: activeborder"  value="#{accountMB.departId}"  >
-                      
+
                         <f:selectItem itemLabel="-select-" itemValue=""/>
                         <f:selectItems value="#{accountMB.deplist}"
-                                           var="ite"  itemLabel="#{ite.departmentName}" itemValue="#{ite.departmentId}" />
-                       
+                                       var="ite"  itemLabel="#{ite.departmentName}" itemValue="#{ite.departmentId}" />
+
                     </h:selectOneMenu>
-                   <h:commandButton value="search" action="#{accountMB.searchDepart}"/>
+                    <h:commandButton value="search" action="#{accountMB.searchDepart}"/>
                     <hr/>                
-                    <h:dataTable value="#{accountMB.listAccount}" var="o"
+                    <h:dataTable  value="#{accountMB.listAccount}" var="o"
                                  styleClass="order-table"
                                  headerClass="order-table-header"
-                                 rowClasses="order-table-odd-row,order-table-even-row"
+                                 rowClasses="order-table-odd-row"
                                  >
                         <h:column>
                             <f:facet name="header">Account Id</f:facet>
@@ -35,14 +35,14 @@
 
                             <f:facet name="header">First Name</f:facet>
 
-                            <h:inputText value="#{o.ac.tbStaffs.firstName}" size="10" rendered="#{o.editable}" />
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" value="#{o.ac.tbStaffs.firstName}" size="7" rendered="#{o.editable}" />
 
                             <h:outputText value="#{o.ac.tbStaffs.firstName}" rendered="#{not o.editable}" />
 
                         </h:column>
                         <h:column>
                             <f:facet name="header">Last Name</f:facet>
-                            <h:inputText value="#{o.ac.tbStaffs.lastName}" size="10" rendered="#{o.editable}" />
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" value="#{o.ac.tbStaffs.lastName}" size="7" rendered="#{o.editable}" />
                             <h:outputText value="#{o.ac.tbStaffs.lastName}" rendered="#{not o.editable}" />
 
                         </h:column>
@@ -51,7 +51,7 @@
 
                             <f:facet name="header">Identity Card</f:facet>
 
-                            <h:inputText value="#{o.ac.tbStaffs.identityCard}" size="10" rendered="#{o.editable}" />
+                            <h:inputText style="border:2px; border-color: black; border-style:inset; background: activeborder" value="#{o.ac.tbStaffs.identityCard}" size="7" rendered="#{o.editable}" />
 
                             <h:outputText  value="#{o.ac.tbStaffs.identityCard}" rendered="#{not o.editable}" />
 
@@ -65,9 +65,10 @@
                         <h:column>
                             <f:facet name="header">Role</f:facet>
 
-                            <h:selectOneMenu style="border:2px; border-color: black; border-style:inset; background: activeborder" id="RoleId" title="RoleId" value="#{o.ac.tbRoles.roleId}" rendered="#{o.editable}">
+                            <h:selectOneMenu style="border:2px; border-color: black; border-style:inset; background: activeborder" id="RoleId" title="RoleId" value="#{accountMB.role_edit.roleId}" rendered="#{o.editable}">
+                                <f:selectItem itemLabel="-select-" itemValue=""/>
                                 <f:selectItems  var="it" value="#{staffMB.roletList}" itemLabel="#{it.roleName}" itemValue="#{it.roleId}"/>
-                                </h:selectOneMenu>
+                            </h:selectOneMenu>
 
                             <h:outputText value="#{o.ac.tbRoles.roleName}" rendered="#{not o.editable}" />
 
@@ -79,15 +80,17 @@
 
                             <h:commandLink value="Edit" action="#{accountMB.editAction(o)}"
                                            rendered="#{not o.editable}" />
+                            <h:commandLink value="Save" action="#{accountMB.saveAction(o)}" rendered="#{o.editable}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">Action</f:facet>
                             <h:commandLink value="Unavailable" action="#{accountMB.unavailableAction(o)}"
                                            rendered="#{not o.editable}"  />
                         </h:column>
+
                     </h:dataTable>
 
-                    <h:commandButton value="Save Changes" action="#{accountMB.saveAction}" />
+
                     <br style="clear: both"/>
                     <br style="clear: both"/>
                 </h:form>

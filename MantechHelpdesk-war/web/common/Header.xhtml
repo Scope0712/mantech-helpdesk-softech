@@ -8,35 +8,12 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <!--    <style type="text/css">
-            .roundangle
-            {
-                /*            background-image: url(./../images/bgd4.png);*/
-                /*            background-image: url(./../images/menubg1.png);*/
-                width:100px;
-                height:20px;
-                /*            background: ;
-                            color:#ffffff;
-                            border-radius:7px;
-                            -moz-border-radius-topleft:7px;
-                            -webkit-border-top-left-radius:7px;
-                            border-radius:7px;
-                            -moz-border-radius-topright:7px;
-                            -webkit-border-top-right-radius:7px;*/
-                margin-left: 11px;
-                margin-right: 3px;
-                float:left;
-                font-size: 7.5pt;
-                font-style: oblique;
-            }
-
-
-        </style>-->
+  
     <link href="./../resources/css/jqueryui/screen.css" rel="stylesheet" type="text/css" />
     <h:body>
         <c:if test="#{accountMB.login_label!='Login'}">
 
-            <div style="float: right; color:#228811; font: bolder; padding-right:  20px; padding-top: 20px " >
+            <div style="float: right; color:darkturquoise; font: bolder; padding-right:  20px; padding-top: 20px " >
                 <h:outputText value="#{accountMB.user_online}" />
                 <br/>
                 <a href="#{accountMB.context_path}/faces/public/ChangePassword.xhtml">Change Password</a>
@@ -82,12 +59,7 @@
                         </h:form>
                     </li>
                      <li><a href="#{accountMB.context_path}/faces/public/Profile.xhtml">Profile</a> </li>
-                    <!--
-                                             <h:outputText value="{accountMB.user_online}" style="float: right; color: red; padding-right:  20px;" />
-                                             <h:form>
-                                                <h:commandLink value="Change password" action="{accountMB.logout}" style="float: right; color: red; padding-right:  20px;"/>
-                                            </h:form>-->
-
+                   
 
                 </c:if>
 
