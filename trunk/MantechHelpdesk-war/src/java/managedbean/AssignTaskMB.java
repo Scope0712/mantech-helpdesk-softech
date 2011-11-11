@@ -5,10 +5,8 @@
 package managedbean;
 
 import entity.TbComplaintLogs;
-import entity.TbComplaintLogsPK;
 import entity.TbComplaintStatus;
 import entity.ViewAssignTaskDetails;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -31,9 +29,9 @@ import sessionbean.ViewAssignTaskDetailsFacadeLocal;
 @ManagedBean
 @RequestScoped
 public class AssignTaskMB {
+
     @EJB
     private TbComplaintsFacadeLocal tbComplaintsFacade;
-
     @EJB
     private TbComplaintStatusFacadeLocal tbComplaintStatusFacade;
     @EJB
@@ -46,7 +44,8 @@ public class AssignTaskMB {
     private HttpServletRequest request;
     private HttpServletResponse response;
     private HttpSession session;
-      public HttpServletRequest getRequest() {
+
+    public HttpServletRequest getRequest() {
         return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     }
 
@@ -69,6 +68,7 @@ public class AssignTaskMB {
     public void setSession(HttpSession session) {
         this.session = session;
     }
+
     public Collection<TbComplaintStatus> getListStatus() {
         return tbComplaintStatusFacade.findAll();
     }
@@ -89,7 +89,7 @@ public class AssignTaskMB {
 
     //  HttpSession session;
     public ArrayList<AssignTask> getListATL() {
-        // System.out.println("listATL="+listATL.size());
+
         if (listATL == null) {
             // System.out.println("da null roi");
             listATL = new ArrayList<AssignTask>();
@@ -117,11 +117,6 @@ public class AssignTaskMB {
         }
     }
 
-//    public static void setListATL(ArrayList<AssignTask> listATL) {
-//        AssignTaskMB.listATL=null;
-//        AssignTaskMB.listATL = listATL;
-//    }
-
     public Collection<ViewAssignTaskDetails> getListViewAT() {
         System.out.println("chieu dai tai goc=" + viewAssignTaskDetailsFacade.findAll().size());
         return viewAssignTaskDetailsFacade.findAll();
@@ -130,28 +125,25 @@ public class AssignTaskMB {
     public void setListViewAT(Collection<ViewAssignTaskDetails> listViewAT) {
         this.listViewAT = listViewAT;
     }
+    /*
+     * Update status of complaint
+     */
 
     public String saveAction(AssignTask at) {
-
-        //get all existing value but set "editable" to false
-
-     //  SimpleDateFormat spl = new SimpleDateFormat("MM/dd/yyyy:hh:mm:ss a");
-
-      //  String d = spl.format(new Date());
         TbComplaintLogs cl = new TbComplaintLogs(at.at.getComplaintId(), new Date(), status.getStatusId());
-     //   System.out.println(d);
-      //  cl.setTbComplaintLogsPK(new TbComplaintLogsPK().setDate(new Date(d)));
-        cl.setTbComplaints(tbComplaintsFacade.find(at.at.getComplaintId()));
-        cl.setResendNo(at.at.getResendno());
-        cl.setTbComplaintStatus(tbComplaintStatusFacade.find(status.getStatusId()));
-        System.out.println("da chon status "+cl.getTbComplaintStatus().getStatusName());
-        tbComplaintLogsFacade.create(cl);
-        at.at.setStatusName(cl.getTbComplaintStatus().getStatusName());
-       // viewAssignTaskDetailsFacade.edit(at.at);
-        listATL = null;
-        listViewAT=null;
-        listATL = getListATL();
 
+        if (status.getStatusId() != null) {
+            cl.setTbComplaints(tbComplaintsFacade.find(at.at.getComplaintId()));
+            cl.setResendNo(at.at.getResendno());
+            cl.setTbComplaintStatus(tbComplaintStatusFacade.find(status.getStatusId()));
+            System.out.println("da chon status " + cl.getTbComplaintStatus().getStatusName());
+            tbComplaintLogsFacade.create(cl);
+            at.at.setStatusName(cl.getTbComplaintStatus().getStatusName());
+            // viewAssignTaskDetailsFacade.edit(at.at);
+            listATL = null;
+            listViewAT = null;
+            listATL = getListATL();
+        }
         at.setEditable(false);
         System.out.println("listATL " + listATL.size());
 
