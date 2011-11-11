@@ -12,13 +12,19 @@
     </h:head>
     <body>
 
-        <ui:composition template="./templateAdmin.xhtml">           
+        <ui:composition template="./Admin_Temp.xhtml">
+
+            <ui:define name="left">
+                <div style="width: 0%"></div>
+            </ui:define>
+
 
             <ui:define name="content">
 
+                <h1 style="float:none;text-align: left;color: blue; width: 890px">DETAIL REPORT </h1>
+                <h:form style="width: 880px">
 
-                <h:form>
-                    <div  style="float: left;margin-top: 20px;margin-bottom: 30px">
+<!--                    <div  style="float: left;margin-top: 20px;margin-bottom: 30px">-->
                         <h:outputLabel id="lb1" for="cbb1" value="Period type:"/>
                         <h:selectOneMenu id="cbb1" value="#{tReportMB.periodType}">
                             <f:selectItem itemLabel="--Select period--" itemValue=""/>
@@ -34,7 +40,7 @@
                             <f:selectItem itemLabel="Category" itemValue="Category_Id"/>
                             <f:selectItem itemLabel="Technician" itemValue="Technician_Id"/>
                             <f:selectItem itemLabel="Department" itemValue="Department_Id"/>
-                            <f:selectItem itemLabel="None" itemValue="None"/>
+<!--                            <f:selectItem itemLabel="None" itemValue="None"/>-->
                             <f:ajax render="cbb3" execute="@this"/>
                         </h:selectOneMenu>
 
@@ -43,8 +49,10 @@
                             <f:selectItems value="#{tReportMB.options}"/>
                             <f:ajax render="dt1" execute="@this"/>
                         </h:selectOneMenu>
-                    </div>
-                    <p:dataTable id="dt1" value="#{tReportMB.detailreport}" var="item"  style="float: left;" paginator="true" rows="10"  >
+<!--                    </div>-->
+
+
+                    <p:dataTable id="dt1" value="#{tReportMB.detailreport}" var="item" paginator="true" rows="10" >
                         <p:column id="col1">
                             <f:facet name="header">
                                 <h:outputText value="Complaint ID"/>
@@ -89,14 +97,14 @@
                             </h:outputText>
                         </p:column>
 
-                        <p:column id="col7">
+<!--                        <p:column id="col7">
                             <f:facet name="header">
                                 <h:outputText value="Assigning Time"/>
                             </f:facet>
                             <h:outputText value="#{item.assigningDate}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
-                        </p:column>
+                        </p:column>-->
                         <p:column id="col8">
                             <f:facet name="header">
                                 <h:outputText value="Closing Time"/>
@@ -115,6 +123,7 @@
                         </p:column>
 
                     </p:dataTable>
+
                     <div style="float: left">
                         <!--export datatable                -->
                         <h:panelGrid columns="2">
@@ -142,26 +151,22 @@
 
                             <p:panel header="Export Page Data">
                                 <h:commandLink>
-                                    <!--                                <p:graphicImage value="/images/excel.png" />  -->
-                                    <h:outputText value="XSL"/>
+                                    <p:graphicImage value="../images/excel.png" />
                                     <p:dataExporter type="xls" target="dt1" fileName="report" pageOnly="true"/>
                                 </h:commandLink>
 
                                 <h:commandLink>
-                                    <!--                                <p:graphicImage value="/images/pdf.png" />  -->
-                                    <h:outputText value="PDF"/>
+                                    <p:graphicImage value="../images/pdf.png" />
                                     <p:dataExporter type="pdf" target="dt1" fileName="report" pageOnly="true"/>
                                 </h:commandLink>
 
                                 <h:commandLink>
-                                    <!--                                <p:graphicImage value="/images/csv.png" />  -->
-                                    <h:outputText value="CSV"/>
+                                    <p:graphicImage value="../images/csv.png" />
                                     <p:dataExporter type="csv" target="dt1" fileName="report" pageOnly="true"/>
                                 </h:commandLink>
 
                                 <h:commandLink>
-                                    <!--                                <p:graphicImage value="/images/xml.png" />  -->
-                                    <h:outputText value="XML"/>
+                                    <p:graphicImage value="../images/xml.png" />
                                     <p:dataExporter type="xml" target="dt1" fileName="report" pageOnly="true"/>
                                 </h:commandLink>
                             </p:panel>
