@@ -164,14 +164,14 @@ public class AccountMB {
      */
     public Collection<TbAccounts> getListAcc() {
 
-        System.out.println("name depart " + departId);
+        //System.out.println("name depart " + departId);
 
         depart.setDepartmentId(departId);
         Collection<TbStaffs> l;
         ArrayList<TbAccounts> la = new ArrayList<TbAccounts>();
         l = tbStaffsFacade.searchStaffFromDepart(depart);
         if (l != null) {
-            System.out.println("leng l=" + l.size());
+            //System.out.println("leng l=" + l.size());
             int i = 1;
             for (TbStaffs st : l) {
 
@@ -180,7 +180,7 @@ public class AccountMB {
 
                 if (tbacc != null) {
                     la.add(tbacc);
-                    System.out.println("xong thu " + i);
+                    //System.out.println("xong thu " + i);
                     i++;
                 }
             }
@@ -193,7 +193,7 @@ public class AccountMB {
 
     public String searchDepart() {
 
-        System.out.println("da kich");
+        //System.out.println("da kich");
         listAccount = null;
         listAccount = getListAccount();
 
@@ -225,18 +225,12 @@ public class AccountMB {
         if (session != null) {
             //if user_online is null that is the mean don't login
             if (session.getAttribute("username_online") == null) {
-                System.out.println(String.valueOf(session.getAttribute("username_online")));
                 return "Login";
             } else {
-                System.out.println(String.valueOf(session.getAttribute("username_online")));
-
-                System.out.println(lb);
-                System.out.println("lb khong null");
                 return "Logout";
             }
 
         } else {
-            System.out.println("session da null");
             return "Login";
         }
     }
@@ -281,7 +275,7 @@ public class AccountMB {
     public String getTitle() {
         request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         title = request.getParameter("title");
-        System.out.println(title);
+        //System.out.println(title);
         return title;
     }
 
@@ -332,7 +326,6 @@ public class AccountMB {
     public String checkLogin() {
         MD5 md5 = new MD5();
         String passwordMd5 = md5.getMd5Digest(password);
-        System.out.println("password da ma hoa" + passwordMd5);
         setAcc(tbAccountsFacade.checkUsernamePassword(name, passwordMd5));
 
 
@@ -340,7 +333,6 @@ public class AccountMB {
 
             //if role is admin
             if (acc.getTbRoles().getRoleId().equals("Roles00003")) {
-                //  System.out.println(acc.getTbRoles().getRoleId() + ":" + acc.getTbRoles().getRoleName());
                 session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("login_menu", "../admin/AdminMenu.xhtml");
 
@@ -369,11 +361,10 @@ public class AccountMB {
                 session.setAttribute("role", "Roles00001");
                 return "../employee/LodgeNewComplaint.xhtml?title=View My Complaint";
             }
-            return "/Home";
-
+            return  "/public/Fail.xhtml";
 
         } else {
-            return "/Home";
+            return  "/public/Fail.xhtml";
         }
     }
 
@@ -440,7 +431,7 @@ public class AccountMB {
 
         if (tbAccountsFacade.unavailableAccount(a.ac.getAccountId()) == true) {
             //    JOptionPane.showConfirmDialog(null,"OK!");
-            System.out.println("ok da unavailal");
+            //System.out.println("ok da unavailal");
             listAccount = null;
             listAccount = getListAccount();
             return null;
