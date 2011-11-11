@@ -22,9 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbean.TbAccountsFacadeLocal;
 import sessionbean.TbDepartmentsFacadeLocal;
+import sessionbean.TbRolesFacadeLocal;
 import sessionbean.TbStaffsFacadeLocal;
 import util.MD5;
-
 
 /**
  *
@@ -34,6 +34,8 @@ import util.MD5;
 @RequestScoped
 public class AccountMB {
 
+    @EJB
+    private TbRolesFacadeLocal tbRolesFacade;
     @EJB
     private TbDepartmentsFacadeLocal tbDepartmentsFacade;
     @EJB
@@ -53,24 +55,40 @@ public class AccountMB {
     TbDepartments depart;
     Collection<TbDepartments> deplist;
     TbRoles role;
+    TbRoles role_edit;
     String user_online;
     String context_path;
     String role_online;
+    String title;
+    String login_menu;
 
+    public TbRoles getRole_edit() {
+        return role_edit;
+    }
+
+    public void setRole_edit(TbRoles role_edit) {
+        this.role_edit = role_edit;
+    }
+
+    /*
+     * Get role_online from session
+     */
     public String getRole_online() {
-         request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-      
-        if (request.getSession().getAttribute("role")!=null) {
-            return request.getSession().getAttribute("role").toString() ;
+        request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+
+        if (request.getSession().getAttribute("role") != null) {
+            return request.getSession().getAttribute("role").toString();
         } else {
             return "none";
         }
     }
 
+    /*
+     * Set role_online
+     */
     public void setRole_online(String role_online) {
         this.role_online = role_online;
     }
-
 
     public String getContext_path() {
         return FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
@@ -82,9 +100,8 @@ public class AccountMB {
 
     public String getUser_online() {
         request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-      //  String user = request.getSession().getAttribute("username_online").toString();
-      //  System.out.println(user);
-        if (request.getSession().getAttribute("username_online")!=null) {
+
+        if (request.getSession().getAttribute("username_online") != null) {
             return request.getSession().getAttribute("username_online").toString() + " is online";
         } else {
             return "anonymous is online";
@@ -105,11 +122,10 @@ public class AccountMB {
 
     public ArrayList<Account> getListAccount() {
         if (listAccount == null) {
-            // System.out.println("da null roi");
+
             listAccount = new ArrayList<Account>();
             listAcc = getListAcc();
-            //  System.out.println("list acc co ko "+listAcc.size());
-            //  System.out.println("length of listAcc ="+listAcc.size());
+
             if (listAcc != null) {
 
                 for (TbAccounts a : listAcc) {
@@ -143,12 +159,13 @@ public class AccountMB {
         this.depart = depart;
     }
 
+    /*
+     * Get list TbAccounts from database and return Collection
+     */
     public Collection<TbAccounts> getListAcc() {
 
-        // TbStaffs st=new TbStaffs();
-        // depart.setDepartmentId("Depar00001");
         System.out.println("name depart " + departId);
-        //listAccount=null;
+
         depart.setDepartmentId(departId);
         Collection<TbStaffs> l;
         ArrayList<TbAccounts> la = new ArrayList<TbAccounts>();
@@ -157,33 +174,29 @@ public class AccountMB {
             System.out.println("leng l=" + l.size());
             int i = 1;
             for (TbStaffs st : l) {
-                //    System.out.println("length "+l.size());
+
                 TbAccounts tbacc = new TbAccounts();
                 tbacc = tbAccountsFacade.searchDepartment(st);
-                //  System.out.println("tbacc "+i+": "+tbacc.getAccountId());
+
                 if (tbacc != null) {
                     la.add(tbacc);
                     System.out.println("xong thu " + i);
                     i++;
                 }
             }
-            // staff.setTbDepartments(depart);
-            //  acc.setTbStaffs(staff);
-            // System.out.println("la="+la.size());
+
         }
         return la;
-        //  return tbAccountsFacade.findAll();
+
 
     }
 
     public String searchDepart() {
-        //  System.out.println("depart id="+depart.getDepartmentId());
-        //  System.out.println("kich thuoc chinsh "+listAccount.size());
+
         System.out.println("da kich");
         listAccount = null;
         listAccount = getListAccount();
-        // System.out.println(listAccount.size());
-        //  listAccount=null;
+
         return null;
     }
 
@@ -199,41 +212,29 @@ public class AccountMB {
         this.role = role;
     }
 
-//    public TbAccounts getNewacc() {
-//
-//        return tbAccountsFacade.findNewAccount();
-//
-//
-//    }
-//    public void setNewacc(TbAccounts newacc) {
-//        this.newacc = newacc;
-//    }
+    /*
+     * Get login label from session
+     */
     public String getLogin_label() {
 
         request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         session = request.getSession();
-        // if (session.getAttribute("login_menu") != null) {
-        //  System.out.println(request.getSession().getAttribute("login_menu").toString());
-        String lb="" ;
-       
+
+        String lb = "";
+
         if (session != null) {
-            System.out.println("session chưa null");
-           // System.out.println(String.valueOf(session.getAttribute("login_label")));
-          //  lb = String.valueOf(session.getAttribute("login_label"));
-            if (session.getAttribute("username_online")==null) {
+            //if user_online is null that is the mean don't login
+            if (session.getAttribute("username_online") == null) {
                 System.out.println(String.valueOf(session.getAttribute("username_online")));
                 return "Login";
             } else {
-                 System.out.println(String.valueOf(session.getAttribute("username_online")));
-               //  System.out.println(null==lb);
-                 System.out.println(lb);
-                 System.out.println("lb khong null");
+                System.out.println(String.valueOf(session.getAttribute("username_online")));
+
+                System.out.println(lb);
+                System.out.println("lb khong null");
                 return "Logout";
             }
-            //  return "Logout";
-            //  } else {
-            //    return "Login";
-            //  }
+
         } else {
             System.out.println("session da null");
             return "Login";
@@ -267,12 +268,9 @@ public class AccountMB {
     public void setSession(HttpSession session) {
         this.session = session;
     }
-    String title;
-    String login_menu;
 
     public String getLogin_menu() {
         request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        //  System.out.println(request.getSession().getAttribute("login_menu").toString());
         return request.getSession().getAttribute("login_menu").toString();
     }
 
@@ -315,40 +313,43 @@ public class AccountMB {
         this.password = password;
     }
 
-    /** Creates a new instance of AccountMB */
+    /*
+     * Creates a new instance of AccountMB
+     */
     public AccountMB() {
         acc = new TbAccounts();
         depart = new TbDepartments();
         role = new TbRoles();
+        role_edit = new TbRoles();
         session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        // session.setAttribute("login_menu", "../employee/EmployeeMenu.xhtml");
-        //  login_label = "Logout";
-        //    session.setAttribute("login_label", "Login");
-    }
-    //Function to check username and password are correct
 
+    }
+
+    /*
+     *Function to check username and password are correct
+     * 
+     */
     public String checkLogin() {
-        MD5 md5=new MD5();
-        String passwordMd5=md5.getMd5Digest(password);
-        System.out.println("password da ma hoa"+passwordMd5);
+        MD5 md5 = new MD5();
+        String passwordMd5 = md5.getMd5Digest(password);
+        System.out.println("password da ma hoa" + passwordMd5);
         setAcc(tbAccountsFacade.checkUsernamePassword(name, passwordMd5));
 
 
         if (acc != null) {
 
-            // request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-            // request.login(name, password);
-
+            //if role is admin
             if (acc.getTbRoles().getRoleId().equals("Roles00003")) {
                 //  System.out.println(acc.getTbRoles().getRoleId() + ":" + acc.getTbRoles().getRoleName());
                 session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("login_menu", "../admin/AdminMenu.xhtml");
-               
+
                 session.setAttribute("login_label", "Logout");
                 session.setAttribute("username_online", name);
                 session.setAttribute("role", "Roles00003");
-                return  "../admin/ViewAllAccounts.xhtml?title=View All Accounts";
+                return "../admin/ViewAllAccounts.xhtml?title=View All Accounts";
             }
+            //if role is technician
             if (acc.getTbRoles().getRoleId().equals("Roles00002")) {
                 session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("login_menu", "../technician/Tenician_Menu.xhtml");
@@ -356,8 +357,9 @@ public class AccountMB {
                 session.setAttribute("login_label", "Logout");
                 session.setAttribute("username_online", name);
                 session.setAttribute("role", "Roles00002");
-                return  "../technician/ViewComplaintLog.xhtml?title=View Complaints";
+                return "../technician/ViewComplaintLog.xhtml?title=View Complaints";
             }
+            //if role is employee
             if (acc.getTbRoles().getRoleId().equals("Roles00001")) {
                 session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("login_menu", "../employee/EmployeeMenu.xhtml");
@@ -365,19 +367,22 @@ public class AccountMB {
                 session.setAttribute("login_label", "Logout");
                 session.setAttribute("username_online", name);
                 session.setAttribute("role", "Roles00001");
-                return  "../employee/LodgeNewComplaint.xhtml?title=View My Complaint";
+                return "../employee/LodgeNewComplaint.xhtml?title=View My Complaint";
             }
-            return  "/Home";
-           
+            return "/Home";
+
 
         } else {
-            return  "/Home";
+            return "/Home";
         }
     }
 
+    /*
+     * Logout system
+     */
     public String logout() {
         try {
-            response= (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
             response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
             response.setDateHeader("Expires", 0); //prevents caching at the proxy server
             response.setHeader("Cache-Control", "private"); // HTTP 1.1
@@ -390,34 +395,46 @@ public class AccountMB {
 
         } catch (ServletException ex) {
             Logger.getLogger(AccountMB.class.getName()).log(Level.SEVERE, null, ex);
-           return null;
+            return null;
         }
-      //   return (FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "faces/Home.xhtml");
+
     }
 
-    //Function to save edition of account
-    public String saveAction() {
+    /*
+     *Function to save edition of account
+     * 
+     */
+    public String saveAction(Account a) {
 
         //get all existing value but set "editable" to false
-        for (Account a : listAccount) {
-            a.setEditable(false);
-            //   System.out.println(role.getRoleName());
-            //   a.ac.setTbRoles(role);
-            tbAccountsFacade.edit(a.ac);
 
-            tbStaffsFacade.edit(a.ac.getTbStaffs());
-
+        a.setEditable(false);
+        System.out.println("ten cua role vua nhap: " + role_edit.getRoleName());
+        if (role_edit.getRoleId() != null) {
+            a.ac.setTbRoles(tbRolesFacade.find(role_edit.getRoleId()));
         }
+        tbAccountsFacade.edit(a.ac);
+
+        tbStaffsFacade.edit(a.ac.getTbStaffs());
+
+        //   }
         //return to current page
         return null;
 
     }
-    //Function to set editabe avariable equal true order to edit
+    /*
+     *Function to set editabe avariable equal true order to edit
+     * 
+     */
 
     public String editAction(Account a) {
         a.setEditable(true);
         return null;
     }
+    
+    /*
+     * Disable role of user(mean delete user)
+     */
 
     public String unavailableAction(Account a) {
 
@@ -428,7 +445,7 @@ public class AccountMB {
             listAccount = getListAccount();
             return null;
         } else {
-            // JOptionPane.showConfirmDialog(null,"Not Unavailable!");
+
             return null;
         }
     }
@@ -458,6 +475,7 @@ public class AccountMB {
 
         public Account(TbAccounts ac) {
             this.ac = ac;
+
         }
     }
 }
