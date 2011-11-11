@@ -123,17 +123,15 @@ public class StaffMB {
         MD5 md5=new MD5();
         staff.setStaffId("a");
         staff.setTbDepartments(depart);
-        try{
+      
         tbStaffsFacade.create(staff);
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+       
         System.out.println("da tao staff");
         acc.setAccountId("a");
         acc.setPassword(md5.getMd5Digest("123456"));
         acc.setStatus("Enable");
         acc.setTbRoles(role);
-        acc.setTbStaffs(staff);
+      //  acc.setTbStaffs(staff);
         tbAccountsFacade.create(acc);
        
         return "CreateAccount";

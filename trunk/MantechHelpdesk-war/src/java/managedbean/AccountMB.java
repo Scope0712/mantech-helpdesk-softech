@@ -342,6 +342,7 @@ public class AccountMB {
                 return "../admin/ViewAllAccounts.xhtml?title=View All Accounts";
             }
             //if role is technician
+            System.out.println("role is "+acc.getTbRoles().getRoleId());
             if (acc.getTbRoles().getRoleId().equals("Roles00002")) {
                 session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("login_menu", "../technician/Tenician_Menu.xhtml");
