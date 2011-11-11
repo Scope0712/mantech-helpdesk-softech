@@ -14,7 +14,9 @@ import java.util.Collection;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 import sessionbean.ComplaintDetailsFacadeLocal;
 import sessionbean.TbAccountsFacadeLocal;
@@ -51,7 +53,15 @@ public class thAllComplaint {
     private static ArrayList<Complaint> listCom = null;
     String employeeId;
     TbComplaintLogs log;
+    ComplaintDetails complaintview;
 
+    public ComplaintDetails getComplaintview() {
+        return complaintview;
+    }
+
+    public void setComplaintview(ComplaintDetails complaintview) {
+        this.complaintview = complaintview;
+    }    
     public String getEmployeeId() {
         HttpSession sessionuser = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         String id = (String) sessionuser.getAttribute("username_online");
@@ -146,6 +156,13 @@ public class thAllComplaint {
     /** Creates a new instance of thAllComplaint */
     public thAllComplaint() {
         log = new TbComplaintLogs();
+        complaintview = new ComplaintDetails();
+    }
+    //view detail of complaint
+     public void select(ActionEvent event) {
+        UIParameter para = (UIParameter) event.getComponent().findComponent("complaintId_view");
+        complaintview = complaintDetailsFacade.find(para.getValue().toString());
+        setComplaintview(complaintview);
     }
 
     public String Resend(Complaint com) {
