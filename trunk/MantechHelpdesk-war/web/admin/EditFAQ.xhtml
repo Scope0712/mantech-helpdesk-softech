@@ -21,7 +21,7 @@
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Category" for="categoryId" /></td>
-                                <td><h:selectOneMenu id="categoryId" title="CategoryId" value="#{FAQBean.myCategory.categoryId}" style="width: 200px;">
+                                <td><h:selectOneMenu id="categoryId" title="CategoryId" value="#{FAQBean.myFAQ.tbCategories.categoryId}" style="width: 200px;">
                                         <f:selectItems value="#{CategoryBean.listCategories}"
                                                        var="item" itemLabel="#{item.categoryName}" itemValue="#{item.categoryId}"/>
                                     </h:selectOneMenu></td>
