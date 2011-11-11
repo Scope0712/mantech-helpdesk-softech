@@ -33,8 +33,8 @@
                                 <td><h:message  style="color: red" for="problem"/></td>
                             </tr>
                             <tr>
-                                <td><h:outputLabel value="Resolve" for="resolve"/></td>
-                                <td><h:inputTextarea id="resolve" value="#{SolutionMB.myTbSolutions.detailResolve}" style="height: 150px; width: 520px;" title="Resolve" required="true" requiredMessage="*"/>
+                                <td><h:outputLabel value="Resolve" for="anwswer2"/></td>
+                                <td><h:inputTextarea id="anwswer2" value="#{SolutionMB.myTbSolutions.detailResolve}" style="height: 150px; width: 500px;" title="Answer" required="true" requiredMessage="*"/>
                                     <script type="text/javascript">
                                             // This is a check for the CKEditor class. If not defined, the paths must be checked.
                                             if ( typeof CKEDITOR == 'undefined' )
@@ -48,114 +48,117 @@
                                             }
                                             else
                                             {
-                                                var editor = CKEDITOR.replace( 'resolve',
-                                            {
-                                                     /*
-                                                     * Style sheet for the contents
-                                                     */
-                                                    contentsCss : 'assets/output_xhtml.css',
 
-                                                    /*
-                                                     * Core styles.
-                                                     */
-                                                    coreStyles_bold	: { element : 'span', attributes : {'class': 'Bold'} },
-                                                    coreStyles_italic	: { element : 'span', attributes : {'class': 'Italic'}},
-                                                    coreStyles_underline	: { element : 'span', attributes : {'class': 'Underline'}},
-                                                    coreStyles_strike	: { element : 'span', attributes : {'class': 'StrikeThrough'}, overrides : 'strike' },
 
-                                                    coreStyles_subscript : { element : 'span', attributes : {'class': 'Subscript'}, overrides : 'sub' },
-                                                    coreStyles_superscript : { element : 'span', attributes : {'class': 'Superscript'}, overrides : 'sup' },
+                                                var editor = CKEDITOR.replace( 'anwswer2',
+                                                {
+                                                 /*
+						 * Style sheet for the contents
+						 */
+						contentsCss : 'assets/output_xhtml.css',
 
-                                                    /*
-                                                     * Font face
-                                                     */
-                                                    // List of fonts available in the toolbar combo. Each font definition is
-                                                    // separated by a semi-colon (;). We are using class names here, so each font
-                                                    // is defined by {Combo Label}/{Class Name}.
-                                                    font_names : 'Comic Sans MS/FontComic;Courier New/FontCourier;Times New Roman/FontTimes',
+						/*
+						 * Core styles.
+						 */
+						coreStyles_bold	: { element : 'span', attributes : {'class': 'Bold'} },
+						coreStyles_italic	: { element : 'span', attributes : {'class': 'Italic'}},
+						coreStyles_underline	: { element : 'span', attributes : {'class': 'Underline'}},
+						coreStyles_strike	: { element : 'span', attributes : {'class': 'StrikeThrough'}, overrides : 'strike' },
 
-                                                    // Define the way font elements will be applied to the document. The "span"
-                                                    // element will be used. When a font is selected, the font name defined in the
-                                                    // above list is passed to this definition with the name "Font", being it
-                                                    // injected in the "class" attribute.
-                                                    // We must also instruct the editor to replace span elements that are used to
-                                                    // set the font (Overrides).
-                                                    font_style :
-                                                    {
-                                                                    element		: 'span',
-                                                                    attributes		: { 'class' : '#(family)' }
-                                                    },
+						coreStyles_subscript : { element : 'span', attributes : {'class': 'Subscript'}, overrides : 'sub' },
+						coreStyles_superscript : { element : 'span', attributes : {'class': 'Superscript'}, overrides : 'sup' },
 
-                                                    /*
-                                                     * Font sizes.
-                                                     */
-                                                    fontSize_sizes : 'Smaller/FontSmaller;Larger/FontLarger;8pt/FontSmall;14pt/FontBig;Double Size/FontDouble',
-                                                    fontSize_style :
-                                                            {
-                                                                    element		: 'span',
-                                                                    attributes	: { 'class' : '#(size)' }
-                                                            } ,
+						/*
+						 * Font face
+						 */
+						// List of fonts available in the toolbar combo. Each font definition is
+						// separated by a semi-colon (;). We are using class names here, so each font
+						// is defined by {Combo Label}/{Class Name}.
+						font_names : 'Comic Sans MS/FontComic;Courier New/FontCourier;Times New Roman/FontTimes',
 
-                                                    /*
-                                                     * Font colors.
-                                                     */
-                                                    colorButton_enableMore : false,
+						// Define the way font elements will be applied to the document. The "span"
+						// element will be used. When a font is selected, the font name defined in the
+						// above list is passed to this definition with the name "Font", being it
+						// injected in the "class" attribute.
+						// We must also instruct the editor to replace span elements that are used to
+						// set the font (Overrides).
+						font_style :
+						{
+								element		: 'span',
+								attributes		: { 'class' : '#(family)' }
+						},
 
-                                                    colorButton_colors : 'FontColor1/FF9900,FontColor2/0066CC,FontColor3/F00',
-                                                    colorButton_foreStyle :
-                                                            {
-                                                                    element : 'span',
-                                                                    attributes : { 'class' : '#(color)' }
-                                                            },
+						/*
+						 * Font sizes.
+						 */
+						fontSize_sizes : 'Smaller/FontSmaller;Larger/FontLarger;8pt/FontSmall;14pt/FontBig;Double Size/FontDouble',
+						fontSize_style :
+							{
+								element		: 'span',
+								attributes	: { 'class' : '#(size)' }
+							} ,
 
-                                                    colorButton_backStyle :
-                                                            {
-                                                                    element : 'span',
-                                                                    attributes : { 'class' : '#(color)BG' }
-                                                            },
+						/*
+						 * Font colors.
+						 */
+						colorButton_enableMore : false,
 
-                                                    /*
-                                                     * Indentation.
-                                                     */
-                                                    indentClasses : ['Indent1', 'Indent2', 'Indent3'],
+						colorButton_colors : 'FontColor1/FF9900,FontColor2/0066CC,FontColor3/F00',
+						colorButton_foreStyle :
+							{
+								element : 'span',
+								attributes : { 'class' : '#(color)' }
+							},
 
-                                                    /*
-                                                     * Paragraph justification.
-                                                     */
-                                                    justifyClasses : [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull' ],
+						colorButton_backStyle :
+							{
+								element : 'span',
+								attributes : { 'class' : '#(color)BG' }
+							},
 
-                                                    /*
-                                                     * Styles combo.
-                                                     */
-                                                    stylesSet :
-                                                                    [
-                                                                            { name : 'Strong Emphasis', element : 'strong' },
-                                                                            { name : 'Emphasis', element : 'em' },
+						/*
+						 * Indentation.
+						 */
+						indentClasses : ['Indent1', 'Indent2', 'Indent3'],
 
-                                                                            { name : 'Computer Code', element : 'code' },
-                                                                            { name : 'Keyboard Phrase', element : 'kbd' },
-                                                                            { name : 'Sample Text', element : 'samp' },
-                                                                            { name : 'Variable', element : 'var' },
+						/*
+						 * Paragraph justification.
+						 */
+						justifyClasses : [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull' ],
 
-                                                                            { name : 'Deleted Text', element : 'del' },
-                                                                            { name : 'Inserted Text', element : 'ins' },
+						/*
+						 * Styles combo.
+						 */
+						stylesSet :
+								[
+									{ name : 'Strong Emphasis', element : 'strong' },
+									{ name : 'Emphasis', element : 'em' },
 
-                                                                            { name : 'Cited Work', element : 'cite' },
-                                                                            { name : 'Inline Quotation', element : 'q' }
-                                                                    ]
-                                                    });
-                                                    editor.setData( '#{SolutionMB.myTbSolutions.detailResolve}' );
+									{ name : 'Computer Code', element : 'code' },
+									{ name : 'Keyboard Phrase', element : 'kbd' },
+									{ name : 'Sample Text', element : 'samp' },
+									{ name : 'Variable', element : 'var' },
 
-                                                    // Just call CKFinder.SetupCKEditor and pass the CKEditor instance as the first argument.
-                                                    // The second parameter (optional), is the path for the CKFinder installation (default = "/ckfinder/").
-                                                    CKFinder.setupCKEditor( editor, '/MantechHelpdesk-war/ckfinder/' ) ;
-                                                    //CKFinder.SetupCKEditor( editor, { BasePath : '../../', RememberLastFolder : false } ) ;
-                                                    // It is also possible to pass an object with selected CKFinder properties as a second argument.
-                                                    // CKFinder.SetupCKEditor( editor, { BasePath : '../../', RememberLastFolder : false } ) ;
+									{ name : 'Deleted Text', element : 'del' },
+									{ name : 'Inserted Text', element : 'ins' },
 
-                                                }
-                                    </script></td>
-                                <td><h:message  style="color: red" for="resolve"/></td>
+									{ name : 'Cited Work', element : 'cite' },
+									{ name : 'Inline Quotation', element : 'q' }
+								]
+                                                });
+                                                editor.setData( '#{SolutionMB.myTbSolutions.detailResolve}' );
+
+                                                // Just call CKFinder.SetupCKEditor and pass the CKEditor instance as the first argument.
+                                                // The second parameter (optional), is the path for the CKFinder installation (default = "/ckfinder/").
+                                                CKFinder.setupCKEditor( editor, '/MantechHelpdesk-war/ckfinder/' ) ;
+                                                //CKFinder.SetupCKEditor( editor, { BasePath : '../../', RememberLastFolder : false } ) ;
+                                                // It is also possible to pass an object with selected CKFinder properties as a second argument.
+                                                // CKFinder.SetupCKEditor( editor, { BasePath : '../../', RememberLastFolder : false } ) ;
+
+                                            }
+                                    </script>
+                                </td>
+                                <td><h:message  style="color: red" for="anwswer2"/></td>
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Status" for="status"/></td>
