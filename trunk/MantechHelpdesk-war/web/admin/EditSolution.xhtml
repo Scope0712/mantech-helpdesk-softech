@@ -33,8 +33,8 @@
                                 <td><h:message  style="color: red" for="problem"/></td>
                             </tr>
                             <tr>
-                                <td><h:outputLabel value="Resolve" for="anwswer2"/></td>
-                                <td><h:inputTextarea id="anwswer2" value="#{SolutionMB.myTbSolutions.detailResolve}" style="height: 150px; width: 500px;" title="Answer" required="true" requiredMessage="*"/>
+                                <td><h:outputLabel value="Resolve" for="resolve"/></td>
+                                <td><h:inputTextarea id="resolve" value="#{SolutionMB.myTbSolutions.detailResolve}" style="height: 150px; width: 500px;" title="Answer" required="true" requiredMessage="*"/>
                                     <script type="text/javascript">
                                             // This is a check for the CKEditor class. If not defined, the paths must be checked.
                                             if ( typeof CKEDITOR == 'undefined' )
@@ -50,7 +50,7 @@
                                             {
 
 
-                                                var editor = CKEDITOR.replace( 'anwswer2',
+                                                var editor = CKEDITOR.replace( 'resolve',
                                                 {
                                                  /*
 						 * Style sheet for the contents
@@ -158,7 +158,7 @@
                                             }
                                     </script>
                                 </td>
-                                <td><h:message  style="color: red" for="anwswer2"/></td>
+                                <td><h:message  style="color: red" for="resolve"/></td>
                             </tr>
                             <tr>
                                 <td><h:outputLabel value="Status" for="status"/></td>
