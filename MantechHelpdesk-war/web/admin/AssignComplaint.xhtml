@@ -3,85 +3,92 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Complaint Report</title>
+        <p:resources />
+    </h:head>
 
     <body>
 
 
-       <ui:composition template="./templateAdmin.xhtml">
+        <ui:composition template="./templateAdmin.xhtml">
 
-           
+
             <ui:define name="content">
                 <f:view>
-                    <h1 style="text-align: left">Retrieve Assigning-Complaint</h1>
+                    <h1 style="float:none;text-align: left;color: blue">Retrieve New Complaint</h1>
                     <h:form >
-                        
-                        <h:outputLabel value="Assign for:" for="rad1" style="float: left"/>
-                        <div style="float: none">
-                            <h:selectOneRadio id="rad1" valueChangeListener="#{tNewComplaintMB.complTypeChanged}">
-                                <!--                            <f:selectItem  itemLabel="All" itemValue="0"/>-->
-                                <f:selectItem itemLabel="New complaints" itemValue="1"/>
-                                <!--                            <f:selectItem itemLabel="Re-send complaints" itemValue="2"/>-->
-                                <f:selectItem  itemLabel="Unsolved complaints" itemValue="2"/>
-                                <f:ajax render="dtb1" execute="@this"/>
-                            </h:selectOneRadio>
-                        </div>
-
-                        <h:dataTable value="#{tNewComplaintMB.newCompList}" var="item" border="1" id="dtb1" style="float: left;margin-top: 20px">
-                            <h:column >
+                        <h:outputLabel value="Assign For:" style="color: black;font-style: oblique;font-weight: bold;float:left"/><br/>
+                        <!--                        <div  style="float: left;margin-top: 20px">-->
+                        <!--                            <h:outputLabel value="Assign for:" for="rad1"/>-->
+                        <!--                        <div style="float: none">-->
+                        <h:selectOneRadio id="rad1" valueChangeListener="#{tNewComplaintMB.complTypeChanged}" style="color: black;font-style: oblique;font-weight: bold;float:left">
+                            <!--                            <f:selectItem  itemLabel="All" itemValue="0"/>-->
+                            <f:selectItem itemLabel="New complaints" itemValue="1"/>
+                            <!--                            <f:selectItem itemLabel="Re-send complaints" itemValue="2"/>-->
+                            <f:selectItem  itemLabel="Unsolved complaints" itemValue="2"/>
+                            <f:ajax render="dtb1" execute="@this"/>
+                        </h:selectOneRadio>
+                        <!--                        </div>-->
+                        <!--                        </div>-->
+                        <p:dataTable value="#{tNewComplaintMB.newCompList}" paginator="true" rows="5" var="item" id="dtb1" style="float: left;margin-top: 20px">
+                            <p:column >
                                 <f:facet name="header">
                                     <h:outputText value="Complaint id"/>
                                 </f:facet>
                                 <h:outputText value="#{item.complaintid}"/>
-                            </h:column>
-                            <h:column >
+                            </p:column>
+                            <p:column >
                                 <f:facet name="header">
-                                    <h:outputText value="Employee id"/>
+                                    <h:outputText value="Employee"/>
                                 </f:facet>
-                                <h:outputText value="#{item.employeeid}"/>
-                            </h:column>
-                            <h:column >
+                                <h:outputText value="#{tSummaryReportMB.findStaff(item.employeeid).getLastName()} #{tSummaryReportMB.findStaff(item.employeeid).getFirstName()}"/>
+                            </p:column>
+                            <p:column >
                                 <f:facet name="header">
-                                    <h:outputText value="Category Id"/>
+                                    <h:outputText value="Category"/>
                                 </f:facet>
                                 <h:outputText value="#{tCategoryMB.findCategory(item.categoryId).getCategoryName()}"/>
-                            </h:column>
-                            <h:column >
+                            </p:column>
+<!--                            <p:column >
                                 <f:facet name="header">
                                     <h:outputText value="Problem content"/>
                                 </f:facet>
                                 <h:outputText value="#{item.problemcontent}"/>
-                            </h:column>
-                            <h:column >
+                            </p:column>-->
+                            <p:column >
                                 <f:facet name="header">
                                     <h:outputText value="Priority"/>
                                 </f:facet>
                                 <h:outputText value="#{item.priorityValue}"/>
-                            </h:column>
-                            <h:column >
+                            </p:column>
+                            <p:column >
                                 <f:facet name="header">
                                     <h:outputText value="Lodging Date"/>
                                 </f:facet>
                                 <h:outputText value="#{item.lodgingDate}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:outputText>
-                            </h:column>
-                            <h:column >
+                            </p:column>
+                            <p:column >
                                 <f:facet name="header">
                                     <h:outputText value="Status"/>
                                 </f:facet>
                                 <h:outputText value="#{tStatusMB.findStatus(item.status).getStatusName()}"/>
-                            </h:column>
-                            <h:column >
+                            </p:column>
+<!--                            <p:column >
                                 <f:facet name="header">
                                     <h:outputText value="Resend No"/>
                                 </f:facet>
                                 <h:outputText value="#{item.resendNo}"/>
-                            </h:column>
-                            <h:column >
-                                <h:commandLink value="Detail" action="#{tNewComplaintMB.showComplDetail(item)}"/>
-                            </h:column>
-                        </h:dataTable>
+                            </p:column>-->
+                            <p:column >
+                                <h:commandLink value="Detail" action="#{tNewComplaintMB.showComplDetail(item)}" style="color: blue"/>
+                            </p:column>
+                        </p:dataTable>
                     </h:form>
                 </f:view>
             </ui:define>

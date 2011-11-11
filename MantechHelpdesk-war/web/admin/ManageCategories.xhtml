@@ -3,7 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Complaint Report</title>
+        <p:resources />
+    </h:head>
 
     <body>
 
@@ -11,29 +17,29 @@
 
             <ui:define name="content">
 
-                <h:form >
+                <h:form id="f1">
                     <h1 style="float:none;text-align: left;color: blue">Category List </h1>
-                    <h:dataTable value="#{tCategoryMB.categoryList}" var="item" id="tb2" style="float: none" border="1" width="400px">
-                        <!--                        <h:column>
+                    <p:dataTable value="#{tCategoryMB.categoryList}" var="item" id="tb2" style="float: none" >
+                        <!--                        <p:column>
                                                     <f:facet name="header">
                                                         <h:outputText value="Category Id"/>
                                                     </f:facet>
                                                     <h:outputText value="#{item.category.categoryId}"/>
-                                                </h:column>-->
+                                                </p:column>-->
 
-                        <h:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Category Name"/>
                             </f:facet>
                             <h:outputText value="#{item.category.categoryName}"/>
-                        </h:column>
+                        </p:column>
 
-                        <h:column>
+                        <p:column id="col">
                             <f:facet name="header">
                                 <h:outputText value="Priority"/>
                             </f:facet>
                             <h:outputText value="#{item.category.priority}" rendered="#{not item.editable}"/>
-                            <h:selectOneMenu value="#{item.category.priority}" rendered="#{item.editable}">
+                            <h:selectOneMenu value="#{item.category.priority}" rendered="#{item.editable}" >
                                 <f:selectItem itemValue="1"/>
                                 <f:selectItem itemValue="2"/>
                                 <f:selectItem itemValue="3"/>
@@ -45,21 +51,26 @@
                                 <f:selectItem itemValue="9"/>
                                 <f:selectItem itemValue="10"/>                               
                             </h:selectOneMenu>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Action"/>
                             </f:facet>
-                            <h:commandLink value="Edit" action="#{tCategoryMB.editAction(item)}"/>
-                        </h:column>
-                    </h:dataTable>
-                    <div style="float: left">
-                        <h:commandButton value="Save changes" action="#{tCategoryMB.saveAction}"/>
+                            <h:commandLink value="Edit" action="#{tCategoryMB.editAction(item)}" style="color: blue">
+                                <!--                                <f:ajax render="@form" execute="@this"/>-->
+                            </h:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                    <div style="float: right">
+                        <h:commandButton value="Save changes" action="#{tCategoryMB.saveAction}">
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
                     </div>
                 </h:form>
                 <br clear="right"/>
-                <h:form>
+                <h:form id="f2">
                     <h1 style="float:none;text-align: left;color: blue">Add new category</h1>
+                    <div style="float: left;margin-top: 20px">
                     <h:outputLabel value="Category Name:" for="categoryName"/>
                     <h:inputText id="categoryName" value="#{tCategoryMB.category.categoryName}" required="true" requiredMessage="The category name field is required" />
                     <h:outputLabel value="Priority" for="priority"/>
@@ -76,7 +87,9 @@
                         <f:selectItem itemValue="9"/>
                         <f:selectItem itemValue="10"/>
                     </h:selectOneMenu>
-                    <h:commandButton value="Add" action="#{tCategoryMB.addAction()}"/>
+                    <h:commandButton value="Add" action="#{tCategoryMB.addAction()}">                        
+                    </h:commandButton>
+                    </div>
                 </h:form>
             </ui:define>
         </ui:composition>
