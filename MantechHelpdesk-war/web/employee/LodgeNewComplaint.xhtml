@@ -9,7 +9,7 @@
 
 
     <ui:define name="content">
-        <h:form id="form1" style="border-color: burlywood; width: 680px; float: left; text-align: center; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
+        <h:form id="form1" style="border-color: burlywood; width: 620px; float: left; text-align: center; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
             <span style="font-size: x-large">
                 <b>Lodge new complaint</b>
             </span>
@@ -27,19 +27,17 @@
             </div>
             <br style="clear: both"/>
             <div style="padding: 5px">
-                <div style="float: left;width: 25%;height: 180px; text-align: right;vertical-align: top">
+                <div style="float: left;width: 25%;height: 160px; text-align: right;vertical-align: top">
                     <h:outputLabel value="Complaint Details: "/>
                 </div>
                 <div style="float:right;width:73%;text-align: left">
-                    <h:inputTextarea style="border:2px; border-color: burlywood; border-style: double; background: activeborder" value="#{newComplaintBean.complaint.problemContent}" cols="50" rows="10"/>
+                    <h:inputTextarea style="border:2px; border-color: burlywood; border-style: double; background: activeborder" value="#{newComplaintBean.complaint.problemContent}" cols="80" rows="30"/>
                 </div>
             </div>
-
             <br style="clear: both"/>
             <div style="padding: 5px; text-align: center">
                 <h:outputLabel value="#{newComplaintBean.status}"/>
             </div>
-            <br style="clear: both"/>
             <div style="padding: 5px; text-align: center">
                 <h:commandButton value="Submit" action="#{newComplaintBean.NewComplaint}"/>
             </div>

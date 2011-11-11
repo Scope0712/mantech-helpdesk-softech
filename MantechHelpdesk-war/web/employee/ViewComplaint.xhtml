@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../admin/templateAdmin.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html">
+    
+    
+    <ui:define name="content">
+        <table border="0" style="margin: 10px">
+                    <tbody>
+                        <tr>
+                            <h1 align="center"><h:outputText value="Detail Complaint Information"></h:outputText></h1>
+                        </tr>
+                        <tr>
+                            <td style="float: left;width: 120px; text-align: right">
+                                    <b><h:outputLabel value="Complaint Id:"></h:outputLabel></b>
+                            </td>
+                            <td><h:outputText value="#{thAllComplaint.complaintview.complaintId}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                             <td style="float: left;width: 120px; text-align: right">
+                                    <b><h:outputLabel value="Category Name:"></h:outputLabel></b>
+                            </td>
+                            <td><h:outputText value="#{thAllComplaint.complaintview.categoryName}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                             <td style="float: left;width: 120px; text-align: right">
+                                    <b><h:outputLabel value="Date Lodge:"></h:outputLabel></b>
+                            </td>
+                            <td><h:outputText value="#{thAllComplaint.complaintview.date}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                             <td style="float: left;width: 120px; text-align: right">
+                                    <b><h:outputLabel value="Status:"></h:outputLabel></b>
+                            </td>
+                            <td><h:outputText value="#{thAllComplaint.complaintview.statusName}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                             <td style="float: left;width: 120px; text-align: right">
+                                    <b><h:outputLabel value="Resend No:"></h:outputLabel></b>
+                            </td>
+                            <td><h:outputText value="#{thAllComplaint.complaintview.resendNo}"></h:outputText></td>
+                        </tr>
+                        <tr>
+                             <td style="float: left;width: 120px; text-align: right">
+                                    <b><h:outputLabel value="Content:"></h:outputLabel></b>
+                            </td>
+                            <td><div class="answer"><h:outputText value="#{thAllComplaint.complaintview.problemContent}"></h:outputText></div>
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        $(".answer").readmore();
+                                    });
+                                </script></td>
+                        </tr>
+                    </tbody>
+                </table>
+    </ui:define>
+
+</ui:composition>
