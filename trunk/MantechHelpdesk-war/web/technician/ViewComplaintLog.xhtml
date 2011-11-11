@@ -3,98 +3,72 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
 
     <body>
 
         <ui:composition template="./../admin/templateAdmin.xhtml">         
             <ui:define name="content">
-                <h:form>
-                   
-                    <h:dataTable value="#{assignTaskMB.listATL}" var="o"
-                                 styleClass="order-table"
-                                 headerClass="order-table-header"
-                                 rowClasses="order-table-odd-row"
-                                  >
-                     <h:column>
+                <h:form  id="form1" style="border-color: blue; width: 620px; float: left; text-align: center; padding-left: 10px;padding-right: 10px; border-width: 1px; border-style: outset;">
 
+                    <p:dataTable value="#{assignTaskMB.listATL}" var="o"
+                                 style="width: 620px;text-align: center" styleClass="order-table" paginator="true" rows="20">
+
+                        <p:column>
                             <f:facet name="header">Complaint Id</f:facet>
                             <h:outputText value="#{o.at.complaintId}" />
-
-                        </h:column>
-                        <h:column>
-
-                            <f:facet name="header">Complaint Content</f:facet>
-                            <h:outputText value="#{o.at.problemContent}" />
-
-                        </h:column>
-                        <h:column>
-
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">Category</f:facet>
                             <h:outputText value="#{o.at.categoryName}" />
-
-                        </h:column>
-                        <h:column>
-
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">Priority </f:facet>
                             <h:outputText value="#{o.at.priorityValue}"  />
-
-                        </h:column>
-
-
-                        <h:column>
-
-                            <f:facet name="header">Image</f:facet>
-
-                            <h:commandLink  value="image" />
-
-                        </h:column>
-                        <h:column>
-
-                            <f:facet name="header">Employee</f:facet>
-
-                            <h:outputText  value="#{o.at.fullName}" />
-
-                        </h:column>
-                        <h:column>
-
-                            <f:facet name="header">Department</f:facet>
-
-                            <h:outputText  value="#{o.at.departmentName}" />
-
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <!--                        <p:column>
+                                                    <f:facet name="header">Employee</f:facet>
+                                                    <h:outputText  value="#{o.at.fullName}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">Department</f:facet>
+                                                    <h:outputText  value="#{o.at.departmentName}" />
+                                                </p:column>-->
+                        <p:column>
                             <f:facet name="header">Status</f:facet>
-
                             <h:selectOneMenu style="border:1px; border-color: black; border-style:inset; background: activeborder"  value="#{assignTaskMB.status.statusId}" rendered="#{o.editable}">
                                 <f:selectItem itemLabel="-select-" itemValue=""/>
                                 <f:selectItems  var="a" value="#{assignTaskMB.listStatus}" itemLabel="#{a.statusName}" itemValue="#{a.statusId}"/>
                             </h:selectOneMenu>
 
                             <h:outputText value="#{o.at.statusName}" rendered="#{not o.editable}" />
+                        </p:column>
 
-                        </h:column>
 
-
-                        <h:column>
+                        <p:column>
 
                             <f:facet name="header">Action</f:facet>
                             <h:commandLink value="Edit" action="#{assignTaskMB.editAction(o)}" rendered="#{not o.editable}"/>
 
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
 
                             <f:facet name="header">Action</f:facet>
                             <h:commandButton value="OK" action="#{assignTaskMB.saveAction(o)}" disabled="#{not o.editable}" />
 
-                        </h:column>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Details"/>
+                            </f:facet>
+                            <h:commandLink  action="../employee/ViewComplaint.xhtml"  actionListener="#{thAllComplaint.select}" value="Details">
+                                <f:param id="complaintId_view" value="#{o.at.complaintId}"/>
+                            </h:commandLink>
+                        </p:column>
+                    </p:dataTable>
 
-                        
 
-
-                    </h:dataTable>
-
-                  
                     <br style="clear: both"/>
                     <br style="clear: both"/>
                 </h:form>
