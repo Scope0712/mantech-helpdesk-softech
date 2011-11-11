@@ -10,10 +10,11 @@
         <ui:composition template="./../admin/templateAdmin.xhtml">         
             <ui:define name="content">
                 <h:form>
+                   
                     <h:dataTable value="#{assignTaskMB.listATL}" var="o"
                                  styleClass="order-table"
                                  headerClass="order-table-header"
-                                 rowClasses="order-table-odd-row,order-table-even-row"
+                                 rowClasses="order-table-odd-row"
                                   >
                      <h:column>
 
