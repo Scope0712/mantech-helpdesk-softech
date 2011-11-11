@@ -5,7 +5,7 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-       <style type="text/css">
+    <style type="text/css">
         .menuleft{
             border-width: 1px;
             border-style: dashed;
@@ -14,32 +14,26 @@
             border-color: black;
             background-image:  url(../images/left.png);
         }
-      
-       </style>
-    <h:body>
-        
-          <div align="left" style="width:100%; float: left;">
-                    <div style="background-image: url(../images/left.png); padding: 5px;padding-left: 30px; color: red"><b>Admin</b></div>
-                  
-                     <li ><a href="../admin/ViewAllAccounts.xhtml?title=Create Account">View Informations of Accounts</a></li>
-                     <li ><a href="../admin/CreateAccount.xhtml?title=Create Account">Create accounts</a></li>
-                     <li ><a href="a">Set complaint priority rules</a></li>
-                     <li ><a href="b">Sort complaints</a></li>
-                     <li ><a href="../admin/AssignComplaint.xhtml?title=Assign Complaint">Assign complaints</a></li>
-                    
-                    
-                    <li ><a href="e">Generate reports (GR)</a></li>
-                    <li ><a href="f">GR by technician</a></li>
-                    <li><a href="g">GR by department</a></li>
-                    <li ><a href="h">GR by period (GRP)</a></li>
-                    <li ><a href="i">GR by status</a></li>
 
-                    <li ><a href="../admin/ShowAllFAQs.xhtml">FAQs Management</a></li>
-                    <li ><a href="../admin/ShowAllSolutions.xhtml">Solutions Management</a></li>
-                    <li ><a href="../admin/ShowAllArticles.xhtml">Technical Articles Management</a></li>
-                  
-          </div>
-        
+    </style>
+    <h:body>
+
+        <div align="left" style="width:100%; float: left;">
+            <div style="background-image: url(../images/left.png); padding: 5px;padding-left: 30px; color: red"><b>Admin</b></div>
+            <li ><a href="../admin/ViewAllAccounts.xhtml?title=Create Account">View Informations of Accounts</a></li>
+            <li ><a href="../admin/CreateAccount.xhtml?title=Create Account">Create accounts</a></li>
+            <li ><a href="../admin/AssignComplaint.xhtml">Retrieve New Complaints</a></li>
+            <li ><a href="../admin/AssignComplaint.xhtml?title=Assign Complaint">Assign complaints</a></li>
+            <li ><a href="../admin/SummaryReport.xhtml">Summary report</a></li>
+            <li ><a href="../admin/Report.xhtml">Detail report</a></li>
+            <li ><a href="../admin/ManageDepartments.xhtml">Department Management</a></li>
+            <li><a href="../admin/ManageCategories.xhtml">Category Management</a></li>
+            <li ><a href="../admin/ShowAllFAQs.xhtml">FAQs Management</a></li>
+            <li ><a href="../admin/ShowAllSolutions.xhtml">Solutions Management</a></li>
+            <li ><a href="../admin/ShowAllArticles.xhtml">Technical Articles Management</a></li>
+
+        </div>
+
     </h:body>
 </html>
 
